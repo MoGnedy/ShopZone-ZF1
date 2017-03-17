@@ -14,7 +14,6 @@
         <controllerFile controllerName="User">
           <actionMethod actionName="index"/>
           <actionMethod actionName="add"/>
-          <actionMethod actionName="add"/>
           <actionMethod actionName="fblogin"/>
           <actionMethod actionName="facebookcallback"/>
           <actionMethod actionName="facelogout"/>
@@ -26,6 +25,7 @@
           <actionMethod actionName="productdetails"/>
           <actionMethod actionName="deleteproduct"/>
           <actionMethod actionName="editproduct"/>
+          <actionMethod actionName="productdetail"/>
         </controllerFile>
         <controllerFile controllerName="Admin">
           <actionMethod actionName="index"/>
@@ -86,6 +86,7 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="editproduct"/>
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="add"/>
           </viewControllerScriptsDirectory>
@@ -97,6 +98,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="facelogout"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Shop">
+            <viewScriptFile forActionName="productdetail"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

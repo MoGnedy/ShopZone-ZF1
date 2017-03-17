@@ -14,7 +14,31 @@
     <link rel="stylesheet" href="style.css">
 	</head>
         <body>
+<?php
+$auth=Zend_Auth::getInstance();
+    $storage=$auth->getStorage();
+    $userdata=$storage->read();
+    $fbsession = new Zend_Session_Namespace('facebook');
 
+    if(!empty($userdata)|| !empty($fbsession->name))
+    {
+        if (!empty($fbsession->name)){
+          echo 'Welcome' . $fbsession->name;
+        }else{
+      // if authenticated and logged in 
+    echo 'Welcome' . $userdata->name;
+  }
+    echo' <a href="/user/logout">Logout</a>';
+  }
+
+  else
+  {// if not logged in 
+    echo' <a href="/user/login">Login</a>';
+  }
+
+
+
+?>
 <?php echo $this->layout()->content; ?>
 
         </body>

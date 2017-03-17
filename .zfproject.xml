@@ -9,6 +9,9 @@
       <controllersDirectory>
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="listCategory"/>
+          <actionMethod actionName="detailsProduct"/>
+          <actionMethod actionName="listProduct"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="User">
@@ -102,6 +105,15 @@
           <viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="productdetail"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="listCategory"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="detailsProduct"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="listProduct"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -136,7 +148,11 @@
       <testPHPUnitBootstrapFile filesystemName="bootstrap.php"/>
       <testApplicationDirectory>
         <testApplicationControllerDirectory>
-          <testApplicationControllerFile forControllerName="Index"/>
+          <testApplicationControllerFile forControllerName="Index">
+            <testApplicationActionMethod forActionName="listCategory"/>
+            <testApplicationActionMethod forActionName="detailsProduct"/>
+            <testApplicationActionMethod forActionName="listProduct"/>
+          </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
       <testLibraryDirectory/>

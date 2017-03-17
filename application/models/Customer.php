@@ -25,9 +25,11 @@ class Application_Model_Customer extends Zend_Db_Table_Abstract
         else{
         $db=Zend_Db_Table::getDefaultAdapter();
         $select=new Zend_Db_Select($db);
-        $select->from('customer')
-                ->where('type='.$type);
-        return $db->fetchAll($select)->toArray();
+        $select->from('customer','*')
+                ->where('type= ?',$type);
+        $stmt = $select->query();
+        $result = $stmt->fetchAll();
+        return $result;
         }
     }
 }

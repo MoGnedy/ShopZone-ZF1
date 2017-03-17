@@ -18,6 +18,9 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="addproduct"/>
           <actionMethod actionName="listproducts"/>
+          <actionMethod actionName="productdetails"/>
+          <actionMethod actionName="deleteproduct"/>
+          <actionMethod actionName="editproduct"/>
         </controllerFile>
         <controllerFile controllerName="Admin">
           <actionMethod actionName="index"/>
@@ -68,6 +71,15 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="listproducts"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Shop">
+            <viewScriptFile forActionName="productdetails"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Shop">
+            <viewScriptFile forActionName="deleteproduct"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Shop">
+            <viewScriptFile forActionName="editproduct"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

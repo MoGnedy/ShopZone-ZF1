@@ -49,6 +49,37 @@ class UserController extends Zend_Controller_Action
         }
     }
 
+    public function loginAction()
+    {
+        // action body
+        $loginForm=new Application_Form_Login();
+        $request=$this->getRequest();
+        if($request->isPost()){
+          if ($loginForm->isValid($request->getPost())) {
+            //print_r($request->getPost());
+            //Array ( [name] => والتنم [pass] => كةىتﻻاىةزظ [Login] => Login )
+            $name=$request->getParam('name');
+            $pass=$request->getParam('pass');
+            $dp=Zend_Db_Table::getDefaultAdapter();
+            $adapter=new Zend_Auth_Adapter_DbTable($dp,'customer','name','password');
+            $adapter->setIdentity($name);
+            $adapter->setCredential($pass);
+            $result=$adapter->authenticate();
+            if ($result->isValid()) {
+              $sessionDataObj=$adapter->getResultRowObject(['email','name','id','type']);
+              $auth=Zend_Auth::getInstance();
+              $storage=$auth->getStorage();
+              $storage->write($sessionDataObj);
+
+            }
+          }
+          else{
+            $this->view->error_message="Invalid Email or password";
+
+          }
+        }
+        $this->view->loginform_var=$loginForm;
+    }
     public function fbloginAction()
     {
         // action body
@@ -143,21 +174,16 @@ $this->fpS->name = $userNode['name'];
         // action body
     $auth=Zend_Auth::getInstance();
     Zend_Session::namespaceUnset('facebook');
-    
+
     $auth->clearIdentity();
 
     return $this->redirect('user/login');
 
     }
-
+    public function googleloginAction()
+    {
+        // action
+        $this->view->googlelogin;
+    }
 
 }
-
-
-
-
-
-
-
-
-

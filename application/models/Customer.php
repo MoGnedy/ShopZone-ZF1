@@ -14,6 +14,21 @@ class Application_Model_Customer extends Zend_Db_Table_Abstract
   		$row->save();
 
     }
-
+    
+    function listusers($type=null){
+        //var_dump(empty($type));
+        
+        if (empty($type)){
+          
+           return $this->fetchAll()->toArray();
+        }
+        else{
+        $db=Zend_Db_Table::getDefaultAdapter();
+        $select=new Zend_Db_Select($db);
+        $select->from('customer')
+                ->where('type='.$type);
+        return $db->fetchAll($select)->toArray();
+        }
+    }
 }
 

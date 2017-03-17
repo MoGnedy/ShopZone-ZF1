@@ -71,7 +71,7 @@ class Application_Form_Productform extends Zend_Form
 
         $allcats = $cat_obj->listAll();
         $cat_id = new Zend_Form_Element_Select('category');
-        $cat_id->setLabel('Track : ');
+        $cat_id->setLabel('category : ');
         $cat_id->setAttrib('class', 'form-control');
 
         foreach($allcats as $key=>$value)

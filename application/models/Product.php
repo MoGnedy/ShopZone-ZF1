@@ -26,7 +26,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
     }
     
     
-    function ProductDetails($id){
+    function productDetails($id){
         return $this-> find($id)->toArray();
     }
 
@@ -37,6 +37,18 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
         $select->from('product','*')
                 ->where('customer_id='.$customer);
         return $db->fetchAll($select);
+    }
+
+    function updateProduct($id,$productData)
+    {
+      $productData['name']=$productData['name'];
+      $productData['description']=$productData['description'];
+      $productData['price']=$productData['price'];
+      $productData['picture']=$$productData['picture'];
+      $productData['quantity']=$productData['quantity'];
+      $productData['category']=$productData['category'];
+      $this->update($productData,"id=$id");
+
     }
 
 }

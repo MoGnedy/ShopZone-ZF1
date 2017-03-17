@@ -1,4 +1,47 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Shop</b> and script/action name <b>listproducts</b></p>
-</div>
+<table class="table">
+<thead>
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Picture</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Category</th>
+    <th>Actions</th>
+  </tr>
+</thead>
+<tbody>
+
+              <?php
+
+
+
+
+
+    foreach($this->products as $key => $value)
+    {
+            ?>
+    <tr>
+        
+        <td> <?= $value['id'] ?> </td>
+        <td><?= $value['name'] ?></td>
+        <td><?= "<img src="."\"".getcwd()."/".$value['picture']."\""."alt='product pic' height='42' width='42'>" ?></td>
+        <td><?= $value['description'] ?></td>
+        <td><?= $value['price'] ?></td>
+        <td><?= $value['category'] ?></td>
+        
+            
+        <td> <a href="<?= 'productdetails/pid/'.$value['id'] ?>" ><button class="btn btn-primary"  type="button" name="button"> Details </button></a> </td>
+        <td>  <a  href="<?= 'editproduct/pid/'.$value['id'] ?>"><button class="btn btn-default" type="button" name="button"> edit  </button></a> </td>
+        <td>  <a  href="<?= 'deleteproduct/pid/'.$value['id'] ?>"><button class="btn btn-danger" type="button" name="button"> Delete  </button></a> </td>    
+        
+        
+        
+        
+			    </tr>
+			    <?php } ?>
+			  </tbody>
+
+
+		</table>
+		

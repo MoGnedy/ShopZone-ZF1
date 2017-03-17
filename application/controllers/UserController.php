@@ -7,27 +7,25 @@ class UserController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
-         /* Initialize action controller here */
-         $this->fpS = new Zend_Session_Namespace('facebook');
-         $authorization = Zend_Auth::getInstance();
-        $fbsession = new Zend_Session_Namespace('facebook');
-
-        $request=$this->getRequest();
-        $actionName=$request->getActionName();
-
-          if ((!$authorization->hasIdentity() && !isset($fbsession->name)) && ($actionName != 'login' && $actionName != 'fblogin' && $actionName !='facebookcallback'))
-          {
-
-              $this->redirect('/user/login');
-          }
-
-
-          if (($authorization->hasIdentity() || isset($fbsession->fname)) && ($actionName == 'login' || $actionName == 'fblogin'))
-          {
-            $this->redirect('/index');
-
-        }
+//         $this->fpS = new Zend_Session_Namespace('facebook');
+//         $authorization = Zend_Auth::getInstance();
+//        $fbsession = new Zend_Session_Namespace('facebook');
+//
+//        $request=$this->getRequest();
+//        $actionName=$request->getActionName();
+//
+//          if ((!$authorization->hasIdentity() && !isset($fbsession->name)) && ($actionName != 'login' && $actionName != 'fblogin' && $actionName !='facebookcallback'))
+//          {
+//
+//              $this->redirect('/user/login');
+//          }
+//
+//
+//          if (($authorization->hasIdentity() || isset($fbsession->fname)) && ($actionName == 'login' || $actionName == 'fblogin'))
+//          {
+//            $this->redirect('/index');
+//
+//        }
     }
 
     public function indexAction()
@@ -169,7 +167,7 @@ $this->fpS->name = $userNode['name'];
 
     }
 
-    public function facelogoutAction()
+     function facelogoutAction()
     {
         // action body
     $auth=Zend_Auth::getInstance();
@@ -180,10 +178,12 @@ $this->fpS->name = $userNode['name'];
     return $this->redirect('user/login');
 
     }
-    public function googleloginAction()
+     function googleloginAction()
     {
         // action
         $this->view->googlelogin;
     }
 
-}
+
+
+?>

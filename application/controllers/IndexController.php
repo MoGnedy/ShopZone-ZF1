@@ -24,11 +24,21 @@ class IndexController extends Zend_Controller_Action
 
     public function detailsProductAction()
     {
-        // action body
+
         $product_model=new Application_Model_Product();
         $product_id = $this->_request->getParam("uid");
         $product_data = $product_model->ProductDetails($product_id);
-        $this->view->product_data=$product_data;
+        $this->view->product_data=$product_data[0];
+
+        $addcart=new Application_Form_Addtocart();
+        $this->view->form=$addcart;
+
+        // $request = $this->getRequest();
+        // if ($request->isPost()) {
+        //     // $user_model=new Application_Model_User();
+        //     // $user_model->($usr_id);
+        //     // $this->redirect("/user/list");
+        // }
 
     }
 
@@ -39,12 +49,18 @@ class IndexController extends Zend_Controller_Action
         $this->view->product =  $product_model->listProducts();
     }
 
+    public function addtocartAction()
+    {
+      $cart=new Application_Model_Cartitem();
+
+
+
+
+      $cart->addProduct($_POST);
+      $uid=$_POST[product];
+      $this->redirect("/index/details-product/uid/".$uid);
+
+    }
+
 
 }
-
-
-
-
-
-
-

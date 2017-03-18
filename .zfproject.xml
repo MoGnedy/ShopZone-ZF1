@@ -12,6 +12,7 @@
           <actionMethod actionName="listCategory"/>
           <actionMethod actionName="detailsProduct"/>
           <actionMethod actionName="listProduct"/>
+          <actionMethod actionName="addtocart"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="User">
@@ -47,6 +48,7 @@
         <formFile formName="Signup"/>
         <formFile formName="Commentform"/>
         <formFile formName="Commentform"/>
+        <formFile formName="Addtocart"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -147,6 +149,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="activeuser"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="addtocart"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_Offer extends ZendX_JQuery_Form
+class Application_Form_Offer extends Zend_Form
 {
 
     //ZendX_JQuery_Form
@@ -9,20 +9,6 @@ class Application_Form_Offer extends ZendX_JQuery_Form
 
     	$this->setMethod('POST');
    
-
-//    $textElement = new ZendX_JQuery_Form_Element_DatePicker('dtPicker', array("label" => "testtest"." (yyyy-mm-dd)"));
-//    $textElement->setJQueryParams(array(
-//    'dateFormat'=>'yy-mm-dd',
-//    'changeMonth'=> true,
-//    'changeYear'=> true
-//    ))
-//    ->setDecorators(array(
-//    array('UiWidgetElement', array('tag' => '')),
-//    array('Errors'),
-//    array('HtmlTag', array('tag' => 'div', 'class'=>'span-11 last')),
-//    array('Label', array('tag' => 'div', 'class'=>'span-5 clear'))
-//    ));
-//        
 
     	$offer_per = new Zend_Form_Element_Text('offer_per');
     	$offer_per->setLabel('Offer percentage: ');
@@ -53,8 +39,7 @@ class Application_Form_Offer extends ZendX_JQuery_Form
 	 $offer_start,
 	 $offer_end,
 	 $submit,
-	 $reset,
-         $textElement
+	 $reset
 	));
 
         /* Form Elements & Other Definitions Here ... */

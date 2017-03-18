@@ -29,6 +29,7 @@
           <actionMethod actionName="deleteproduct"/>
           <actionMethod actionName="editproduct"/>
           <actionMethod actionName="productdetail"/>
+          <actionMethod actionName="listoffers"/>
         </controllerFile>
         <controllerFile controllerName="Admin">
           <actionMethod actionName="index"/>
@@ -117,6 +118,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="listallusers"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Shop">
+            <viewScriptFile forActionName="listoffers"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

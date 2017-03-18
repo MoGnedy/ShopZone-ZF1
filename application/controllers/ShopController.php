@@ -53,10 +53,6 @@ class ShopController extends Zend_Controller_Action
         
     }
 
-
-  
-
-
     public function productdetailsAction()
     {
       $product_model = new Application_Model_Product();
@@ -65,8 +61,6 @@ class ShopController extends Zend_Controller_Action
       $product = $product_model->productDetails($p_id);
       $this->view->product = $product[0];
     }
-
-
 
     public function deleteproductAction()
     {
@@ -94,7 +88,7 @@ class ShopController extends Zend_Controller_Action
 
     }
 
-        public function editofferAction()
+    public function editofferAction()
     {
         $form = new Application_Form_Offer ();
         $offer_model = new Application_Model_Offer ();
@@ -111,7 +105,6 @@ class ShopController extends Zend_Controller_Action
         }
 
     }
-
 
     public function addOfferAction()
     {
@@ -135,23 +128,14 @@ class ShopController extends Zend_Controller_Action
         // action body
     }
 
-   public function listOffersAction()
-    {
-        $offer_model = new Application_Model_Offer();
-        
-        $this->view->offers = $offer_model->getAllOffers();
-        
-    }
-
-
-   public function offerdetailsAction()
+    public function offerdetailsAction()
     {
       $offer_model = new Application_Form_Offer();
       $id = $this->_request->getParam('oid');
       
       $offer = $offer_model->offerDetails($id);
       $this->view->offer = $offer[0];
-    }    
+    }
 
     public function deleteofferAction()
     {
@@ -161,10 +145,13 @@ class ShopController extends Zend_Controller_Action
       $this->redirect("/shop/listOffers");
     }
 
+    public function listoffersAction()
+    {
+        $offer_model = new Application_Model_Offer();
+        
+        $this->view->offers = $offer_model->getAllOffers();
+   
+    }
+
+
 }
-
-
-
-
-
-

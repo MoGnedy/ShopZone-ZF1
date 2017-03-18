@@ -53,6 +53,10 @@ class ShopController extends Zend_Controller_Action
         
     }
 
+
+  
+
+
     public function productdetailsAction()
     {
       $product_model = new Application_Model_Product();
@@ -61,6 +65,8 @@ class ShopController extends Zend_Controller_Action
       $product = $product_model->productDetails($p_id);
       $this->view->product = $product[0];
     }
+
+
 
     public function deleteproductAction()
     {
@@ -88,11 +94,72 @@ class ShopController extends Zend_Controller_Action
 
     }
 
-    public function productdetailAction()
+        public function editofferAction()
     {
+        $form = new Application_Form_Offer ();
+        $offer_model = new Application_Model_Offer ();
+        $id = $this->_request->getParam('oid');
+        $offer_data = $offer_model->offerDetails($id)[0];
+        $form->populate($offer_data);
+        $this->view->offer_form = $form;
+        $request = $this->getRequest();
+        if($request->isPost()){
+        if($form->isValid($request->getPost())){
+        $product_model->updateOfferData($id, $_POST);
+        $this->redirect('/shop/listOffers');
+        }
+        }
+
+    }
+
+
+    public function addOfferAction()
+    {
+
+    
+        $form = new Application_Form_Offer();
+
+        $this->view->offer_form = $form; 
+
+        $request = $this->getRequest();
+        if($request->isPost())
+        {
+            if($form->isValid($request->getPost()))
+            {
+                $offer_model = new Application_Model_Offer();
+                $offer_model-> addNewOffer($request->getParams());
+                $this->redirect('/shop/listOffers');
+            }
+        }
+    
         // action body
     }
 
+   public function listOffersAction()
+    {
+        $offer_model = new Application_Model_Offer();
+        
+        $this->view->offers = $offer_model->getAllOffers();
+        
+    }
+
+
+   public function offerdetailsAction()
+    {
+      $offer_model = new Application_Form_Offer();
+      $id = $this->_request->getParam('oid');
+      
+      $offer = $offer_model->offerDetails($id);
+      $this->view->offer = $offer[0];
+    }    
+
+    public function deleteofferAction()
+    {
+      $offer_model = new Application_Form_Offer();
+      $id = $this->_request->getParam('oid');
+      $user = $offer_model->deleteOffer($id);
+      $this->redirect("/shop/listOffers");
+    }
 
 }
 

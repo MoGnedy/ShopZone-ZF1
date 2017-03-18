@@ -12,6 +12,7 @@
           <actionMethod actionName="listCategory"/>
           <actionMethod actionName="detailsProduct"/>
           <actionMethod actionName="listProduct"/>
+          <actionMethod actionName="addtocart"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="User">
@@ -35,11 +36,19 @@
         <controllerFile controllerName="Admin">
           <actionMethod actionName="index"/>
           <actionMethod actionName="listallusers"/>
+          <actionMethod actionName="userdetails"/>
+          <actionMethod actionName="edituser"/>
+          <actionMethod actionName="deleteuser"/>
+          <actionMethod actionName="blockuser"/>
+          <actionMethod actionName="activeuser"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Productform"/>
         <formFile formName="Signup"/>
+        <formFile formName="Commentform"/>
+        <formFile formName="Commentform"/>
+        <formFile formName="Addtocart"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -125,6 +134,24 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="addoffer"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="userdetails"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="edituser"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="deleteuser"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="blockuser"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="activeuser"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="addtocart"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

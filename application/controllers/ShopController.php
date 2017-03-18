@@ -56,10 +56,30 @@ class ShopController extends Zend_Controller_Action
     public function productdetailsAction()
     {
       $product_model = new Application_Model_Product();
+      $comment_form = new Application_Form_Commentform();
+      $this->view->comment_form = $comment_form;
       $p_id = $this->_request->getParam('pid');
-      
       $product = $product_model->productDetails($p_id);
+      $this->view->comments = $product_model->listProductcomments($p_id);
       $this->view->product = $product[0];
+      
+      $request = $this->getRequest();
+      if($request->isPost()){
+      if($comment_form->isValid($request->getPost())){
+      $comment_model = new Application_Model_Comment();
+      $pid=$request->getParam('pid');
+      $request->setParam('product', $pid);
+      
+      
+      $request->setParam('customer_id', 1);
+      
+      
+      $comment_model->addComment ($request->getParams());
+      $this->redirect("/shop/productdetails/pid/$pid");
+      
+      
+      }
+      }
     }
 
     public function deleteproductAction()
@@ -153,4 +173,4 @@ class ShopController extends Zend_Controller_Action
     }
 
 
-}
+    }

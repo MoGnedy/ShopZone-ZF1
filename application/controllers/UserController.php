@@ -50,11 +50,11 @@ class UserController extends Zend_Controller_Action
     public function loginAction()
     {
         // action body
+        
         $loginForm=new Application_Form_Login();
         $request=$this->getRequest();
         if($request->isPost()){
           if ($loginForm->isValid($request->getPost())) {
-            //print_r($request->getPost());
             //Array ( [name] => والتنم [pass] => كةىتﻻاىةزظ [Login] => Login )
             $name=$request->getParam('name');
             $pass=$request->getParam('pass');

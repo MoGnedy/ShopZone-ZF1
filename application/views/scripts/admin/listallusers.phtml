@@ -30,9 +30,24 @@
         <td><?= $value['is_active'] ?></td>
         
             
-        <td> <a href="<?= 'productdetails/pid/'.$value['id'] ?>" ><button class="btn btn-primary"  type="button" name="button"> Details </button></a> </td>
-        <td>  <a  href="<?= 'editproduct/pid/'.$value['id'] ?>"><button class="btn btn-default" type="button" name="button"> edit  </button></a> </td>
-        <td>  <a  href="<?= 'deleteproduct/pid/'.$value['id'] ?>"><button class="btn btn-danger" type="button" name="button"> Delete  </button></a> </td>    
+        <td> <a href="<?= 'userdetails/uid/'.$value['id'] ?>" ><button class="btn btn-primary"  type="button" name="button"> Details </button></a> </td>
+        <td>  <a  href="<?= 'edituser/uid/'.$value['id'] ?>"><button class="btn btn-default" type="button" name="button"> edit  </button></a> </td>
+        <td>  <a  href="<?= 'deleteuser/uid/'.$value['id'] ?>"><button class="btn btn-danger" type="button" name="button"> Delete  </button></a> </td> 
+        <?php
+        if($value['type']!='admin'){
+        if($value['is_active']=='true'){
+           ?>
+          
+                       <td> <a class="btn btn-danger" href="<?='blockuser/uid/'.$value['id'] ?> "> Block </a></td>
+           <?php
+        }else{
+            ?>
+                       <td> <a class="btn btn-success" href="<?='activeuser/uid/'.$value['id'] ?> "> Un Block </a></td>
+
+            <?php
+        }
+    }
+        ?>   
         
         
         

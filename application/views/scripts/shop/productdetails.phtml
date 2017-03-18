@@ -39,4 +39,32 @@
         
         
 			    </tr>
-			    <?php  ?>
+                            
+</table>
+
+                
+<div id="comments">
+<?php                
+                foreach ($this->comments as $values){
+                
+                    
+                    echo "<div id="."\"".$values['id']."\"".">".$values['comment']."</div>"."<br>";
+                
+                    
+                }
+
+                ?>          
+    
+    
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        #('submitcomment').on('click',function(){
+            
+        })
+      });
+    </script>
+
+                 <?php
+                echo $this->comment_form;
+                                ?>

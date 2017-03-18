@@ -16,7 +16,9 @@ class Application_Form_Commentform extends Zend_Form
         $comment->addValidator('StringLength', false, Array(4,));
     
         $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setAttrib('class', 'btn btn-success');
+        $submit->setAttrib('class', 'btn btn-success')
+                ->setAttrib('class', 'btn btn-success')
+                ->setAttrib('id', 'submitcomment');
         $reset = new Zend_Form_Element_Reset('Reset');
         $reset->setAttrib('class', 'btn btn-danger');
         //$this->addElement($picture,'picture');

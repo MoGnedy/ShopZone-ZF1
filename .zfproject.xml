@@ -35,6 +35,11 @@
         <controllerFile controllerName="Admin">
           <actionMethod actionName="index"/>
           <actionMethod actionName="listallusers"/>
+          <actionMethod actionName="userdetails"/>
+          <actionMethod actionName="edituser"/>
+          <actionMethod actionName="deleteuser"/>
+          <actionMethod actionName="blockuser"/>
+          <actionMethod actionName="activeuser"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -125,6 +130,21 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="addoffer"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="userdetails"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="edituser"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="deleteuser"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="blockuser"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="activeuser"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

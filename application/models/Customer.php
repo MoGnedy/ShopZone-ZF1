@@ -3,6 +3,7 @@
 class Application_Model_Customer extends Zend_Db_Table_Abstract
 {
     protected $_name  ='customer';
+    
         public function SignUp($formData){
     	 $userData['name']=$formData['name'];
 
@@ -32,5 +33,31 @@ class Application_Model_Customer extends Zend_Db_Table_Abstract
         return $result;
         }
     }
+    function userDetails($id)
+  {
+    return $this->find($id)->toArray()[0];
+  }
+  function updateUser($id,$formData){
+
+      $userData['name']=$formData['name'];
+      $userData['email']=$formData['email'];
+      $userData['address']=$formData['address'];
+      $userData['type']=$formData['type'];
+      $this->update($userData,"id=$id");
+}
+
+function deleteUser($id)
+  {
+    $this->delete("id=$id");
+  }
+  function blockUser($id){
+    $userData['is_active']="false";
+    $this->update($userData,"id=$id");
+  }
+  function activeUser($id){
+    $userData['is_active']="true";
+    $this->update($userData,"id=$id");
+  }
+
 }
 

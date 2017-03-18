@@ -87,13 +87,6 @@ class ShopController extends Zend_Controller_Action
         }
 
     }
-
-    public function productdetailAction()
-    {
-        // action body
-    }
-
-
 }
 
 

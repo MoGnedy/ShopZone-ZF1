@@ -35,7 +35,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
         $db=Zend_Db_Table::getDefaultAdapter();
         $select=new Zend_Db_Select($db);
         $select->from('product','*')
-                ->where('customer_id='.$customer);
+                ->where("customer_id=.$customer");
         return $db->fetchAll($select);
     }
 

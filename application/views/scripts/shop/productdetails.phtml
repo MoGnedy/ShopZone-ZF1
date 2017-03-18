@@ -39,4 +39,13 @@
         
         
 			    </tr>
-			    <?php  ?>
+                            
+</table>
+
+                <?php
+                
+                foreach ($this->comments as $values){
+                    echo $values['comment']."<br>";
+                }
+                echo $this->comment_form;
+                                ?>

@@ -56,10 +56,13 @@ class ShopController extends Zend_Controller_Action
     public function productdetailsAction()
     {
       $product_model = new Application_Model_Product();
+      $comment_form = new Application_Form_Commentform();
+      $this->view->comment_form = $comment_form;
       $p_id = $this->_request->getParam('pid');
-      
       $product = $product_model->productDetails($p_id);
+      $this->view->comments = $product_model->listProductcomments($p_id);
       $this->view->product = $product[0];
+      
     }
 
     public function deleteproductAction()

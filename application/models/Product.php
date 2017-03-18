@@ -50,6 +50,16 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
       $this->update($productData,"id=$id");
 
     }
+    
+    function listProductcomments($id){
+        $db=Zend_Db_Table::getDefaultAdapter();
+        $select=new Zend_Db_Select($db);
+        $select->from('comment','*')
+                ->where('product= ?',$id);
+        $stmt = $select->query();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
 
 }
 

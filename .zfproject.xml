@@ -46,6 +46,7 @@
         <formFile formName="Productform"/>
         <formFile formName="Signup"/>
         <formFile formName="Commentform"/>
+        <formFile formName="Commentform"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>

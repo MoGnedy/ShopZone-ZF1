@@ -99,8 +99,8 @@ class ShopController extends Zend_Controller_Action
         $request = $this->getRequest();
         if($request->isPost()){
         if($form->isValid($request->getPost())){
-        $product_model->updateOfferData($id, $_POST);
-        $this->redirect('/shop/listOffers');
+        $offer_model->updateOfferData($id, $_POST);
+        $this->redirect('/shop/listoffers');
         }
         }
 
@@ -108,8 +108,8 @@ class ShopController extends Zend_Controller_Action
 
     public function addOfferAction()
     {
-
-    
+        echo "dfdf";
+        die();
         $form = new Application_Form_Offer();
 
         $this->view->offer_form = $form; 
@@ -120,8 +120,8 @@ class ShopController extends Zend_Controller_Action
             if($form->isValid($request->getPost()))
             {
                 $offer_model = new Application_Model_Offer();
-                $offer_model-> addNewOffer($request->getParams());
-                $this->redirect('/shop/listOffers');
+                $offer_model->addNewOffer($request->getParams());
+                $this->redirect('/shop/listoffers');
             }
         }
     
@@ -130,7 +130,7 @@ class ShopController extends Zend_Controller_Action
 
     public function offerdetailsAction()
     {
-      $offer_model = new Application_Form_Offer();
+      $offer_model = new Application_Model_Offer();
       $id = $this->_request->getParam('oid');
       
       $offer = $offer_model->offerDetails($id);
@@ -139,10 +139,10 @@ class ShopController extends Zend_Controller_Action
 
     public function deleteofferAction()
     {
-      $offer_model = new Application_Form_Offer();
+      $offer_model = new Application_Model_Offer();
       $id = $this->_request->getParam('oid');
       $user = $offer_model->deleteOffer($id);
-      $this->redirect("/shop/listOffers");
+      $this->redirect("/shop/listoffers");
     }
 
     public function listoffersAction()

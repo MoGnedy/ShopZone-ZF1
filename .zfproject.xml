@@ -30,6 +30,7 @@
           <actionMethod actionName="editproduct"/>
           <actionMethod actionName="productdetail"/>
           <actionMethod actionName="listoffers"/>
+          <actionMethod actionName="addoffer"/>
         </controllerFile>
         <controllerFile controllerName="Admin">
           <actionMethod actionName="index"/>

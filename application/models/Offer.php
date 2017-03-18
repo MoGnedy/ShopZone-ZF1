@@ -24,7 +24,7 @@ class Application_Model_Offer extends Zend_Db_Table_Abstract
 	}
 
 
-	function deleteOffer($id)
+	public function deleteOffer($id)
 		{
 		$this->delete("id=$id");
 		}
@@ -38,10 +38,9 @@ class Application_Model_Offer extends Zend_Db_Table_Abstract
 	{
 
 
-	  $offerData1['fname']=$formData['fname'];
-	  $offerData1['lname']=$formData['lname'];
-	  $offerData1['track']=$formData['track'];
-	  $offerData1['email']=$formData['email'];
+	  $offerData1['offer_per']=$formData['offer_per'];
+	  $offerData1['offer_start']=$formData['offer_start'];
+	  $offerData1['offer_end']=$formData['offer_end'];
 	  $this->update($offerData1,"id=$id");
 	}	
 

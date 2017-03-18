@@ -106,10 +106,8 @@ class ShopController extends Zend_Controller_Action
 
     }
 
-    public function addOfferAction()
+    public function addofferAction()
     {
-        echo "dfdf";
-        die();
         $form = new Application_Form_Offer();
 
         $this->view->offer_form = $form; 
@@ -128,6 +126,7 @@ class ShopController extends Zend_Controller_Action
         // action body
     }
 
+    
     public function offerdetailsAction()
     {
       $offer_model = new Application_Model_Offer();

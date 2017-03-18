@@ -123,6 +123,9 @@
           <viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="listoffers"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Shop">
+            <viewScriptFile forActionName="addoffer"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>

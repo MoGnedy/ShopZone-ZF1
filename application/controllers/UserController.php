@@ -208,8 +208,48 @@ $this->fpS->name = $userNode['name'];
         $this->view->model = $Wish_model->SelectionWishList($Wish_id);        
     }
 
+    public function sendemailAction()
+    {
+        // action body
+        $code = $this->_request->getParam("code");
+        $discount=$this->_request->getParam("discount");
+        $customer_model = new Application_Model_Customer();
+        $us_id = $this->_request->getParam("uid");
+        $user = $customer_model->userDetails($us_id);
+        $name=$user['name'];
+            $body="Hello $name We have made a discount for you with amount of $discount %
+                for the upcoming purchase Order.
+    write this in discount field when purchasing next time :-
+    $code";
+        $mail = new Zend_Mail();
+        $mail->addTo($user['email']);
+        $mail->setSubject('Coupon');
+        $mail->setBodyText($body);
+        $mail->setFrom('bassant.ahly@gmail.com', 'Bassant');
+
+//Send it!
+        $sent = true;
+        try {
+            $mail->send();
+        } catch (Exception $e){
+            $sent = false;
+        }
+
+        //Do stuff (display error message, log it, redirect user, etc)
+        if($sent){
+            echo 'Mail was sent successfully.';
+        } else {
+            echo 'Mail failed to send.';
+        }
+                $this->redirect('/admin/listallusers');
+
+
+
+            }
+
 
 }
+
 
 
 
@@ -234,6 +274,7 @@ $this->fpS->name = $userNode['name'];
 
 
 ?>
+
 
 
 

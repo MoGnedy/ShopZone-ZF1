@@ -108,8 +108,9 @@ class AdminController extends Zend_Controller_Action
 
         }
        // var_dump($request->getParams());
-       // echo $request->getParam('customer');
-      $this->redirect("/admin/listallusers");
+       $uid= $request->getParam('customer');
+       $discount=$request->getParam('discount');
+      $this->redirect("/user/sendemail/uid/$uid/code/$code/discount/$discount");
 
     }
 

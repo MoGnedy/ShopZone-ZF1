@@ -24,6 +24,11 @@
           <actionMethod actionName="delwishlist"/>
           <actionMethod actionName="inserwishlist"/>
           <actionMethod actionName="listwishlist"/>
+          <actionMethod actionName="listcategory"/>
+          <actionMethod actionName="listproduct"/>
+          <actionMethod actionName="detailsproduct"/>
+          <actionMethod actionName="addtocart"/>
+          <actionMethod actionName="sendemail"/>
         </controllerFile>
         <controllerFile controllerName="Shop">
           <actionMethod actionName="index"/>
@@ -54,6 +59,8 @@
         <formFile formName="Commentform"/>
         <formFile formName="Commentform"/>
         <formFile formName="Addtocart"/>
+        <formFile formName="Custproduct"/>
+        <formFile formName="Custproduct"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -167,13 +174,28 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="listwishlist"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Admin">
+	<viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="sendcoupon"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Shop">
-            <viewScriptFile forActionName="selectcomment"/>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="listcategory"/>
           </viewControllerScriptsDirectory>
-        </viewScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="listproduct"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="detailsproduct"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="addtocart"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="sendemail"/>
+          </viewControllerScriptsDirectory>
+<viewControllerScriptsDirectory forControllerName="Shop">
+            <viewScriptFile forActionName="selectcomment"/>
+          </viewControllerScriptsDirectory>        
+</viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
       </viewsDirectory>

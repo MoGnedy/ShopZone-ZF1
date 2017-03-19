@@ -18,6 +18,17 @@ class Application_Model_Category extends Zend_Db_Table_Abstract
   {
   return $this->find($cat_id)->toArray();
   }
-
+public function ListCategory($id)
+    {
+      $sql=$this->select()
+      ->from(array('p'=>"product"))
+      ->joinInner(array("C"=>"category"), "p.category=C.id",array("name as category_name"))
+      ->where("p.category= $id")
+      ->setIntegrityCheck(false);
+      $query=$sql->query();
+      $result=$query->fetchAll();
+      return $result;
+ 
+    }
 }
 

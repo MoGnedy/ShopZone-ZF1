@@ -21,6 +21,9 @@
           <actionMethod actionName="fblogin"/>
           <actionMethod actionName="facebookcallback"/>
           <actionMethod actionName="facelogout"/>
+          <actionMethod actionName="delwishlist"/>
+          <actionMethod actionName="inserwishlist"/>
+          <actionMethod actionName="listwishlist"/>
         </controllerFile>
         <controllerFile controllerName="Shop">
           <actionMethod actionName="index"/>
@@ -154,7 +157,16 @@
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="addtocart"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Admin">
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="delwishlist"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="inserwishlist"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="listwishlist"/>
+          </viewControllerScriptsDirectory>
+	<viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="sendcoupon"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>

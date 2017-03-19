@@ -1,19 +1,22 @@
-<div>
-    <form method="POST" action="/shop/addoffer">
 <div class="container">
-    <div class="col-sm-6" style="height:130px;">
+    <div class="row">
+    <div class="col-sm-6">
+    <form method="POST" action="/shop/addoffer">
+
+    
         <div class="form-group">
         <?php
 echo $this->offer_form->getElement('offer_per');
 ?>
                 </div>
-        </div>
-    </div>
-<div class="container">
-    <div class="col-sm-6" style="height:130px;">
+        
+        
+<div>
+    <div>
         <div class="form-group">
+            <label>Offer Start Date</label>
             <div class='input-group date' id='datetimepicker10'>
-
+                
 <?php
 echo $this->offer_form->getElement('offer_start');
  ?> 
@@ -23,45 +26,54 @@ echo $this->offer_form->getElement('offer_start');
                 </span>
             </div>
         </div>
-    </div>
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker10').datetimepicker({
-                viewMode: 'years',
-                format: 'YYYY-MM-DD'
-            });
-        });
-    </script>
-</div>
-<div class="container">
-    <div class="col-sm-6" style="height:130px;">
-        <div class="form-group">
+            <div class="form-group">
+                        <label>Offer End Date</label>
             <div class='input-group date' id='datetimepicker1'>
-
+            
 <?php
 echo $this->offer_form->getElement('offer_end');
  ?> 
                 <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
-                    </span>
-                </span>
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>                
+            </div> 
             </div>
         </div>
-    </div>
+    
     <script type="text/javascript">
         $(function () {
+            $('#datetimepicker10').datetimepicker({
+                viewMode: 'days',
+                format: 'YYYY-MM-DD'
+            });
+        });
+    </script>
+        <script type="text/javascript">
+        $(function () {
             $('#datetimepicker1').datetimepicker({
-                viewMode: 'years',
+                viewMode: 'months',
                 format: 'YYYY-MM-DD'
             });
         });
     </script>
 
 </div>
+        
+<div>
+    <div >
+        <div class="btn-group-justified">
 
 <?php
-echo $this->offer_form->getElement('submit');
-echo $this->offer_form->getElement('reset');
+echo "<div class='btn-group'>".$this->offer_form->getElement('submit')."</div>";
+echo "<div class='btn-group'>".$this->offer_form->getElement('reset')."</div>";
 ?>
+             
+            </div>
+        </div>
+    </div>
+    
+
         </form>
 </div>
+    </div>
+    </div>

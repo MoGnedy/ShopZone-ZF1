@@ -78,6 +78,7 @@ class UserController extends Zend_Controller_Action
         }
         $this->view->loginform_var=$loginForm;
     }
+
     public function fbloginAction()
     {
         // action body
@@ -165,7 +166,53 @@ $this->fpS->name = $userNode['name'];
 
     }
 
+    public function delwishlistAction()
+    {
+        // action body
+         //check to delete just product
+        //check if it empty after u check function work
+        $Wish_model = new Application_Model_Wishlist();
+        $Wish_id = $this->_request->getParam("wid");
+        $Wish_model->deleteWish($Wish_id);
+        $this->redirect("/user/listwishlist");
     }
+
+    public function inserwishlistAction()
+    {
+        
+          // action body
+         $Wish_model = new Application_Model_Wishlist();
+            //check to send it 
+            $check = [];
+            $p_id=$this->_request->getParam("uid");
+            $check[] = $p_id;
+            $check[]  = 1;
+            // $check=$Wish_model->find($customer_id,$product_id)->toArray()[0];
+            // $test=$Wish_model-> AddToWishList($request->getParams());
+            $test=$Wish_model-> AddToWishList($check);
+
+            $this->redirect('/index/index');
+    
+        $this->view->wish_data = $test;
+
+    }
+
+    public function listwishlistAction()
+    {
+ // action body
+        $Wish_model = new Application_Model_Wishlist();
+       // $uid=$this->fetchAll()->toArray();
+        $Wish_id = $this->_request->getParam("wid");
+         // var_dump($uid);
+        // die();
+        $this->view->model = $Wish_model->SelectionWishList($Wish_id);        
+    }
+
+
+}
+
+
+
 
      function facelogoutAction()
     {
@@ -187,3 +234,6 @@ $this->fpS->name = $userNode['name'];
 
 
 ?>
+
+
+

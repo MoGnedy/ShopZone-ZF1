@@ -50,7 +50,7 @@ class UserController extends Zend_Controller_Action
     public function loginAction()
     {
         // action body
-        
+
         $loginForm=new Application_Form_Login();
         $request=$this->getRequest();
         if($request->isPost()){
@@ -248,7 +248,6 @@ $this->fpS->name = $userNode['name'];
             }
 
 
-}
 
 
 
@@ -262,7 +261,7 @@ $this->fpS->name = $userNode['name'];
 
     $auth->clearIdentity();
 
-    return $this->redirect('user/login');
+    return $this->redirect('/user/login');
 
     }
      function googleloginAction()
@@ -271,10 +270,46 @@ $this->fpS->name = $userNode['name'];
         $this->view->googlelogin;
     }
 
+   public function listcategoryAction()
+    {
+      $category_model= new Application_Model_Category();
+      $this->view->category = $category_model->listAll();
+    }
 
+    public function listproductAction()
+    {
+      $product_model=new Application_Model_Product();
+      $this->view->product =  $product_model->listProducts();
+    }
 
+    public function detailsproductAction()
+    {
+      $product_model=new Application_Model_Product();
+      $product_id = $this->_request->getParam("uid");
+      $product_data = $product_model->ProductDetails($product_id);
+      $this->view->product_data=$product_data[0];
+
+      $addcart=new Application_Form_Addtocart();
+      $this->view->form=$addcart;
+
+      // $request = $this->getRequest();
+      // if ($request->isPost()) {
+      //     // $user_model=new Application_Model_User();
+      //     // $user_model->($usr_id);
+      //     // $this->redirect("/user/list");
+      // }
+    }
+
+    public function addtocartAction()
+    {
+      $cart=new Application_Model_Cartitem();
+      $cart->addProduct($_POST);
+      $uid=$_POST[product];
+      $this->redirect("/user/detailsproduct/uid/".$uid);
+    }
+
+}
 ?>
-
 
 
 

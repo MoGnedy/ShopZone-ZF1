@@ -5,7 +5,7 @@ class Application_Form_Productform extends Zend_Form
 
     public function init()
     {
-       
+
         $this->setMethod('POST');
         $name = new Zend_Form_Element_Text('name');
         $name->setLabel('Product Name: ');
@@ -13,12 +13,12 @@ class Application_Form_Productform extends Zend_Form
         'placeholder'=>'Example: Apple',
         'class'=>'form-control'
         ));
-        
+
         $name->setRequired();
         $name->addValidator('StringLength', false, Array(4,20));
         $name->addFilter('StringTrim');
-        
-        
+
+
         $description = new Zend_Form_Element_Text('description');
         $description->setLabel('Product description: ');
         $description->setAttribs(Array(
@@ -28,9 +28,9 @@ class Application_Form_Productform extends Zend_Form
         $description->setRequired();
         $description->addValidator('StringLength', false, Array(4,));
         //$description->addFilter('StringTrim');
-        
-        
-        
+
+
+
         $price = new Zend_Form_Element_Text('price');
         $price->setLabel('Product price: ');
         $price->setAttribs(Array(
@@ -40,7 +40,7 @@ class Application_Form_Productform extends Zend_Form
         $price->setRequired();
         $price->addValidator('StringLength', false, Array(1,10));
         $price->addFilter('StringTrim');
-        
+
         $picture = new Zend_Form_Element_File('picture');
         $picture->setLabel('Product picture: ')
                 ->setDestination('imgs')
@@ -55,7 +55,7 @@ class Application_Form_Productform extends Zend_Form
         //$picture->setRequired();
         //$picture->addValidator('StringLength', false, Array(1,10));
         //$picture->addFilter('StringTrim');
-        
+
         $quantity = new Zend_Form_Element_Text('quantity');
         $quantity->setLabel('Product quantity: ');
         $quantity->setAttribs(Array(
@@ -65,8 +65,8 @@ class Application_Form_Productform extends Zend_Form
         $quantity->setRequired();
         $quantity->addValidator('StringLength', false, Array(1,10));
         $quantity->addFilter('StringTrim');
-        
-        
+
+
         $cat_obj = new Application_Model_Category();
 
         $allcats = $cat_obj->listAll();
@@ -78,21 +78,20 @@ class Application_Form_Productform extends Zend_Form
         {
          $cat_id->addMultiOption($value['id'], $value['name']);
         }
-        
-        
-        
+
+
+
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setAttrib('class', 'btn btn-success');
         $reset = new Zend_Form_Element_Reset('Reset');
         $reset->setAttrib('class', 'btn btn-danger');
         //$this->addElement($picture,'picture');
         $this->addElements(array($name,$description,$picture,$quantity,$price,$cat_id,$submit,$reset));
-        
-        
+
+
 
 
     }
 
 
 }
-

@@ -41,6 +41,7 @@
           <actionMethod actionName="deleteuser"/>
           <actionMethod actionName="blockuser"/>
           <actionMethod actionName="activeuser"/>
+          <actionMethod actionName="sendcoupon"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -152,6 +153,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="addtocart"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="sendcoupon"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

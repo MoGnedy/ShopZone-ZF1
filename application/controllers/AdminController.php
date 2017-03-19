@@ -19,7 +19,10 @@ class AdminController extends Zend_Controller_Action
         $user_type = $this->_request->getParam('type');
 //        print_r($user_type);
 //        die();
+        
         $this->view->users = $user_model->listusers($user_type);
+       
+       
     }
 
     public function userdetailsAction()
@@ -79,8 +82,41 @@ class AdminController extends Zend_Controller_Action
         $this->redirect("/admin/listallusers");
     }
 
+    public function sendcouponAction()
+    {
+        // action body
+          $coupon=new Application_Model_Coupon();
+      // echo $us_id = $this->_request->getParam("uid");
+      // die();
+           $request=$this->getRequest();
+        if($request->isPost()){
+            
+        $chars ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        $code =''; 
+     
+     
+        for($i=0;$i<30; $i++)
+        {
+            $code .= $chars[rand(0,strlen($chars)-1)];
+        }
+        $request->setParam('code', $code);
+        $request->setParam('order', 1);
+               // $request->setParam('order', 1);
+
+
+       $coupon-> addCoupon($request->getParams());
+
+        }
+       // var_dump($request->getParams());
+       // echo $request->getParam('customer');
+      $this->redirect("/admin/listallusers");
+
+    }
+
 
 }
+
+
 
 
 

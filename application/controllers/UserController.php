@@ -50,7 +50,7 @@ class UserController extends Zend_Controller_Action
     public function loginAction()
     {
         // action body
-        
+
         $loginForm=new Application_Form_Login();
         $request=$this->getRequest();
         if($request->isPost()){
@@ -179,10 +179,10 @@ $this->fpS->name = $userNode['name'];
 
     public function inserwishlistAction()
     {
-        
+
           // action body
          $Wish_model = new Application_Model_Wishlist();
-            //check to send it 
+            //check to send it
             $check = [];
             $p_id=$this->_request->getParam("uid");
             $check[] = $p_id;
@@ -192,7 +192,7 @@ $this->fpS->name = $userNode['name'];
             $test=$Wish_model-> AddToWishList($check);
 
             $this->redirect('/index/index');
-    
+
         $this->view->wish_data = $test;
 
     }
@@ -205,8 +205,66 @@ $this->fpS->name = $userNode['name'];
         $Wish_id = $this->_request->getParam("wid");
          // var_dump($uid);
         // die();
-        $this->view->model = $Wish_model->SelectionWishList($Wish_id);        
+        $this->view->model = $Wish_model->SelectionWishList($Wish_id);
     }
+
+    public function facelogoutAction()
+    {
+       // action body
+   $auth=Zend_Auth::getInstance();
+   Zend_Session::namespaceUnset('facebook');
+
+   $auth->clearIdentity();
+
+   return $this->redirect('user/login');
+
+    }
+
+    public function googleloginAction()
+    {
+       // action
+       $this->view->googlelogin;
+    }
+
+    public function listcategoryAction()
+    {
+      $category_model= new Application_Model_Category();
+      $this->view->category = $category_model->listAll();
+    }
+
+    public function listproductAction()
+    {
+      $product_model=new Application_Model_Product();
+      $this->view->product =  $product_model->listProducts();
+    }
+
+    public function detailsproductAction()
+    {
+      $product_model=new Application_Model_Product();
+      $product_id = $this->_request->getParam("uid");
+      $product_data = $product_model->ProductDetails($product_id);
+      $this->view->product_data=$product_data[0];
+
+      $addcart=new Application_Form_Addtocart();
+      $this->view->form=$addcart;
+
+      // $request = $this->getRequest();
+      // if ($request->isPost()) {
+      //     // $user_model=new Application_Model_User();
+      //     // $user_model->($usr_id);
+      //     // $this->redirect("/user/list");
+      // }
+    }
+
+    public function addtocartAction()
+    {
+      $cart=new Application_Model_Cartitem();
+      $cart->addProduct($_POST);
+      $uid=$_POST[product];
+      $this->redirect("/user/detailsproduct/uid/".$uid);
+    }
+
+    
 
 
 }
@@ -214,26 +272,13 @@ $this->fpS->name = $userNode['name'];
 
 
 
-     function facelogoutAction()
-    {
-        // action body
-    $auth=Zend_Auth::getInstance();
-    Zend_Session::namespaceUnset('facebook');
 
-    $auth->clearIdentity();
 
-    return $this->redirect('user/login');
 
-    }
-     function googleloginAction()
-    {
-        // action
-        $this->view->googlelogin;
-    }
+
+
+
 
 
 
 ?>
-
-
-

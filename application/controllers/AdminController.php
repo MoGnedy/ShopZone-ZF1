@@ -19,10 +19,10 @@ class AdminController extends Zend_Controller_Action
         $user_type = $this->_request->getParam('type');
 //        print_r($user_type);
 //        die();
-        
+
         $this->view->users = $user_model->listusers($user_type);
-       
-       
+
+
     }
 
     public function userdetailsAction()
@@ -41,7 +41,7 @@ class AdminController extends Zend_Controller_Action
         $id=$this->_request->getParam('uid');
         $userModel= new Application_Model_Customer();
         $userData=$userModel->userDetails($id);
-        $form->populate($userData);   
+        $form->populate($userData);
         $this->view->user_form=$form;
         $request = $this->getRequest();
         if($request-> isPost()){
@@ -90,11 +90,11 @@ class AdminController extends Zend_Controller_Action
       // die();
            $request=$this->getRequest();
         if($request->isPost()){
-            
+
         $chars ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-        $code =''; 
-     
-     
+        $code ='';
+
+
         for($i=0;$i<30; $i++)
         {
             $code .= $chars[rand(0,strlen($chars)-1)];
@@ -108,25 +108,10 @@ class AdminController extends Zend_Controller_Action
 
         }
        // var_dump($request->getParams());
-       // echo $request->getParam('customer');
-      $this->redirect("/admin/listallusers");
+       $id=$request->getParam('customer');
+      $this->redirect("/user/sendemail/id/$id/code/$code");
 
     }
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

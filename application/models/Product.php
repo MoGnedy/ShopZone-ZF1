@@ -27,6 +27,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
     
     
     function productDetails($id){
+
         return $this-> find($id)->toArray();
     }
 
@@ -60,6 +61,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
         $result = $stmt->fetchAll();
         return $result;
     }
+
         public function listProdCat($id)
     {
 
@@ -75,6 +77,27 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
       // $query=$sql->query();
       // $result=$query->fetchAll();
       // return $result;
+    }
+    public function SelectionComment($id)
+    {
+        $sql=$this->select()
+        // ->from(array('c'=>"comment"))
+        ->from(array('c'=>"comment",'p'=>"product"))
+        ->joinInner(array("cu"=>"customer"), "c.customer_id=cu.id",array("name as customer_name"))
+        ->joinInner(array("p"=>"product"), "p.id=c.product",array("name as product_name"))
+        // ->joinInner(array())
+        ->where("c.product=$id")
+        ->Orders('date')
+        ->setIntegrityCheck(false);
+        $query=$sql->query();
+        // echo $sql->__toString();
+        // die();
+        $result=$query->fetchAll();
+  
+        return $result;
+
+        
+
     }
 
     

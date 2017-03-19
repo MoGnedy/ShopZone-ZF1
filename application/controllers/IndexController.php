@@ -49,25 +49,12 @@ class IndexController extends Zend_Controller_Action
          $product_model=new Application_Model_Product();
         $id = $this->_request->getParam('uid');
         $this->view->product =$product_model->listProdCat($id);
-        
-    }
-
-    public function addtocartAction()
-    {
-      $cart=new Application_Model_Cartitem();
-
-
-
-
-      $cart->addProduct($_POST);
-      $uid=$_POST[product];
-      $this->redirect("/index/details-product/uid/".$uid);
 
     }
 
-   
+
+
+
 
 
 }
-
-

@@ -60,6 +60,23 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
         $result = $stmt->fetchAll();
         return $result;
     }
+        public function listProdCat($id)
+    {
+
+        $test=new Application_Model_Category();
+        $sql=$test->ListCategory($id);
+        return $sql;
+      //   $sql=$this->select()
+      // ->from(array('p'=>"product"))
+      // ->joinInner(array("C"=>"category"), "p.category=C.id",array("name"))
+      // // ->joinInner(array("p"=>"product"), "p.product_id=WL.product_id",array("name"))
+      // // ->where("WL.id=$userId")
+      // ->setIntegrityCheck(false);
+      // $query=$sql->query();
+      // $result=$query->fetchAll();
+      // return $result;
+    }
+
     
 }
 

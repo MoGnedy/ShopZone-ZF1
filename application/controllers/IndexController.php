@@ -30,6 +30,7 @@ class IndexController extends Zend_Controller_Action
         $product_data = $product_model->ProductDetails($product_id);
         $this->view->product_data=$product_data[0];
 
+        //3amal mshkla m3 cody
         $addcart=new Application_Form_Addtocart();
         $this->view->form=$addcart;
 
@@ -46,7 +47,9 @@ class IndexController extends Zend_Controller_Action
     {
         // action body
          $product_model=new Application_Model_Product();
-        $this->view->product =  $product_model->listProducts();
+        $id = $this->_request->getParam('uid');
+        $this->view->product =$product_model->listProdCat($id);
+        
     }
 
     public function addtocartAction()

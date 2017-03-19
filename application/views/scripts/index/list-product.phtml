@@ -20,9 +20,10 @@ foreach ($this->product as $key => $value) {
 
   echo "<tr>
   <td>".$value['name']."</td><td>".$value['description'].$value['price'].$value['quantity']."</td>".
-"<td> <a class='btn btn-primary' href='/index/details-Product/uid/".$value['id']."'> QuickLook </a></td>"
+"<td> <a class='btn btn-primary' href='/index/details-Product/uid/".$value['id']."'> QuickLook </a></td>"."<td> <a class='btn btn-primary' href='/user/inserwishlist/uid/".$value['id']."'> ADD to wish list </a></td>"
 ."</tr>";
 }
+
  ?>
 
 </table>

@@ -24,6 +24,7 @@
           <actionMethod actionName="delwishlist"/>
           <actionMethod actionName="inserwishlist"/>
           <actionMethod actionName="listwishlist"/>
+          <actionMethod actionName="addrate"/>
         </controllerFile>
         <controllerFile controllerName="Shop">
           <actionMethod actionName="index"/>
@@ -166,8 +167,11 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="listwishlist"/>
           </viewControllerScriptsDirectory>
-	<viewControllerScriptsDirectory forControllerName="Admin">
+          <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="sendcoupon"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="addrate"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

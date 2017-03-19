@@ -208,8 +208,16 @@ $this->fpS->name = $userNode['name'];
         $this->view->model = $Wish_model->SelectionWishList($Wish_id);        
     }
 
+    public function addrateAction()
+    {
+        print_r($_POST);
+        die();
+        
+    }
+
 
 }
+
 
 
 
@@ -234,6 +242,7 @@ $this->fpS->name = $userNode['name'];
 
 
 ?>
+
 
 
 

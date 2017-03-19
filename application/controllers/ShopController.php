@@ -46,10 +46,17 @@ class ShopController extends Zend_Controller_Action
     }
 
     public function listproductsAction()
-    {
+    {   
+        $request = $this->getRequest();
+        if($request->isPost()){
+        $rate_model = new Application_Model_Rate();
+        $rate_model->addNewRate($_POST);
+            
+        }
         $product_model = new Application_Model_Product();
         
         $this->view->products = $product_model->listProducts();
+        
         
     }
 

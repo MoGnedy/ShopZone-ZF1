@@ -35,6 +35,7 @@
           <actionMethod actionName="productdetail"/>
           <actionMethod actionName="listoffers"/>
           <actionMethod actionName="addoffer"/>
+          <actionMethod actionName="selectcomment"/>
         </controllerFile>
         <controllerFile controllerName="Admin">
           <actionMethod actionName="index"/>
@@ -166,8 +167,11 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="listwishlist"/>
           </viewControllerScriptsDirectory>
-	<viewControllerScriptsDirectory forControllerName="Admin">
+          <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="sendcoupon"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Shop">
+            <viewScriptFile forActionName="selectcomment"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

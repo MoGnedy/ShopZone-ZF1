@@ -45,6 +45,14 @@
                 
 <div id="comments">
 <?php                
+foreach ($this->allcoments as $key => $value) {
+
+  echo "<tr>
+  <td>".$value['customer_name']."</td>
+</tr>
+<tr>
+  <td>".$value['comment']."</td>"."</tr>";
+}
                 foreach ($this->comments as $values){
                 
                     

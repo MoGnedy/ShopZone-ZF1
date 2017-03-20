@@ -30,9 +30,9 @@
         <td><?= $value['is_active'] ?></td>
         
             
-        <td> <a href="<?= 'userdetails/uid/'.$value['id'] ?>" ><button class="btn btn-primary"  type="button" name="button"> Details </button></a> </td>
-        <td>  <a  href="<?= 'edituser/uid/'.$value['id'] ?>"><button class="btn btn-default" type="button" name="button"> edit  </button></a> </td>
-        <td>  <a  href="<?= 'deleteuser/uid/'.$value['id'] ?>"><button class="btn btn-danger" type="button" name="button"> Delete  </button></a> </td> 
+        <td> <a href="<?= '/admin/userdetails/uid/'.$value['id'] ?>" ><button class="btn btn-primary"  type="button" name="button"> Details </button></a> </td>
+        <td>  <a  href="<?= '/admin/edituser/uid/'.$value['id'] ?>"><button class="btn btn-default" type="button" name="button"> edit  </button></a> </td>
+        <td>  <a  href="<?= '/admin/deleteuser/uid/'.$value['id'] ?>"><button class="btn btn-danger" type="button" name="button"> Delete  </button></a> </td> 
         <?php
         if($value['type']!='admin'){
         if($value['is_active']=='true'){

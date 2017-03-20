@@ -279,12 +279,24 @@ $this->fpS->name = $userNode['name'];
     public function listproductAction()
     {
       $product_model=new Application_Model_Product();
+      $request = $this->getRequest();
+        if($request->isPost()){
+        $rate_model = new Application_Model_Rate();
+        $rate_model->addNewRate($_POST);
+            
+        }
       $this->view->product =  $product_model->listProducts();
     }
 
     public function detailsproductAction()
     {
       $product_model=new Application_Model_Product();
+       $request = $this->getRequest();
+        if($request->isPost()){
+        $rate_model = new Application_Model_Rate();
+        $rate_model->addNewRate($_POST);
+            
+        }
       $product_id = $this->_request->getParam("uid");
       $product_data = $product_model->ProductDetails($product_id);
       $this->view->product_data=$product_data[0];

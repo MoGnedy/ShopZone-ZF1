@@ -176,13 +176,14 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="listwishlist"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Admin">
+	<viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="sendcoupon"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="listcategory"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
+</viewScriptsDirectory>          
+<viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="listproduct"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
@@ -194,7 +195,7 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="sendemail"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Shop">
+<viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="selectcomment"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">

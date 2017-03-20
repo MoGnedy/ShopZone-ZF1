@@ -87,7 +87,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
         ->joinInner(array("p"=>"product"), "p.id=c.product",array("name as product_name"))
         // ->joinInner(array())
         ->where("c.product=$id")
-        ->Orders('date')
+        ->order('date DESC')
         ->setIntegrityCheck(false);
         $query=$sql->query();
         // echo $sql->__toString();
@@ -99,6 +99,37 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
         
 
     }
+    public function selectproductrate()
+    {
+        $sql=$this->select()
+        ->from(array('p'=>"product"))
+        // ->where("p.id=$id")
+        ->order('rates_avg DESC')
+        ->limit(10, 0)
+        ->setIntegrityCheck(false);
+
+        $query=$sql->query();
+        // echo $sql->__toString();
+        // die();
+        $result=$query->fetchAll();
+        return $result;
+    }
+
+     public function slider()
+    {
+        $sql=$this->select()
+        ->from("slider",array('image','url'))
+        // ->where("p.id=$id")
+        ->limit(10, 0)
+        ->setIntegrityCheck(false);
+
+        $query=$sql->query();
+        // echo $sql->__toString();
+        // die();
+        $result=$query->fetchAll();
+        return $result;
+    }
+
 
     
 }

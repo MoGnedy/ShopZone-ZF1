@@ -13,6 +13,8 @@
           <actionMethod actionName="detailsProduct"/>
           <actionMethod actionName="listProduct"/>
           <actionMethod actionName="addtocart"/>
+          <actionMethod actionName="selectrateprod"/>
+          <actionMethod actionName="slider"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="User">
@@ -174,14 +176,13 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="listwishlist"/>
           </viewControllerScriptsDirectory>
-	<viewControllerScriptsDirectory forControllerName="Admin">
+          <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="sendcoupon"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="listcategory"/>
           </viewControllerScriptsDirectory>
-</viewScriptsDirectory>          
-<viewControllerScriptsDirectory forControllerName="User">
+          <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="listproduct"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
@@ -193,10 +194,16 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="sendemail"/>
           </viewControllerScriptsDirectory>
-<viewControllerScriptsDirectory forControllerName="Shop">
+          <viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="selectcomment"/>
-          </viewControllerScriptsDirectory>        
-</viewScriptsDirectory>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="selectrateprod"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="slider"/>
+          </viewControllerScriptsDirectory>
+        </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
       </viewsDirectory>

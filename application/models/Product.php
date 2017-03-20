@@ -87,7 +87,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
         ->joinInner(array("p"=>"product"), "p.id=c.product",array("name as product_name"))
         // ->joinInner(array())
         ->where("c.product=$id")
-        ->Orders('date')
+        ->Order('date')
         ->setIntegrityCheck(false);
         $query=$sql->query();
         // echo $sql->__toString();

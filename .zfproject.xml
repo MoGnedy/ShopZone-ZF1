@@ -204,7 +204,6 @@
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="slider"/>
           </viewControllerScriptsDirectory>
-        </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
       </viewsDirectory>

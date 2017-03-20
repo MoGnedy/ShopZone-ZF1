@@ -114,8 +114,17 @@ class AdminController extends Zend_Controller_Action
 
     }
 
+    public function addsliderAction()
+    {
+        // action body
+        $form=new Application_Form_Sliderform();
+        $this->view->form =$form;
+    }
+
 
 }
+
+
 
 
 

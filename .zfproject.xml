@@ -196,7 +196,6 @@
 <viewControllerScriptsDirectory forControllerName="Shop">
             <viewScriptFile forActionName="selectcomment"/>
           </viewControllerScriptsDirectory>        
-</viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
       </viewsDirectory>

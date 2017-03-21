@@ -6,13 +6,13 @@ class Application_Form_Sliderform extends Zend_Form
     public function init()
     {
         /* Form Elements & Other Definitions Here ... */
- $this->setMethod('POST');
-         $picture = new Zend_Form_Element_File('picture');
-        $picture->setLabel('Product picture: ')
+        $this->setMethod('POST');
+       $picture = new Zend_Form_Element_File('picture');
+        $picture->setLabel('SLider picture: ')
                 ->setDestination('imgs')
                 ->setValueDisabled(true)
                 ->addValidator('Count', false, 1)
-                ->addValidator('Size', false, 2048000)
+                ->addValidator('Size', false, 1024000)
                 ->addValidator('Extension', false, 'jpg,png,gif');
         $picture->setAttribs(Array(
         'placeholder'=>'Example: 1000',
@@ -34,7 +34,7 @@ class Application_Form_Sliderform extends Zend_Form
         $reset = new Zend_Form_Element_Reset('Reset');
         $reset->setAttrib('class', 'btn btn-danger');
         //$this->addElement($picture,'picture');
-        $this->addElements(array($description,$picture,$submit,$reset));
+        $this->addElements(array($picture,$description,$submit,$reset));
 }
 
 }

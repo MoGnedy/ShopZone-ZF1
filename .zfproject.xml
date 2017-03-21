@@ -83,6 +83,7 @@
         <modelFile modelName="Product"/>
         <modelFile modelName="Rate"/>
         <modelFile modelName="Wishlist"/>
+        <modelFile modelName="Slider"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>

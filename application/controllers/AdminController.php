@@ -110,7 +110,22 @@ class AdminController extends Zend_Controller_Action
        // var_dump($request->getParams());
        $uid= $request->getParam('customer');
        $discount=$request->getParam('discount');
-      $this->redirect("/user/sendemail/uid/$uid/code/$code/discount/$discount");
+       $customer_model = new Application_Model_Customer();
+        $user = $customer_model->userDetails($uid);
+        $name=$user['name'];
+       
+       $email=$user['email'];
+
+        $body="Hello $name We have made a discount for you with amount of $discount %
+                for the upcoming purchase Order.
+    write this in discount field when purchasing next time :-
+    $code";
+    $subject='Coupon';
+   $customer_model=new Application_Model_Customer();
+    $send_email=$customer_model->sendEmail($email,$subject,$body);
+     $this->redirect('/admin/listallusers');
+
+     // $this->redirect("/user/sendemail/uid/$uid/code/$code/discount/$discount");
 
     }
 
@@ -118,8 +133,25 @@ class AdminController extends Zend_Controller_Action
     {
         // action body
         $form=new Application_Form_Sliderform();
-        $this->view->form =$form;
-    }
+        $form->setAttrib('enctype', 'multipart/form-data');
+                $this->view->form = $form;
+
+        $request = $this->getRequest();
+         if($request->isPost()){
+            if($form->isValid($request->getPost())){
+                        $location = $form->picture->getFileName();
+                                $request->setParam('picture', $location);
+
+        $values = $form->getValues();
+  if (!$form->picture->receive()) {
+            print "Upload error";
+        }
+            $slider_model=new Application_Model_Slider();
+            $slider_model-> addNewSlider($request->getParams());
+            $this->redirect('/admin/addslider');
+  }
+}
+}
 
     public function addcatAction()
     {
@@ -170,6 +202,12 @@ class AdminController extends Zend_Controller_Action
 
 }
 
+      
+        
+      
+ 
+
+      
 
 
 

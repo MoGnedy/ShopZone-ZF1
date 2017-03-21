@@ -3,6 +3,7 @@
 class Application_Model_Product extends Zend_Db_Table_Abstract
 {
  protected $_name  ='product';
+   
     function addNewProduct($productData){
 
         $row = $this->createRow();
@@ -117,21 +118,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
         return $result;
     }
 
-     public function slider()
-    {
-        $sql=$this->select()
-        ->from("slider",array('image','url'))
-        // ->where("p.id=$id")
-        ->limit(10, 0)
-        ->setIntegrityCheck(false);
-
-        $query=$sql->query();
-        // echo $sql->__toString();
-        // die();
-        $result=$query->fetchAll();
-        return $result;
-    }
-
+  
 
            function sql($id)
     {

@@ -1,0 +1,34 @@
+<div class="container">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h1><center>
+<?php echo "Product-List" ?>
+ </center></h1>
+ </div>
+<table class="table table-striped table-bordered">
+
+  <div ><th>Name of Product</th><th>Qunatity</th><th>Price</th><th>After Discount</th></div>
+
+
+
+
+</div>
+
+
+<?php
+
+$string="";
+$total=0;
+foreach ($this->cart as $key => $value) {
+$afterdis=($value['quantity']*$value['price']*($value['offer_per']/100));
+  echo "<tr>
+  <td>".$value['name']."</td><td>".$value['quantity']."</td><td>".$value['price']."</td><td>".$afterdis."</td>"
+."</tr>";
+$total+=$afterdis;
+}
+ ?>
+
+</table><br>
+Total NetPrice:<?php echo $total; ?><br>
+Coupon String if found: <input type="text" name="coupon" value="<?php $string ?>"><br>
+<button type="button" href="/user/sendbill/uid/<?php echo $this->userid;?>/cpn/<?php echo $string;?>">Send Bill Mail</button>

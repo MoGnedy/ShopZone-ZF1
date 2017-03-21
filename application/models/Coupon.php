@@ -12,6 +12,10 @@ class Application_Model_Coupon extends Zend_Db_Table_Abstract
   		$row=$this->createRow($coupon);
   		$row->save();
 }
+       public function coupon($code)
+	{
+		return $this->find($code)->toArray();
+	}
 
 function checkdis($cpn)
 {

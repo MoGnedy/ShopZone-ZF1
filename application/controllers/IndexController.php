@@ -13,6 +13,11 @@ class IndexController extends Zend_Controller_Action
         // action body
          $category_model= new Application_Model_Category();
         $this->view->category = $category_model->listAll();
+         $select_model=new Application_Model_Product();
+        $this->view->rate_product =$select_model->selectproductrate();
+                $slider_model=new Application_Model_Product();
+
+         $this->view->select_image =$slider_model->slider();
     }
 
     public function listCategoryAction()
@@ -29,8 +34,6 @@ class IndexController extends Zend_Controller_Action
         $product_id = $this->_request->getParam("uid");
         $product_data = $product_model->ProductDetails($product_id);
         $this->view->product_data=$product_data[0];
-
-        //3amal mshkla m3 cody
         $addcart=new Application_Form_Addtocart();
         $this->view->form=$addcart;
 
@@ -52,9 +55,26 @@ class IndexController extends Zend_Controller_Action
 
     }
 
+    public function selectrateprodAction()
+    {
+        // action body
+         $select_model=new Application_Model_Product();
+        
+        $this->view->rate_product =$select_model->selectproductrate();
 
+    }
 
-
+    public function sliderAction()
+    {
+        // action body
+        $product_model=new Application_Model_Product();
+        
+        $this->view->select_image =$product_model->slider();
+    }
 
 
 }
+
+
+
+

@@ -58,6 +58,28 @@ function deleteUser($id)
     $userData['is_active']="true";
     $this->update($userData,"id=$id");
   }
+  public function sendEmail($email,$subject,$body){
+        $mail = new Zend_Mail();
+        $mail->addTo($email);
+        $mail->setSubject($subject);
+        $mail->setBodyText($body);
+        $mail->setFrom('Admin@ShopeZone.com', 'Admin');
+
+//Send it!
+        $sent = true;
+        try {
+            $mail->send();
+        } catch (Exception $e){
+            $sent = false;
+        }
+
+        //Do stuff (display error message, log it, redirect user, etc)
+        if($sent){
+            echo 'Mail was sent successfully.';
+        } else {
+            echo 'Mail failed to send.';
+        }
+  }
 
   
 }

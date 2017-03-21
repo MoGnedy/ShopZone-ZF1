@@ -46,10 +46,11 @@ class ShopController extends Zend_Controller_Action
     }
 
     public function listproductsAction()
-    {
+    {   
         $product_model = new Application_Model_Product();
         
         $this->view->products = $product_model->listProducts();
+        
         
     }
 
@@ -62,7 +63,7 @@ class ShopController extends Zend_Controller_Action
       $product = $product_model->productDetails($p_id);
       $this->view->comments = $product_model->listProductcomments($p_id);
       $this->view->product = $product[0];
-      
+      $this->view->allcoments = $product_model->SelectionComment($p_id);
       $request = $this->getRequest();
       if($request->isPost()){
       if($comment_form->isValid($request->getPost())){
@@ -72,7 +73,7 @@ class ShopController extends Zend_Controller_Action
       
       
       $request->setParam('customer_id', 1);
-      
+
       
       $comment_model->addComment ($request->getParams());
       $this->redirect("/shop/productdetails/pid/$pid");
@@ -80,6 +81,19 @@ class ShopController extends Zend_Controller_Action
       
       }
       }
+    }
+
+     public function productstaticAction()
+    {
+
+          $product_model = new Application_Model_Product();
+          $id = $this->_request->getParam('pid');
+        
+        $product = $product_model->productDetails($id);
+        //$static = $product_model->sql($id);
+
+        $this->view->product = $product[0];
+        //$this->view->statics = $static;
     }
 
     public function deleteproductAction()
@@ -146,7 +160,6 @@ class ShopController extends Zend_Controller_Action
         // action body
     }
 
-    
     public function offerdetailsAction()
     {
       $offer_model = new Application_Model_Offer();
@@ -172,5 +185,36 @@ class ShopController extends Zend_Controller_Action
    
     }
 
+    public function selectcommentAction($id)
+    {
+        // action body
+       //   $comment_model = new Application_Model_Product();
+       // // $uid=$this->fetchAll()->toArray();
+       //   // $id=[];
+       //  $comment_id = $this->_request->getParam("pid");
+       //  // $id=$comment_id;
+       //  $id=2;
+       //  $slec=$comment_model->SelectionComment($id);
+       //   // var_dump($uid);
+       //  // die();
+       //  $this->view->comment = $slec;
+
+
+         
+                $comment_model = new Application_Model_Product();
+       // $uid=$this->fetchAll()->toArray();
+        $comment_id = $this->_request->getParam("pid");
+         // var_dump($uid);
+        // die();
+        $this->view->comment = $comment_model->SelectionComment($comment_id);
+
+            // $this->redirect('/index/index');
+    
+        
 
     }
+
+
+}
+
+

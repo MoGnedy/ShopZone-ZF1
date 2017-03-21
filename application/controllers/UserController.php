@@ -208,25 +208,70 @@ $this->fpS->name = $userNode['name'];
         $this->view->model = $Wish_model->SelectionWishList($Wish_id);
     }
 
-    public function facelogoutAction()
+    
+    public function sendemailAction()
     {
-       // action body
-   $auth=Zend_Auth::getInstance();
-   Zend_Session::namespaceUnset('facebook');
+        // action body
+        $code = $this->_request->getParam("code");
+        $discount=$this->_request->getParam("discount");
+        $customer_model = new Application_Model_Customer();
+        $us_id = $this->_request->getParam("uid");
+        $user = $customer_model->userDetails($us_id);
+        $name=$user['name'];
+            $body="Hello $name We have made a discount for you with amount of $discount %
+                for the upcoming purchase Order.
+    write this in discount field when purchasing next time :-
+    $code";
+        $mail = new Zend_Mail();
+        $mail->addTo($user['email']);
+        $mail->setSubject('Coupon');
+        $mail->setBodyText($body);
+        $mail->setFrom('bassant.ahly@gmail.com', 'Bassant');
 
-   $auth->clearIdentity();
+//Send it!
+        $sent = true;
+        try {
+            $mail->send();
+        } catch (Exception $e){
+            $sent = false;
+        }
 
-   return $this->redirect('user/login');
+        //Do stuff (display error message, log it, redirect user, etc)
+        if($sent){
+            echo 'Mail was sent successfully.';
+        } else {
+            echo 'Mail failed to send.';
+        }
+                $this->redirect('/admin/listallusers');
+
+
+
+            }
+
+
+
+
+
+
+
+     function facelogoutAction()
+    {
+        // action body
+    $auth=Zend_Auth::getInstance();
+    Zend_Session::namespaceUnset('facebook');
+
+    $auth->clearIdentity();
+
+    return $this->redirect('/user/login');
 
     }
-
-    public function googleloginAction()
+     function googleloginAction()
     {
-       // action
-       $this->view->googlelogin;
+        // action
+        $this->view->googlelogin;
     }
 
-    public function listcategoryAction()
+   public function listcategoryAction()
     {
       $category_model= new Application_Model_Category();
       $this->view->category = $category_model->listAll();
@@ -235,12 +280,24 @@ $this->fpS->name = $userNode['name'];
     public function listproductAction()
     {
       $product_model=new Application_Model_Product();
+      $request = $this->getRequest();
+        if($request->isPost()){
+        $rate_model = new Application_Model_Rate();
+        $rate_model->addNewRate($_POST);
+            
+        }
       $this->view->product =  $product_model->listProducts();
     }
 
     public function detailsproductAction()
     {
       $product_model=new Application_Model_Product();
+       $request = $this->getRequest();
+        if($request->isPost()){
+        $rate_model = new Application_Model_Rate();
+        $rate_model->addNewRate($_POST);
+            
+        }
       $product_id = $this->_request->getParam("uid");
       $product_data = $product_model->ProductDetails($product_id);
       $this->view->product_data=$product_data[0];

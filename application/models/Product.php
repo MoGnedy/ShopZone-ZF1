@@ -27,7 +27,42 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
     
     
     function productDetails($id){
+
         return $this-> find($id)->toArray();
+    }
+
+    function sql($id)
+    {
+
+        $db=Zend_Db_Table::getDefaultAdapter();
+        $select=new Zend_Db_Select($db);
+        $select->from('product','category')
+                ->where('id= ?',$id);
+        $stmt = $select->query();
+        $result = $stmt->fetchAll();
+
+
+
+        // $a=new Zend_Db_Select($db);
+        // $a->$this->fetchAll(
+        //      $this->select()
+        //   ->from('product', array(new Zend_Db_Expr('max(bought)')))
+        //   );
+        // $stmtt = $a->query();
+        // $max = $stmtt->fetchAll();
+        // $max=$this->fetchAll(
+        //     $this->select()
+        //         ->from('product', array(new Zend_Db_Expr('max(bought)')))
+        //     );
+
+         $y=new Zend_Db_Select($db);
+        $y->from('product','name')
+                ->where('bought= ?',5)
+                ->where('category= ?',$result);
+        $stmtment = $y->query();
+       // $final = $stmtment->fetchAll();
+    
+        return $stmtment;
     }
 
     
@@ -60,6 +95,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
         $result = $stmt->fetchAll();
         return $result;
     }
+
         public function listProdCat($id)
     {
 
@@ -76,6 +112,58 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
       // $result=$query->fetchAll();
       // return $result;
     }
+    public function SelectionComment($id)
+    {
+        $sql=$this->select()
+        // ->from(array('c'=>"comment"))
+        ->from(array('c'=>"comment",'p'=>"product"))
+        ->joinInner(array("cu"=>"customer"), "c.customer_id=cu.id",array("name as customer_name"))
+        ->joinInner(array("p"=>"product"), "p.id=c.product",array("name as product_name"))
+        // ->joinInner(array())
+        ->where("c.product=$id")
+        ->order('date DESC')
+        ->setIntegrityCheck(false);
+        $query=$sql->query();
+        // echo $sql->__toString();
+        // die();
+        $result=$query->fetchAll();
+  
+        return $result;
+
+        
+
+    }
+    public function selectproductrate()
+    {
+        $sql=$this->select()
+        ->from(array('p'=>"product"))
+        // ->where("p.id=$id")
+        ->order('rates_avg DESC')
+        ->limit(10, 0)
+        ->setIntegrityCheck(false);
+
+        $query=$sql->query();
+        // echo $sql->__toString();
+        // die();
+        $result=$query->fetchAll();
+        return $result;
+    }
+
+     public function slider()
+    {
+        $sql=$this->select()
+        ->from("slider",array('image','url'))
+        // ->where("p.id=$id")
+        ->limit(10, 0)
+        ->setIntegrityCheck(false);
+
+        $query=$sql->query();
+        // echo $sql->__toString();
+        // die();
+        $result=$query->fetchAll();
+        return $result;
+    }
+
 
     
 }

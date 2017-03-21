@@ -13,6 +13,8 @@
           <actionMethod actionName="detailsProduct"/>
           <actionMethod actionName="listProduct"/>
           <actionMethod actionName="addtocart"/>
+          <actionMethod actionName="selectrateprod"/>
+          <actionMethod actionName="slider"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="User">
@@ -42,6 +44,7 @@
           <actionMethod actionName="productdetail"/>
           <actionMethod actionName="listoffers"/>
           <actionMethod actionName="addoffer"/>
+          <actionMethod actionName="selectcomment"/>
         </controllerFile>
         <controllerFile controllerName="Admin">
           <actionMethod actionName="index"/>
@@ -52,6 +55,11 @@
           <actionMethod actionName="blockuser"/>
           <actionMethod actionName="activeuser"/>
           <actionMethod actionName="sendcoupon"/>
+          <actionMethod actionName="addslider"/>
+          <actionMethod actionName="addcat"/>
+          <actionMethod actionName="listallcats"/>
+          <actionMethod actionName="editcat"/>
+          <actionMethod actionName="deletecat"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -62,6 +70,8 @@
         <formFile formName="Addtocart"/>
         <formFile formName="Custproduct"/>
         <formFile formName="Custproduct"/>
+        <formFile formName="Sliderform"/>
+        <formFile formName="Categoryform"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -181,17 +191,20 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="listcategory"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
-            <viewScriptFile forActionName="listproduct"/>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="addslider"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
-            <viewScriptFile forActionName="detailsproduct"/>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="addcat"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
-            <viewScriptFile forActionName="addtocart"/>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="listallcats"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
-            <viewScriptFile forActionName="sendemail"/>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="editcat"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="deletecat"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="displaycart"/>
@@ -200,6 +213,27 @@
             <viewScriptFile forActionName="sendbill"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
+        <viewControllerScriptsDirectory forControllerName="User">
+          <viewScriptFile forActionName="listproduct"/>
+        </viewControllerScriptsDirectory>
+        <viewControllerScriptsDirectory forControllerName="User">
+          <viewScriptFile forActionName="detailsproduct"/>
+        </viewControllerScriptsDirectory>
+        <viewControllerScriptsDirectory forControllerName="User">
+          <viewScriptFile forActionName="addtocart"/>
+        </viewControllerScriptsDirectory>
+        <viewControllerScriptsDirectory forControllerName="User">
+          <viewScriptFile forActionName="sendemail"/>
+        </viewControllerScriptsDirectory>
+        <viewControllerScriptsDirectory forControllerName="Shop">
+          <viewScriptFile forActionName="selectcomment"/>
+        </viewControllerScriptsDirectory>
+        <viewControllerScriptsDirectory forControllerName="Index">
+          <viewScriptFile forActionName="selectrateprod"/>
+        </viewControllerScriptsDirectory>
+        <viewControllerScriptsDirectory forControllerName="Index">
+          <viewScriptFile forActionName="slider"/>
+        </viewControllerScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
       </viewsDirectory>

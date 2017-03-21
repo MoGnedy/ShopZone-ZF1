@@ -3,7 +3,7 @@
 class Application_Model_Customer extends Zend_Db_Table_Abstract
 {
     protected $_name  ='customer';
-    
+
         public function SignUp($formData){
     	 $userData['name']=$formData['name'];
 
@@ -15,12 +15,12 @@ class Application_Model_Customer extends Zend_Db_Table_Abstract
   		$row->save();
 
     }
-    
+
     function listusers($type=null){
         //var_dump(empty($type));
-        
+
         if (empty($type)){
-          
+
            return $this->fetchAll()->toArray();
         }
         else{
@@ -58,6 +58,28 @@ function deleteUser($id)
     $userData['is_active']="true";
     $this->update($userData,"id=$id");
   }
+  public function sendEmail($email,$subject,$body){
+        $mail = new Zend_Mail();
+        $mail->addTo($email);
+        $mail->setSubject($subject);
+        $mail->setBodyText($body);
+        $mail->setFrom('Admin@ShopeZone.com', 'Admin');
 
+//Send it!
+        $sent = true;
+        try {
+            $mail->send();
+        } catch (Exception $e){
+            $sent = false;
+        }
+
+        //Do stuff (display error message, log it, redirect user, etc)
+        if($sent){
+            echo 'Mail was sent successfully.';
+        } else {
+            echo 'Mail failed to send.';
+        }
+  }
+
+  
 }
-    

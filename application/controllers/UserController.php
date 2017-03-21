@@ -50,7 +50,7 @@ class UserController extends Zend_Controller_Action
     public function loginAction()
     {
         // action body
-        
+
         $loginForm=new Application_Form_Login();
         $request=$this->getRequest();
         if($request->isPost()){
@@ -179,10 +179,10 @@ $this->fpS->name = $userNode['name'];
 
     public function inserwishlistAction()
     {
-        
+
           // action body
          $Wish_model = new Application_Model_Wishlist();
-            //check to send it 
+            //check to send it
             $check = [];
             $p_id=$this->_request->getParam("uid");
             $check[] = $p_id;
@@ -192,7 +192,7 @@ $this->fpS->name = $userNode['name'];
             $test=$Wish_model-> AddToWishList($check);
 
             $this->redirect('/index/index');
-    
+
         $this->view->wish_data = $test;
 
     }
@@ -205,8 +205,9 @@ $this->fpS->name = $userNode['name'];
         $Wish_id = $this->_request->getParam("wid");
          // var_dump($uid);
         // die();
-        $this->view->model = $Wish_model->SelectionWishList($Wish_id);        
+        $this->view->model = $Wish_model->SelectionWishList($Wish_id);
     }
+
 
     public function sendemailAction()
     {
@@ -283,7 +284,7 @@ $this->fpS->name = $userNode['name'];
         if($request->isPost()){
         $rate_model = new Application_Model_Rate();
         $rate_model->addNewRate($_POST);
-            
+
         }
       $this->view->product =  $product_model->listProducts();
     }
@@ -295,7 +296,7 @@ $this->fpS->name = $userNode['name'];
         if($request->isPost()){
         $rate_model = new Application_Model_Rate();
         $rate_model->addNewRate($_POST);
-            
+
         }
       $product_id = $this->_request->getParam("uid");
       $product_data = $product_model->ProductDetails($product_id);
@@ -320,8 +321,74 @@ $this->fpS->name = $userNode['name'];
       $this->redirect("/user/detailsproduct/uid/".$uid);
     }
 
+    public function displaycartAction()
+    {
+      $cartmodel=new Application_Model_Cartitem();
+      $this->view->cart =  $cartmodel->selectoffer(1);
+      $this->view->userid=1;
+      // var_dump($this->view->cart);
+      // die();
+
+      // //******** get price of each item and pushing it in array (product) *******
+      // $cartarray= array();
+      // foreach ($this->view->cart as $key => $value) {
+      //   // print_r($value);
+      //   // die();
+      //   array_push($cartarray,$cartmodel->selectprice($value['product']));
+      // }
+      // $this->view->product= $cartarray;
+      // // print_r($this->view->product);
+      // // die();
+      // //**********************************************
+      // //*********select offer for each item if found and pushing it in
+      // $offerarray= array();
+      // foreach ($this->view->cart as $key => $value) {
+      //
+      //   array_push($cartarray,$cartmodel->selectoffer($value['product']));
+      // }
+      // $this->view->offers= $offerarray;
+      // print_r($this->view->offers);
+      // die();
+      // //**************************
+    }
+
+    public function sendbillAction()
+    {
+      //this function make to functionalty 1-check for copun string is right for this user
+      //2- send mail to user with ditails of the bill
+
+      $uid=1;
+      //check copun string
+      $order=new Application_Model_Coupon();
+      $cpn=$this->_request->getParam("cpn");
+      $resultdis=$order->checkdis($cpn);
+      if ($resultdis==0) {
+        $resultdis="the copoun is wrong";
+      }
+      else{
+        $resultdis="your copoun".$cpn."have discount";
+      }
+
+      //****sending mail
+      $sendingcart=new Application_Model_Cartitem();
+      $this->view->cart =  $sendingcart->selectoffer($uid);
+
+      $sendEmail=new Application_Model_Customer();
+      $user = $sendEmail->userDetails($uid);
+       $name=$user['name'];
+
+      $email=$user['email'];
+      $subject="bill";
+      $body="your order is".$this->view->cart."<br>".$resultdis;
+      $send_email=$sendEmail->sendEmail($email,$subject,$body);
+      $this->redirect('/user/displaycart');
+    }
+
+
 }
+
+
+
+
+
 ?>
-
-
-

@@ -3,7 +3,7 @@
 class Application_Model_Customer extends Zend_Db_Table_Abstract
 {
     protected $_name  ='customer';
-    
+
         public function SignUp($formData){
     	 $userData['name']=$formData['name'];
 
@@ -15,12 +15,12 @@ class Application_Model_Customer extends Zend_Db_Table_Abstract
   		$row->save();
 
     }
-    
+
     function listusers($type=null){
         //var_dump(empty($type));
-        
+
         if (empty($type)){
-          
+
            return $this->fetchAll()->toArray();
         }
         else{
@@ -59,5 +59,5 @@ function deleteUser($id)
     $this->update($userData,"id=$id");
   }
 
+  
 }
-    

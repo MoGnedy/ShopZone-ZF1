@@ -264,18 +264,71 @@ $this->fpS->name = $userNode['name'];
       $this->redirect("/user/detailsproduct/uid/".$uid);
     }
 
-    
+    public function displaycartAction()
+    {
+      $cartmodel=new Application_Model_Cartitem();
+      $this->view->cart =  $cartmodel->selectoffer(1);
+      $this->view->userid=1;
+      // var_dump($this->view->cart);
+      // die();
+
+      // //******** get price of each item and pushing it in array (product) *******
+      // $cartarray= array();
+      // foreach ($this->view->cart as $key => $value) {
+      //   // print_r($value);
+      //   // die();
+      //   array_push($cartarray,$cartmodel->selectprice($value['product']));
+      // }
+      // $this->view->product= $cartarray;
+      // // print_r($this->view->product);
+      // // die();
+      // //**********************************************
+      // //*********select offer for each item if found and pushing it in
+      // $offerarray= array();
+      // foreach ($this->view->cart as $key => $value) {
+      //
+      //   array_push($cartarray,$cartmodel->selectoffer($value['product']));
+      // }
+      // $this->view->offers= $offerarray;
+      // print_r($this->view->offers);
+      // die();
+      // //**************************
+    }
+
+    public function sendbillAction()
+    {
+      //this function make to functionalty 1-check for copun string is right for this user
+      //2- send mail to user with ditails of the bill
+
+      $uid=1;
+      //check copun string
+      $order=new Application_Model_Coupon();
+      $cpn=$this->_request->getParam("cpn");
+      $resultdis=$order->checkdis($cpn);
+      if ($resultdis==0) {
+        $resultdis="the copoun is wrong";
+      }
+      else{
+        $resultdis="your copoun".$cpn."have discount"
+      }
+
+      //****sending mail
+      $sendingcart=new Application_Model_Cartitem();
+      $this->view->cart =  $sendingcart->selectoffer($uid);
+
+      $sendEmail=new Application_Model_Customer();
+      $user = $sendEmail->userDetails($uid);
+       $name=$user['name'];
+
+      $email=$user['email'];
+      $subject="bill";
+      $body="your order is".$this->view->cart."<br>".$resultdis;
+      $send_email=$sendEmail->sendEmail($email,$subject,$body);
+      $this->redirect('/user/displaycart');
+    }
 
 
 }
-
-
-
-
-
-
-
-
 
 
 

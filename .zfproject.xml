@@ -29,6 +29,8 @@
           <actionMethod actionName="detailsproduct"/>
           <actionMethod actionName="addtocart"/>
           <actionMethod actionName="sendemail"/>
+          <actionMethod actionName="displaycart"/>
+          <actionMethod actionName="sendbill"/>
         </controllerFile>
         <controllerFile controllerName="Shop">
           <actionMethod actionName="index"/>
@@ -190,6 +192,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="sendemail"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="displaycart"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="sendbill"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

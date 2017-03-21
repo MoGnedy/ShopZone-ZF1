@@ -83,6 +83,19 @@ class ShopController extends Zend_Controller_Action
       }
     }
 
+     public function productstaticAction()
+    {
+
+          $product_model = new Application_Model_Product();
+          $id = $this->_request->getParam('pid');
+        
+        $product = $product_model->productDetails($id);
+        //$static = $product_model->sql($id);
+
+        $this->view->product = $product[0];
+        //$this->view->statics = $static;
+    }
+
     public function deleteproductAction()
     {
       $product_model = new Application_Model_Product();

@@ -1,24 +1,45 @@
+<html>
+<head></head>
+<body>
 <div class="container">
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h1><center><?php
+<div class="women_main">
+	<!-- start content -->
+			<div class="row single">
+				<div class="col-md-9 det">
+				  <div class="single_left">
+					<div class="grid images_3_of_2">
 
-echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quantity'];
+								<img  src="<?php echo "/".$this->product_data['picture']?>" width="250" height="400" />
+							
+						 <div class="clearfix"></div>		
+				  </div>
+				  <div class="desc1 span_3_of_2">
+					<h3><?=$this->product_data['name']?></h3>
+					<span class="brand">Quantity: <?php echo $this->product_data['quantity']?></span>
+					<br>
+					<span class="code">Rate: <?php echo $this->product_data['rates_avg']?></span>
+					<p><?php echo $this->product_data['description']?></p>
+						<div class="price">
+							<span class="text">Price:</span>
+							<span class="price-new"><?php echo $this->product_data['price']?></
+						</div>
+				
+					<div class="btn_form">
+<!-- 						<a href="checkout.html">buy</a>
+ -->					</div>
+					<a href="#"><span>login to save in wishlist </span></a>
+					
+			   	 </div>
+          	    <div class="clearfix"></div>
+          	   </div>
+          	    
+						 <div class="clearfix"></div>
+				     </div>
+		   	  </div>
+	       </div>
+	       <br>
+	       </body>
+	       </html>
 
-     ?></center></h1>
-  </div>
-  <div class="panel-body">
-<form method="POST" action="/index/addtocart">
-<?php echo $this->product_data['description']."<br>".
-"<img src="."\""."/".$this->product_data['picture']."\""."alt='product pic' height='42' width='42'>"."<br>".
-"price: ".$this->product_data['price']."<br>".
-"quantity:". $this->product_data['quantity']."<br>".
-"<input type='hidden' name='product' value=".$this->product_data['id'].">".
-"<input type='hidden' name='custid' value=".$this->product_data['customer_id'].">".
-"rate: ".$this->product_data['rates_avg']."<br>".
-"discount: ".$this->product_data['offer']."<br>"; ?>
-</form>
-  </div>
-</div>
 
-</div>
+

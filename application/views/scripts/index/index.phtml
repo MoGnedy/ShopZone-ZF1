@@ -1,14 +1,24 @@
 <html>
 <head>
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ -->
+<!-- jQuery library -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ -->
+<!-- Latest compiled JavaScript -->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 <style>
 .img{
     padding-left: 30px;
 }
+$('.carousel').carousel({
+  interval: 2000
+})
 .carousel-inner{
-   
-    margin-bottom: 18px;
-
+  margin-top: 15px;
 }
+
 </style>
 
 </head>
@@ -42,47 +52,57 @@
 
 
 
-<?php foreach ($this->select_image as $key => $value) {?>
-
-<div id="carousel-example-generic" " class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox" class= "slider" >
-    <div class="item active">
-      <img src=<?=$value['image']?> alt="<?php$value['url']?>">
-      <div class="carousel-caption">
-        ...
-      </div>
-    </div>
-    <div class="item">
-      <img src="<?=$value['image']?>" alt="<?php$value['url']?>">
-      <div class="carousel-caption">
-        ...
-      </div>
-    </div>
-    ...
-  </div>
-
-  <!-- Controls -->
-   <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
- 
-</div>
- <?php }?>
 
 
+<!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <?php 
+        $counter=0;
+        foreach ($this->select_image as $key => $value) {
+          if($counter==0)
+          {
+
+          ?>
+
+        <div class="item active">
+          <img class="first-slide" src="<?=$value['image'] ?>" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Choose What You Want</h1>
+              <p><a class="btn btn-lg btn-primary" href="<?=$value['url']?>" role="button">Go To Watch</a></p>
+            </div>
+          </div>
+        </div>
+        <?php }else{?>
+        <div class="item">
+          <img class="second-slide" src="<?=$value['image'] ?>" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Choose What You Want</h1>
+              
+              <p><a class="btn btn-lg btn-primary" href="<?=$value['url']?>" role="button">Go To Watch</a></p>
+            </div>
+          </div>
+        </div>
+  <?php } $counter++; }?>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    
+ <!-- /.carousel --></div>
 
    
 <div class="row">
@@ -95,8 +115,10 @@ foreach ($this->rate_product as $key => $value) {?>
      <img class="img" src=<?=$value['picture']?> alt=<?=$value['name']?>>
       <div class="caption">
         <h3>Hight Product</h3>
+         <p>Name Of Product: <?=$value['name'] ?></p>
         <p><?=$value['description'] ?></p>
-        <p><?=$value['price'] ?></p>
+        <p>Price: <?=$value['price'] ?></p>
+         <p>Quantity: <?=$value['quantity'] ?></p>
         <p><a href="#" class="btn btn-primary" role="button">Add to Cart</a> <a href="#" class="btn btn-default" role="button">Add to Wish List</a></p>
       </div>
     </div>

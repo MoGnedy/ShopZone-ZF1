@@ -5,7 +5,9 @@ class AdminController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        $layout = $this->_helper->layout();
+        $layout->setLayout('adminlayout');
+
     }
 
     public function indexAction()

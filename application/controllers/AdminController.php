@@ -121,8 +121,62 @@ class AdminController extends Zend_Controller_Action
         $this->view->form =$form;
     }
 
+    public function addcatAction()
+    {
+        $category_form = new Application_Form_Categoryform();
+        $this->view->cat_form = $category_form;
+           $request = $this->getRequest();
+        if($request->isPost()){
+        if($category_form->isValid($request->getPost())){
+        $cat_model = new Application_Model_Category();
+        $cat_model->addCat($request->getParams());
+        $this->redirect('/admin/listcats');
+        }
+    }
+    }
+
+    public function listallcatsAction()
+    {
+       $category_model= new Application_Model_Category();
+       $this->view->categories = $category_model->listAll();
+    }
+
+    public function editcatAction()
+    {
+        $cat_form = new Application_Form_Categoryform();
+        $cat_id = $this->_request->getParam('cid');
+        $cat_model = new Application_Model_Category();
+        $cat_data = $cat_model->getCat($cat_id);
+        $cat_form->populate($cat_data);
+        $this->view->cat_form = $cat_form;
+        $request = $this->getRequest();
+        if($request-> isPost()){
+        if($cat_form-> isValid($request-> getPost())){
+        $cat_model-> updateUser ($cat_id,$request->getPost());
+        $this->redirect('/admin/listallcats ');
+
+        }
+        }
+    }
+
+    public function deletecatAction()
+    {
+        $cat_model = new Application_Model_Category();
+        $cat_id = $this->_request->getParam('cid');
+        $cat_model->delete("id=$cat_id");
+        $this->redirect("/admin/listallcats");
+    }
+
 
 }
+
+
+
+
+
+
+
+
 
 
 

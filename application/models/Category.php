@@ -16,7 +16,7 @@ class Application_Model_Category extends Zend_Db_Table_Abstract
   }
   function getCat($cat_id)
   {
-  return $this->find($cat_id)->toArray();
+  return $this->find($cat_id)->toArray()[0];
   }
 public function ListCategory($id)
     {

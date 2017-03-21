@@ -19,7 +19,7 @@
 
  ?>
 			  <div class="grid1_of_4">
-					<div class="content_box"><a href="details.html">
+					<div class="content_box"><a href="<?='/index/details-Product/uid/'.$value['id'] ?>">
 				   	   	 <img src="<?php  echo "/".$value['picture'];?>" class="img-responsive" alt="" />
 					   	  </a>
 					    <h4><a href="details.html"> <?php  echo $value['name'];?></a></h4>
@@ -39,7 +39,3 @@
 			<div class="clearfix"></div>
 		</div>
 		<!-- end grids_of_4 -->
-		
-
-
-

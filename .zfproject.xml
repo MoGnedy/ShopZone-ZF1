@@ -54,6 +54,10 @@
           <actionMethod actionName="activeuser"/>
           <actionMethod actionName="sendcoupon"/>
           <actionMethod actionName="addslider"/>
+          <actionMethod actionName="addcat"/>
+          <actionMethod actionName="listallcats"/>
+          <actionMethod actionName="editcat"/>
+          <actionMethod actionName="deletecat"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -65,6 +69,7 @@
         <formFile formName="Custproduct"/>
         <formFile formName="Custproduct"/>
         <formFile formName="Sliderform"/>
+        <formFile formName="Categoryform"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -187,6 +192,18 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="addslider"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="addcat"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="listallcats"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="editcat"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="deletecat"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewControllerScriptsDirectory forControllerName="User">

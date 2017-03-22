@@ -90,7 +90,7 @@ echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quanti
 <?php echo $this->product_data['description']."<br>".
 "<img src="."\""."/".$this->product_data['picture']."\""."alt='product pic' height='42' width='42'>"."<br>".
 "price: ".$this->product_data['price']."<br>".
-"quantity: <input type='number' name='quantity' min='1' max=".$this->product_data['quantity']."><br>".
+"quantity: <input type='number' name='quantity' value='1' min='1' max=".$this->product_data['quantity']."><br>".
 "<input type='hidden' name='product' value=".$this->product_data['id'].">".
 "<input type='hidden' name='custid' value=".$this->product_data['customer_id'].">".
 "rate: ".$this->product_data['rates_avg']."<br>".
@@ -104,8 +104,8 @@ echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quanti
       $this->product_data['rates_avg'] = round($this->product_data['rates_avg']);
       if ($this->product_data['rates_avg'] == 5)
       {
-      ?>    
-      
+      ?>
+
       <form method="post" action="/user/detailsproduct/uid/<?=$this->product_data['id']?>">
           <input class="star star-5" id=<?="star".$this->product_dat['id']."5" ?> type="radio" name="star" value="5" checked onclick="submit()"/>
       <label class="star star-5" for=<?="star".$this->product_data['id']."5" ?>></label>
@@ -137,9 +137,9 @@ echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quanti
       <input type="text" value=<?=$this->product_data['id']?> name="product" style="display:none"/>
       <input type="text" value=<?=$this->product_data['id']?> name="customer" style="display:none"/>
     </form>
-      
-      
-      <?php 
+
+
+      <?php
       }
       else if($this->product_data['rates_avg'] == 3){
                 ?>
@@ -157,9 +157,9 @@ echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quanti
       <input type="text" value=<?=$this->product_data['id']?> name="product" style="display:none"/>
       <input type="text" value=<?=$this->product_data['id']?> name="customer" style="display:none"/>
     </form>
-      
-      
-      
+
+
+
       <?php }
       else if($this->product_data['rates_avg'] == 2){
                 ?>
@@ -177,9 +177,9 @@ echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quanti
       <input type="text" value=<?=$this->product_data['id']?> name="product" style="display:none"/>
       <input type="text" value=<?=$this->product_data['id']?> name="customer" style="display:none"/>
     </form>
-     
-      
-      
+
+
+
       <?php }
       else if($this->product_data['rates_avg'] == 1){
                 ?>
@@ -197,9 +197,9 @@ echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quanti
       <input type="text" value=<?=$this->product_data['id']?> name="product" style="display:none"/>
       <input type="text" value=<?=$this->product_data['id']?> name="customer" style="display:none"/>
     </form>
-      
-      
-      
+
+
+
       <?php }
       else {
                 ?>
@@ -218,8 +218,8 @@ echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quanti
       <input type="text" value=<?=$this->product_data['id']?> name="customer" style="display:none"/>
     </form>
       <?php } ?>
-      
-      
+
+
   </div>
 </div>
 <script>
@@ -233,10 +233,10 @@ echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quanti
 
 </script>
 
-            
-            
-            
-            
+
+
+
+
         </td>
 
   </div>

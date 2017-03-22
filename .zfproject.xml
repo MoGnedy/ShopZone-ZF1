@@ -33,6 +33,7 @@
           <actionMethod actionName="sendemail"/>
           <actionMethod actionName="displaycart"/>
           <actionMethod actionName="sendbill"/>
+          <actionMethod actionName="deleteproductcart"/>
         </controllerFile>
         <controllerFile controllerName="Shop">
           <actionMethod actionName="index"/>
@@ -212,6 +213,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="sendbill"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="deleteproductcart"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewControllerScriptsDirectory forControllerName="User">

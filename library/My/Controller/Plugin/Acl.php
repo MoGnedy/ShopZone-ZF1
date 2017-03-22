@@ -17,10 +17,14 @@ class My_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
         Like that...
         
         */
-        
+       //session_destroy();
         $usersNs = new Zend_Session_NameSpace("members");
-          //$usersNs = new Zend_Session_NameSpace("members");
-        $usersNs->userType = 'admin';
+         //$usersNs = new Zend_Session_NameSpace("members");
+        //$usersNs->userType = $_SESSION['type'];
+        //print_r($usersNs->userType);
+        //print_r($_SESSION['members'][userType]);
+        //die();
+        
         if($usersNs->userType=='')
         {
             $roleName='guest';

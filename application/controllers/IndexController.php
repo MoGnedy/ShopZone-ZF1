@@ -114,13 +114,13 @@ class IndexController extends Zend_Controller_Action
         $request=$this->getRequest();
         if($request->isPost()){
           if ($loginForm->isValid($request->getPost())) {
-            $name=$request->getParam('name');
+            $email=$request->getParam('email');
             $pass=$request->getParam('pass');
 
 
             $dp=Zend_Db_Table::getDefaultAdapter();
-            $adapter=new Zend_Auth_Adapter_DbTable($dp,'customer','name','password');
-            $adapter->setIdentity($name);
+            $adapter=new Zend_Auth_Adapter_DbTable($dp,'customer','email','password');
+            $adapter->setIdentity($email);
             $adapter->setCredential($pass);
             $result=$adapter->authenticate();
             if ($result->isValid()) {
@@ -130,6 +130,10 @@ class IndexController extends Zend_Controller_Action
                 $auth=Zend_Auth::getInstance();
                 $storage=$auth->getStorage();
                 $storage->write($sessionDataObj);
+                $usersNs = new Zend_Session_NameSpace("members");
+                $usersNs->userType = $sessionDataObj->type;
+//                print_r($_SESSION);
+//                die();
                 if($sessionDataObj->type == 'admin')
                         {
                            
@@ -175,6 +179,7 @@ class IndexController extends Zend_Controller_Action
         $auth=Zend_Auth::getInstance();
         $auth->clearIdentity();
         Zend_Session::namespaceUnset('facebook');
+        Zend_Session::namespaceUnset('members');
         return $this->redirect('index/login');
     }
 

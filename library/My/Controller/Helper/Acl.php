@@ -114,6 +114,7 @@
             $this->acl->allow('guest','index');
             $this->acl->allow('user','user');
             $this->acl->allow('shop','shop');
+            $this->acl->allow('shop','index');
             $this->acl->allow('admin');
             
             // Note that the actions which are not mentioned above i.e. inside array of

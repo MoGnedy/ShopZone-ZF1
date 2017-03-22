@@ -38,6 +38,7 @@
           <actionMethod actionName="sendemail"/>
           <actionMethod actionName="displaycart"/>
           <actionMethod actionName="sendbill"/>
+          <actionMethod actionName="deleteproductcart"/>
         </controllerFile>
         <controllerFile controllerName="Shop">
           <actionMethod actionName="index"/>
@@ -230,8 +231,13 @@
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="facebookcallback"/>
           </viewControllerScriptsDirectory>
+<<<<<<< HEAD
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="search"/>
+=======
+<viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="deleteproductcart"/>
+>>>>>>> 1169fbdc8e97db97c9ca2eb4421347b5dce7fcfb
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewControllerScriptsDirectory forControllerName="User">

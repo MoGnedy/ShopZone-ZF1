@@ -107,13 +107,15 @@
             $this->acl->deny('guest','user');
             $this->acl->deny('guest','shop');
             $this->acl->deny('guest','admin');
-            $this->acl->deny('user','shop', 'admin');
+            $this->acl->deny('user','shop');
             $this->acl->deny('user','admin');
             $this->acl->deny('shop','user');
             $this->acl->deny('shop','admin');
             $this->acl->allow('guest','index');
             $this->acl->allow('user','user');
+            $this->acl->allow('user','index');
             $this->acl->allow('shop','shop');
+            $this->acl->allow('shop','index');
             $this->acl->allow('admin');
             
             // Note that the actions which are not mentioned above i.e. inside array of

@@ -7,7 +7,7 @@
  </div>
 <table class="table table-striped table-bordered">
 
-  <div ><th>Name of Product</th><th>Qunatity</th><th>Price</th><th>After Discount</th></div>
+  <div ><th>Name of Product</th><th>Qunatity</th><th>Price</th><th>After Discount</th><th>Action</th></div>
 
 
 
@@ -22,8 +22,7 @@ $total=0;
 foreach ($this->cart as $key => $value) {
 $afterdis=($value['quantity']*$value['price']*($value['offer_per']/100));
   echo "<tr>
-  <td>".$value['name']."</td><td>".$value['quantity']."</td><td>".$value['price']."</td><td>".$afterdis."</td>"
-."</tr>";
+  <td>".$value['name']."</td><td>".$value['quantity']."</td><td>".$value['price']."</td><td>".$afterdis."</td><td><a class='btn btn-primary' href='/user/deleteproductcart/pid/".$value['product']."' > Remove Item </a></td></tr>";
 $total+=$afterdis;
 }
  ?>

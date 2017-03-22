@@ -5,7 +5,9 @@ class AdminController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        $layout = $this->_helper->layout();
+        $layout->setLayout('adminlayout');
+
     }
 
     public function indexAction()
@@ -133,8 +135,25 @@ class AdminController extends Zend_Controller_Action
     {
         // action body
         $form=new Application_Form_Sliderform();
-        $this->view->form =$form;
-    }
+        $form->setAttrib('enctype', 'multipart/form-data');
+                $this->view->form = $form;
+
+        $request = $this->getRequest();
+         if($request->isPost()){
+            if($form->isValid($request->getPost())){
+                        $location = $form->picture->getFileName();
+                                $request->setParam('picture', $location);
+
+        $values = $form->getValues();
+  if (!$form->picture->receive()) {
+            print "Upload error";
+        }
+            $slider_model=new Application_Model_Slider();
+            $slider_model-> addNewSlider($request->getParams());
+            $this->redirect('/admin/addslider');
+  }
+}
+}
 
     public function addcatAction()
     {
@@ -184,28 +203,3 @@ class AdminController extends Zend_Controller_Action
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

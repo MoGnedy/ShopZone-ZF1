@@ -373,6 +373,16 @@ $this->fpS->name = $userNode['name'];
       //****sending mail
       $sendingcart=new Application_Model_Cartitem();
       $this->view->cart =  $sendingcart->selectoffer($uid);
+      //converting $this->view->cart array to readable string to be send to the user in well formed table
+
+      $emailbody="";
+      $total=0;
+      foreach ($this->view->cart as $key => $value) {
+      $afterdis=($value['quantity']*$value['price']*($value['offer_per']/100));
+        $emailbody=$emailbody." ".$value['name']." ".$value['quantity']." ".$value['price']." ".$afterdis." <br>";
+      $total+=$afterdis;
+      }
+      $emailbody=$emailbody."<br> your total net price after adding offers ".$total."<br>";
 
       $sendEmail=new Application_Model_Customer();
       $user = $sendEmail->userDetails($uid);
@@ -380,7 +390,8 @@ $this->fpS->name = $userNode['name'];
 
       $email=$user['email'];
       $subject="bill";
-      $body="your order is".$this->view->cart."<br>".$resultdis;
+      $body=$emailbody."<br>".$resultdis;
+
       $send_email=$sendEmail->sendEmail($email,$subject,$body);
       $this->redirect('/user/displaycart');
     }

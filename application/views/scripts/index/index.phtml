@@ -1,46 +1,28 @@
-<!-- /*<style>
-    a:link,
-    a:visited
-    {
-        color: #0398CA;
-    }
+<html>
+<head>
 
-    span#zf-name
-    {
-        color: #91BE3F;
-    }
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ -->
+<!-- jQuery library -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ -->
+<!-- Latest compiled JavaScript -->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<style>
+.img{
+    padding-left: 30px;
+}
+$('.carousel').carousel({
+  interval: 2000
+})
+.carousel-inner{
+  margin-top: 15px;
+}
 
-    div#welcome
-    {
-        color: #FFFFFF;
-        background-image: url(http://framework.zend.com/images/bkg_header.jpg);
-        width:  600px;
-        height: 400px;
-        border: 2px solid #444444;
-        overflow: hidden;
-        text-align: center;
-    }
-
-    div#more-information
-    {
-        background-image: url(http://framework.zend.com/images/bkg_body-bottom.gif);
-        height: 100%;
-    }
 </style>
-<div id="welcome">
-    <h1>Welcome to the <span id="zf-name">Zend Framework!</span></h1>
 
-    <h3>This is your project's main page</h3>
-
-    <div id="more-information">
-        <p><img src="http://framework.zend.com/images/PoweredBy_ZF_4LightBG.png" /></p>
-        <p>
-            Helpful Links: <br />
-            <a href="http://framework.zend.com/">Zend Framework Website</a> |
-            <a href="http://framework.zend.com/manual/en/">Zend Framework Manual</a>
-        </p>
-    </div>
-</div>*/ -->
+</head>
+<body>
 <div class="container">
 <div class="panel panel-primary">
   <div class="panel-heading">
@@ -68,9 +50,92 @@
 
 </div>
 
-<?php
-foreach ($this->rate_product as $key => $value) {
 
+
+
+
+<!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <?php 
+        $counter=0;
+        foreach ($this->select_image as $key => $value) {
+          if($counter==0)
+          {
+
+          ?>
+
+        <div class="item active">
+          <img class="first-slide" src="<?=$value['image'] ?>" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Choose What You Want</h1>
+              <p><a class="btn btn-lg btn-primary" href="<?=$value['url']?>" role="button">Go To Watch</a></p>
+            </div>
+          </div>
+        </div>
+        <?php }else{?>
+        <div class="item">
+          <img class="second-slide" src="<?=$value['image'] ?>" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Choose What You Want</h1>
+              
+              <p><a class="btn btn-lg btn-primary" href="<?=$value['url']?>" role="button">Go To Watch</a></p>
+            </div>
+          </div>
+        </div>
+  <?php } $counter++; }?>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    
+ <!-- /.carousel --></div>
+
+   
+<div class="row">
+<?php 
+foreach ($this->rate_product as $key => $value) {?>
+
+
+  <div class="col-sm-6 col-md-3">
+    <div class="thumbnail">
+     <img class="img" src=<?=$value['picture']?> alt=<?=$value['name']?>>
+      <div class="caption">
+        <h3>Hight Product</h3>
+         <p>Name Of Product: <?=$value['name'] ?></p>
+        <p><?=$value['description'] ?></p>
+        <p>Price: <?=$value['price'] ?></p>
+         <p>Quantity: <?=$value['quantity'] ?></p>
+        <p><a href="#" class="btn btn-primary" role="button">Add to Cart</a> <a href="#" class="btn btn-default" role="button">Add to Wish List</a></p>
+      </div>
+    </div>
+  </div>
+
+<?php
+}
+?>
+</div>
+
+
+
+</body>
+
+</html>
+
+<!-- 
   echo "<tr>
   <td>".$value['name']."</td><td>".$value['description'].$value['price'].$value['quantity']."<img src=".$value['picture'].">"."</td>".
 "<td> <a class='btn btn-primary' href='/index/details-Product/uid/".$value['id']."'> QuickLook </a></td>"
@@ -80,10 +145,10 @@ foreach ($this->rate_product as $key => $value) {
 foreach ($this->select_image as $key => $value) {
 
   echo "<tr>
-  <td>".$value['image']."</td><td>"."<img src=".$value['url']."</td>".
-"<td> <a class='btn btn-primary' href='/index/details-Product/uid/".$value['id']."'> QuickLook </a></td>"
+  <td>"."<img src=".$value['image'].">"."</td>".
+"<td> <a class='btn btn-primary' href='/index/details-Product/uid/".$value['url']."'> QuickLook </a></td>"
 ."</tr>";
 
 }
 
-?>
+?> -->

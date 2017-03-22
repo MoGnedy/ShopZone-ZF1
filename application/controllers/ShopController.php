@@ -90,10 +90,10 @@ class ShopController extends Zend_Controller_Action
           $id = $this->_request->getParam('pid');
         
         $product = $product_model->productDetails($id);
-        //$static = $product_model->sql($id);
+        $static = $product_model->sql($id);
 
         $this->view->product = $product[0];
-        //$this->view->statics = $static;
+        $this->view->statics = $static;
     }
 
     public function deleteproductAction()

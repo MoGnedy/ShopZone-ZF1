@@ -35,9 +35,9 @@ class IndexController extends Zend_Controller_Action
         $this->view->category = $category_model->listAll();
          $select_model=new Application_Model_Product();
         $this->view->rate_product =$select_model->selectproductrate();
-                $slider_model=new Application_Model_Product();
-
-         $this->view->select_image =$slider_model->slider();
+                $Slider_model=new Application_Model_Slider();
+        
+        $this->view->select_image =$Slider_model->slider();
     }
 
     public function listCategoryAction()
@@ -87,9 +87,9 @@ class IndexController extends Zend_Controller_Action
     public function sliderAction()
     {
         // action body
-        $product_model=new Application_Model_Product();
+        $Slider_model=new Application_Model_Slider();
         
-        $this->view->select_image =$product_model->slider();
+        $this->view->select_image =$Slider_model->slider();
     }
 
     public function registerAction()

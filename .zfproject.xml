@@ -15,6 +15,10 @@
           <actionMethod actionName="addtocart"/>
           <actionMethod actionName="selectrateprod"/>
           <actionMethod actionName="slider"/>
+          <actionMethod actionName="register"/>
+          <actionMethod actionName="login"/>
+          <actionMethod actionName="logout"/>
+          <actionMethod actionName="facebookcallback"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="User">
@@ -212,6 +216,18 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="sendbill"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="register"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="login"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="logout"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="facebookcallback"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewControllerScriptsDirectory forControllerName="User">

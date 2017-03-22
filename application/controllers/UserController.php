@@ -208,7 +208,7 @@ $this->fpS->name = $userNode['name'];
         $this->view->model = $Wish_model->SelectionWishList($Wish_id);
     }
 
-
+    
     public function sendemailAction()
     {
         // action body
@@ -284,7 +284,7 @@ $this->fpS->name = $userNode['name'];
         if($request->isPost()){
         $rate_model = new Application_Model_Rate();
         $rate_model->addNewRate($_POST);
-
+            
         }
       $this->view->product =  $product_model->listProducts();
     }
@@ -296,7 +296,7 @@ $this->fpS->name = $userNode['name'];
         if($request->isPost()){
         $rate_model = new Application_Model_Rate();
         $rate_model->addNewRate($_POST);
-
+            
         }
       $product_id = $this->_request->getParam("uid");
       $product_data = $product_model->ProductDetails($product_id);
@@ -366,10 +366,10 @@ $this->fpS->name = $userNode['name'];
         $resultdis="the copoun is wrong";
       }
       else{
-        $resultdis="your copoun string \"".$cpn."\" have discount";
+        $resultdis="your copoun".$cpn."have discount";
       }
-      // echo $resultdis;
-      // die();
+    
+
       //****sending mail
       $sendingcart=new Application_Model_Cartitem();
       $this->view->cart =  $sendingcart->selectoffer($uid);
@@ -386,14 +386,13 @@ $this->fpS->name = $userNode['name'];
 
       $sendEmail=new Application_Model_Customer();
       $user = $sendEmail->userDetails($uid);
-      $name=$user['name'];
+       $name=$user['name'];
+
       $email=$user['email'];
       $subject="bill";
       $body=$emailbody."<br>".$resultdis;
 
       $send_email=$sendEmail->sendEmail($email,$subject,$body);
-      // print_r($sendemail);
-      // die();
       $this->redirect('/user/displaycart');
     }
 

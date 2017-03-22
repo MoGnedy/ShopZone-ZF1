@@ -107,7 +107,7 @@
             $this->acl->deny('guest','user');
             $this->acl->deny('guest','shop');
             $this->acl->deny('guest','admin');
-            $this->acl->deny('user','shop', 'admin');
+            $this->acl->deny('user','shop');
             $this->acl->deny('user','admin');
             $this->acl->deny('shop','user');
             $this->acl->deny('shop','admin');

@@ -366,8 +366,9 @@ $this->fpS->name = $userNode['name'];
         $resultdis="the copoun is wrong";
       }
       else{
-        $resultdis="your copoun".$cpn."have discount"
+        $resultdis="your copoun".$cpn."have discount";
       }
+    
 
       //****sending mail
       $sendingcart=new Application_Model_Cartitem();

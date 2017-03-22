@@ -113,6 +113,7 @@
             $this->acl->deny('shop','admin');
             $this->acl->allow('guest','index');
             $this->acl->allow('user','user');
+            $this->acl->allow('user','index');
             $this->acl->allow('shop','shop');
             $this->acl->allow('shop','index');
             $this->acl->allow('admin');

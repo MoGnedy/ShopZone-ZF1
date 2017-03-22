@@ -270,11 +270,18 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
 
     }
 
+    public function searchAction()
+    {
+        // action body
+    }
+
 
 }
 
 
+
     
+
 
 
 

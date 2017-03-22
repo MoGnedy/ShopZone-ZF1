@@ -208,6 +208,7 @@ $this->fpS->name = $userNode['name'];
         $this->view->model = $Wish_model->SelectionWishList($Wish_id);
     }
 
+
     public function sendemailAction()
     {
         // action body
@@ -245,7 +246,7 @@ $this->fpS->name = $userNode['name'];
 
 
 
-    }
+            }
 
     public function facelogoutAction()
     {
@@ -265,7 +266,7 @@ $this->fpS->name = $userNode['name'];
         $this->view->googlelogin;
     }
 
-    public function listcategoryAction()
+   public function listcategoryAction()
     {
       $category_model= new Application_Model_Category();
       $this->view->category = $category_model->listAll();
@@ -403,7 +404,6 @@ $this->fpS->name = $userNode['name'];
 
 
 }
-
 
 
 

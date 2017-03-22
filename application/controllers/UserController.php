@@ -366,21 +366,34 @@ $this->fpS->name = $userNode['name'];
         $resultdis="the copoun is wrong";
       }
       else{
-        $resultdis="your copoun".$cpn."have discount";
+        $resultdis="your copoun string \"".$cpn."\" have discount";
       }
-
+      // echo $resultdis;
+      // die();
       //****sending mail
       $sendingcart=new Application_Model_Cartitem();
       $this->view->cart =  $sendingcart->selectoffer($uid);
+      //converting $this->view->cart array to readable string to be send to the user in well formed table
+
+      $emailbody="";
+      $total=0;
+      foreach ($this->view->cart as $key => $value) {
+      $afterdis=($value['quantity']*$value['price']*($value['offer_per']/100));
+        $emailbody=$emailbody." ".$value['name']." ".$value['quantity']." ".$value['price']." ".$afterdis." <br>";
+      $total+=$afterdis;
+      }
+      $emailbody=$emailbody."<br> your total net price after adding offers ".$total."<br>";
 
       $sendEmail=new Application_Model_Customer();
       $user = $sendEmail->userDetails($uid);
-       $name=$user['name'];
-
+      $name=$user['name'];
       $email=$user['email'];
       $subject="bill";
-      $body="your order is".$this->view->cart."<br>".$resultdis;
+      $body=$emailbody."<br>".$resultdis;
+
       $send_email=$sendEmail->sendEmail($email,$subject,$body);
+      // print_r($sendemail);
+      // die();
       $this->redirect('/user/displaycart');
     }
 

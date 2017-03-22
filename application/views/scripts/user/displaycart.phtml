@@ -31,4 +31,4 @@ $total+=$afterdis;
 </table><br>
 Total NetPrice:<?php echo $total; ?><br>
 Coupon String if found: <input type="text" name="coupon" value="<?php $string ?>"><br>
-<button type="button" href="/user/sendbill/uid/<?php echo $this->userid;?>/cpn/<?php echo $string;?>">Send Bill Mail</button>
+<a class='btn btn-primary' href="sendbill/uid/<?php echo $this->userid;?>/cpn/<?php echo $string;?>">Send Bill Mail</a><br>

@@ -59,26 +59,51 @@ function deleteUser($id)
     $this->update($userData,"id=$id");
   }
   public function sendEmail($email,$subject,$body){
-        $mail = new Zend_Mail();
-        $mail->addTo($email);
-        $mail->setSubject($subject);
-        $mail->setBodyText($body);
-        $mail->setFrom('Admin@ShopeZone.com', 'Admin');
+//        $mail = new Zend_Mail();
+//        $mail->addTo($email);
+//        $mail->setSubject($subject);  
+//        $mail->setBodyText($body);
+//        $mail->setFrom('Admin@ShopeZone.com', 'Admin');
+//
+////Send it!
+//        $sent = true;
+//        try {
+//            $mail->send();
+//        } catch (Exception $e){
+//            $sent = false;
+//        }
+//
+//        //Do stuff (display error message, log it, redirect user, etc)
+//        if($sent){
+//            echo 'Mail was sent successfully.';
+//        } else {
+//            echo 'Mail failed to send.';
+//        }
+      try {
+            $config = array('ssl' => 'tls',
+                'auth' => 'login',
+                'username' => "mzonenotamazon@gmail.com",
+                'password' => "OurGreateApp");
 
-//Send it!
-        $sent = true;
-        try {
-            $mail->send();
-        } catch (Exception $e){
-            $sent = false;
+            $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
+
+
+            $mail = new Zend_Mail();
+
+            $mail->setBodyHtml($body);
+            $mail->setFrom('Admin@ShopeZone.com', 'Admin');
+            $mail->addTo($email);
+            $mail->setSubject($subject);
+            if ($mail->send($transport)) {
+                echo 'Sent successfully';
+            } else {
+                echo 'unable to send email';
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
 
-        //Do stuff (display error message, log it, redirect user, etc)
-        if($sent){
-            echo 'Mail was sent successfully.';
-        } else {
-            echo 'Mail failed to send.';
-        }
+
   }
 
   

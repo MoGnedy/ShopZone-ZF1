@@ -173,7 +173,9 @@ class IndexController extends Zend_Controller_Action
         $helper = $fb->getRedirectLoginHelper();
         $loginUrl = $helper->getLoginUrl($this->view->serverUrl() .'/index/facebookcallback',array('scope' => 'email'));
         $this->view->facebookUrl =$loginUrl;
-       
+        ?>
+        
+     <?php  
     }
 
     public function logoutAction()
@@ -300,16 +302,47 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
         }
     }
     }
-    
-public function notfoundAction()
+
+    public function notfoundAction()
     {
         // action body
     }
 
+    public function googleloginAction()
+    {
+        // action body
+        $chars ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        $password =''; 
+     
+     
+        for($i=0;$i<10; $i++)
+        {
+            $password .= $chars[rand(0,strlen($chars)-1)];
+        }
+
+        $id = $this->_request->getParam('id');
+        $name = $this->_request->getParam('name');
+         $email = $this->_request->getParam('email');
+         $type='user';
+         $user=array("name"=>$name,"email"=>$email,"type"=>$type,"password"=>$password,"address"=>"");
+          $dp=Zend_Db_Table::getDefaultAdapter();
+            $adapter=new Zend_Auth_Adapter_DbTable($dp,'customer','email','password');
+            $adapter->setIdentity($email);
+            $adapter->setCredential($password);
+             $result=$adapter->authenticate();
+             if(!$result){
+            $user_model = new Application_Model_Customer();
+                $user_model-> SignUp($user);
+            }
+    }
+
+
 }
 
 
+
     
+
 
 
 

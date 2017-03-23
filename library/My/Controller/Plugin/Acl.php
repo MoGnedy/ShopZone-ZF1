@@ -61,7 +61,7 @@ class My_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
             $co = $request->getControllerName();
         if ($roleName != 'guest'  && $co != $roleName && $ac != 'logout' ){
             
-            if ($roleName != 'admin'){
+            if (($roleName != 'shop' && $roleName != 'admin')){
             $request->setControllerName($roleName);
             $request->setActionName('index');
             }

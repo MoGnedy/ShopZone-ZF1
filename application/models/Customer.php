@@ -9,7 +9,7 @@ class Application_Model_Customer extends Zend_Db_Table_Abstract
 
   		$userData['email']=$formData['email'];
   		$userData['type']=$formData['type'];
-  		$userData['password']=$formData['password'];
+  		$userData['password']=md5($formData['password']);
   		$userData['address']=$formData['address'];
   		$row=$this->createRow($userData);
   		$row->save();

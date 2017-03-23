@@ -115,7 +115,8 @@ class IndexController extends Zend_Controller_Action
         if($request->isPost()){
           if ($loginForm->isValid($request->getPost())) {
             $email=$request->getParam('email');
-            $pass=$request->getParam('pass');
+            
+            $pass=md5($request->getParam('pass'));
 
 
             $dp=Zend_Db_Table::getDefaultAdapter();
@@ -124,7 +125,7 @@ class IndexController extends Zend_Controller_Action
             $adapter->setCredential($pass);
             $result=$adapter->authenticate();
             if ($result->isValid()) {
-              $sessionDataObj=$adapter->getResultRowObject(['id','email','password','name','adress','type','is_active']);
+              $sessionDataObj=$adapter->getResultRowObject(['id','email','name','adress','type','is_active']);
               
             if($sessionDataObj->is_active == 'true'){
                 $auth=Zend_Auth::getInstance();

@@ -22,7 +22,9 @@
           <actionMethod actionName="search"/>
           <actionMethod actionName="notfound"/>
           <actionMethod actionName="googlelogin"/>
-        </controllerFile>
+ <actionMethod actionName="ressetpassword"/>
+          <actionMethod actionName="changepassword"/>        
+</controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="User">
           <actionMethod actionName="index"/>
@@ -68,6 +70,10 @@
           <actionMethod actionName="listallcats"/>
           <actionMethod actionName="editcat"/>
           <actionMethod actionName="deletecat"/>
+          <actionMethod actionName="deletefromslider"/>
+          <actionMethod actionName="listfromslider"/>
+          <actionMethod actionName="detailslider"/>
+          <actionMethod actionName="editslider"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -80,6 +86,9 @@
         <formFile formName="Custproduct"/>
         <formFile formName="Sliderform"/>
         <formFile formName="Categoryform"/>
+        <formFile formName="Resetpasswordform"/>
+        <formFile formName="Changepassword"/>
+        <formFile formName="Changepasswordform"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -233,6 +242,18 @@
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="facebookcallback"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="deletefromslider"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="listfromslider"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="detailslider"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="editslider"/>
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="deleteproductcart"/>
           </viewControllerScriptsDirectory>
@@ -243,6 +264,12 @@
             <viewScriptFile forActionName="search"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="ressetpassword"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="changepassword"/>
+          </viewControllerScriptsDirectory>
+<viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="googlelogin"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>

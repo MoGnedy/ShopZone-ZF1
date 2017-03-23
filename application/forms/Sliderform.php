@@ -7,26 +7,26 @@ class Application_Form_Sliderform extends Zend_Form
     {
         /* Form Elements & Other Definitions Here ... */
         $this->setMethod('POST');
-       $picture = new Zend_Form_Element_File('picture');
-        $picture->setLabel('SLider picture: ')
+       $image = new Zend_Form_Element_File('image');
+        $image->setLabel('SLider image: ')
                 ->setDestination('imgs')
                 ->setValueDisabled(true)
                 ->addValidator('Count', false, 1)
                 ->addValidator('Size', false, 1024000)
                 ->addValidator('Extension', false, 'jpg,png,gif');
-        $picture->setAttribs(Array(
+        $image->setAttribs(Array(
         'placeholder'=>'Example: 1000',
         'class'=>'form-control'
         ));
 
-        $description = new Zend_Form_Element_Text('description');
-        $description->setLabel('Product description: ');
-        $description->setAttribs(Array(
+        $url = new Zend_Form_Element_Text('url');
+        $url->setLabel('Image url: ');
+        $url->setAttribs(Array(
         'placeholder'=>'Example: ......',
         'class'=>'form-control'
         ));
-        $description->setRequired();
-        $description->addValidator('StringLength', false, Array(4,));
+        $url->setRequired();
+        $url->addValidator('StringLength', false, Array(4,));
     
 
    $submit = new Zend_Form_Element_Submit('submit');
@@ -34,7 +34,7 @@ class Application_Form_Sliderform extends Zend_Form
         $reset = new Zend_Form_Element_Reset('Reset');
         $reset->setAttrib('class', 'btn btn-danger');
         //$this->addElement($picture,'picture');
-        $this->addElements(array($picture,$description,$submit,$reset));
+        $this->addElements(array($image,$url,$submit,$reset));
 }
 
 }

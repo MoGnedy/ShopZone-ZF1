@@ -173,9 +173,7 @@ class IndexController extends Zend_Controller_Action
         $helper = $fb->getRedirectLoginHelper();
         $loginUrl = $helper->getLoginUrl($this->view->serverUrl() .'/index/facebookcallback',array('scope' => 'email'));
         $this->view->facebookUrl =$loginUrl;
-        ?>
-        
-     <?php  
+       
     }
 
     public function logoutAction()
@@ -302,13 +300,89 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
         }
     }
     }
-
-    public function notfoundAction()
+    
+public function notfoundAction()
     {
         // action body
     }
 
-    public function googleloginAction()
+    public function ressetpasswordAction()
+    {
+        $reset_form = new Application_Form_Resetpasswordform();
+        $this->view->reset_form =$reset_form;
+        $request=$this->getRequest();
+        if($request->isPost()){
+            if($reset_form->isValid($request->getPost())){
+                $user_model = new Application_Model_Customer();
+                $e = $request->getParam('email');
+                $result = $user_model->getEmail($e);
+                print_r($result);
+                if (isset($result[0]['email'])){
+                    $code = $user_model->randomCode();
+                    //print_r($code);
+                   // die();
+                    $ee =$result[0]['email'];
+                    //print_r($ee);
+                    
+                                        $data = array(
+                       'reset_password' => $code,
+                       
+                    );
+                    $where = $user_model->getAdapter()->quoteInto('email = ?', $ee);
+                    
+                    
+                    $user_model->update($data,$where);
+                    $subject = "Reset Password";
+                    $body = "http://shopzone.com/changepassword/code/".$code;
+                    $user_model->sendEmail($ee, $subject, $body);
+                    $this->redirect("/index");
+               
+                
+                }
+                }
+        }
+    }
+
+    public function changepasswordAction()
+    {
+        $change_form = new Application_Form_Changepasswordform();
+        //$this->view->change_form =$change_form;
+        $request=$this->getRequest();
+        if ($request->getUserParam("code")){
+            $code = $request->getUserParam("code");
+                    $user_model = new Application_Model_Customer();
+                   $result = $user_model->checkCode($code);
+                   if (isset($result[0]['reset_password'])){
+                   $this->view->change_form =$change_form;
+                   $request=$this->getRequest();
+                   if($request->isPost()){
+            if($change_form->isValid($request->getPost())){
+                $password = md5($request->getParam('password'));
+                $email = $user_model->getCodeEmail($code);
+                $email = $email[0]['email'];
+                
+                $data = array(
+                       'password' => $password,
+                       
+                    );
+                    $where = $user_model->getAdapter()->quoteInto('email = ?', $email);
+                    $user_model->update($data,$where);
+                    $user_model->deleteCode($email);
+                    $this->redirect("/index");
+                
+            }
+            }
+                 
+                   }
+                   else
+                   {
+                       echo "invalid code";
+                   }
+        }
+        
+    }
+
+public function googleloginAction()
     {
         // action body
         $chars ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
@@ -342,7 +416,6 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
 
 
     
-
 
 
 

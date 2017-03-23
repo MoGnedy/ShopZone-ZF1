@@ -106,5 +106,64 @@ function deleteUser($id)
 
   }
 
+   function getEmail($email){
+      $user_model = new Application_Model_Customer();
+     $select = $user_model->select()
+              ->from('customer','email')
+                ->where('email= ?',$email);
+        $stmt = $select->query();
+        $result = $stmt->fetchAll();
+        return $result;
+  
   
 }
+
+
+function randomCode(){
+    $chars ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        $code =''; 
+     
+     
+        for($i=0;$i<30; $i++)
+        {
+            $code .= $chars[rand(0,strlen($chars)-1)];
+        }
+
+        return $code;
+        }
+        
+        function checkCode($code){
+        
+            $user_model = new Application_Model_Customer();
+     $select = $user_model->select()
+              ->from('customer','reset_password')
+                ->where('reset_password= ?',$code);
+        $stmt = $select->query();
+        $result = $stmt->fetchAll();
+        return $result;
+        }
+       
+         function getCodeEmail($code){
+        
+            $user_model = new Application_Model_Customer();
+     $select = $user_model->select()
+              ->from('customer','email')
+                ->where('reset_password= ?',$code);
+        $stmt = $select->query();
+        $result = $stmt->fetchAll();
+        return $result;
+        }
+        
+        function deleteCode($email){
+        
+            $data = array(
+                       'reset_password' => "",
+                       
+                    );
+                    $where = $this->getAdapter()->quoteInto('email = ?', $email);
+                    
+                    
+                    $this->update($data,$where);
+        }
+  }
+ 

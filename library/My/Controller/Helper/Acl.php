@@ -104,16 +104,19 @@
 //
 //            $this->acl->allow('admin');
             //$this->acl->allow('guest');
-            $this->acl->deny('guest','user');
-            $this->acl->deny('guest','shop');
-            $this->acl->deny('guest','admin');
-            $this->acl->deny('user','shop', 'admin');
-            $this->acl->deny('user','admin');
-            $this->acl->deny('shop','user');
-            $this->acl->deny('shop','admin');
+        //Guest ACL
+            $this->acl->deny('guest',array('user','shop','admin'));
             $this->acl->allow('guest','index');
-            $this->acl->allow('user','user');
-            $this->acl->allow('shop','shop');
+            
+        //User ACL
+            $this->acl->deny('user',array('shop','admin'));
+            $this->acl->allow('user',array('index','user'));
+        
+        // Shop ACL
+            $this->acl->deny('shop',array('user','admin'));
+            $this->acl->allow('shop',array('index','shop'));
+            
+        //Admin ACL
             $this->acl->allow('admin');
             
             // Note that the actions which are not mentioned above i.e. inside array of

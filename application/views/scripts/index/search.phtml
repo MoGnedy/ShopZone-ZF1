@@ -1,0 +1,12 @@
+<?php
+foreach ($this->indexSearch as $key => $value){
+    ?>
+      <div class="search-list-item-name">
+     
+          <a href="<?='/index/details-Product/uid/'.$value['id']?>">     <?php
+    echo $value['name'];
+    ?></a>
+           </div>
+          <?php
+}
+?>

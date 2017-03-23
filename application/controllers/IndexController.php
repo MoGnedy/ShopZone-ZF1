@@ -114,34 +114,41 @@ class IndexController extends Zend_Controller_Action
         $request=$this->getRequest();
         if($request->isPost()){
           if ($loginForm->isValid($request->getPost())) {
-            $name=$request->getParam('name');
-            $pass=$request->getParam('pass');
+            $email=$request->getParam('email');
+            
+            $pass=md5($request->getParam('pass'));
 
 
             $dp=Zend_Db_Table::getDefaultAdapter();
-            $adapter=new Zend_Auth_Adapter_DbTable($dp,'customer','name','password');
-            $adapter->setIdentity($name);
+            $adapter=new Zend_Auth_Adapter_DbTable($dp,'customer','email','password');
+            $adapter->setIdentity($email);
             $adapter->setCredential($pass);
             $result=$adapter->authenticate();
             if ($result->isValid()) {
-              $sessionDataObj=$adapter->getResultRowObject(['id','email','password','name','adress','type','is_active']);
+              $sessionDataObj=$adapter->getResultRowObject(['id','email','name','adress','type','is_active']);
               
             if($sessionDataObj->is_active == 'true'){
                 $auth=Zend_Auth::getInstance();
                 $storage=$auth->getStorage();
                 $storage->write($sessionDataObj);
-                if($sessionDataObj->type == 'admin')
-                        {
-                           
-                            $this->redirect('/admin');
-                        }elseif($sessionDataObj->type == 'shop user'){
-                            $this->redirect('/shop');
-
-
-                        }elseif($sessionDataObj->type == 'user'){
-                               $this->redirect('/user');
-
-                        }
+                $usersNs = new Zend_Session_NameSpace("members");
+                $usersNs->userType = $sessionDataObj->type;
+//                print_r($_SESSION);
+//                die();
+                $path = "/".$sessionDataObj->type;
+                $this->redirect($path);
+//                if($sessionDataObj->type == 'admin')
+//                        {
+//                           
+//                            $this->redirect('/admin');
+//                        }elseif($sessionDataObj->type == 'shop'){
+//                            $this->redirect('/shop');
+//
+//
+//                        }elseif($sessionDataObj->type == 'user'){
+//                               $this->redirect('/user');
+//
+//                        }
 
 
             }else{
@@ -175,6 +182,7 @@ class IndexController extends Zend_Controller_Action
         $auth=Zend_Auth::getInstance();
         $auth->clearIdentity();
         Zend_Session::namespaceUnset('facebook');
+        Zend_Session::namespaceUnset('members');
         return $this->redirect('index/login');
     }
 
@@ -270,6 +278,33 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
 
     }
 
+    public function searchAction()
+    {
+        // action body
+//          $search_form=new Application_Form_Search();
+//        $this->view->search=$search_form;
+        $this->_helper->layout('layout')->disableLayout();
+
+        if ($this->getRequest()->isXmlHttpRequest()) {
+            if ($this->getRequest()->isPost()) {
+//
+//                $name=$_REQUEST['query'];
+               $name=$_POST['searchword'];
+              
+           //  echo   $name= $request->getParam('searchword');
+                
+                $indexSearch = new Application_Model_Product();
+                $result = $indexSearch ->searchByName($name);
+                $this->view->indexSearch = $result;
+
+        }
+    }
+    }
+    
+public function notfoundAction()
+    {
+        // action body
+    }
 
 }
 

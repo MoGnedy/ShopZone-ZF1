@@ -48,7 +48,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
       $productData['name']=$productData['name'];
       $productData['description']=$productData['description'];
       $productData['price']=$productData['price'];
-      $productData['picture']=$$productData['picture'];
+      $productData['picture']=$productData['picture'];
       $productData['quantity']=$productData['quantity'];
       $productData['category']=$productData['category'];
       $this->update($productData,"id=$id");
@@ -182,6 +182,17 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
        // $final = $stmtment->fetchAll();
     
         //return $stmtment;
+    }
+      public function searchByName($name){
+     
+    $select = $this->select()
+                     ->from($this)
+                     ->where('name LIKE ?', '%' . $name . '%');
+
+      $row = $this->fetchAll($select);
+      return $row;
+
+        
     }
 
     

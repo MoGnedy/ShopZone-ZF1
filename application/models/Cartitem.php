@@ -37,8 +37,9 @@ class Application_Model_Cartitem extends Zend_Db_Table_Abstract
 
       function selectoffer($id)
       {
+        $uid=1;
         $sql=$this->select()
-        ->from(array('c' => 'cartitem'), array('quantity'))
+        ->from(array('c' => 'cartitem'), array('quantity','product'))
                ->join(array('p' => 'product'), 'p.id=c.customer', array('name','price'))
                ->join(array('o' => 'offer'), 'p.offer=o.id', array('offer_per'))
                ->where('c.customer = ?', $id)
@@ -48,4 +49,8 @@ class Application_Model_Cartitem extends Zend_Db_Table_Abstract
         return $result;
       }
 
+      function deleteItem($pid)
+      {
+        return $this->delete("product=$pid");
+      }
 }

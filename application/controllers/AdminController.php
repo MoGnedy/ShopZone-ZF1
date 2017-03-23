@@ -141,11 +141,11 @@ class AdminController extends Zend_Controller_Action
         $request = $this->getRequest();
          if($request->isPost()){
             if($form->isValid($request->getPost())){
-                        $location = $form->picture->getFileName();
-                                $request->setParam('picture', $location);
+                        $location = $form->image->getFileName();
+                                $request->setParam('image', $location);
 
         $values = $form->getValues();
-  if (!$form->picture->receive()) {
+  if (!$form->image->receive()) {
             print "Upload error";
         }
             $slider_model=new Application_Model_Slider();
@@ -153,7 +153,7 @@ class AdminController extends Zend_Controller_Action
             $this->redirect('/admin/addslider');
   }
 }
-}
+    }
 
     public function addcatAction()
     {
@@ -201,15 +201,85 @@ class AdminController extends Zend_Controller_Action
         $this->redirect("/admin/listallcats");
     }
 
+    public function deletefromsliderAction()
+    {
+        // action body
+      $slider_model = new Application_Model_Slider();
+      $s_id = $this->_request->getParam('sid');
+      $slider = $slider_model->deletefromslider($s_id);
+      $this->redirect("/admin/listfromslider");
+    }
+
+    public function listfromsliderAction()
+    {
+        // action body
+      $slider_model = new Application_Model_Slider();
+
+        $this->view->slider_admin = $slider_model->listfromslider();
+    }
+
+    public function detailsliderAction()
+    {
+        // action body
+        // write phtml
+        $slider_model = new Application_Model_Slider();        
+       $s_id = $this->_request->getParam('sid');
+       $slider = $slider_model->sliderDetails($s_id);
+        $this->view->slider_data = $slider;
+    }
+
+    public function editsliderAction()
+    {
+        // action body
+
+
+         $form = new Application_Form_Sliderform();
+         $id = $this->_request->getParam('sid');
+        $slider_model = new Application_Model_Slider();
+        $slider_data = $slider_model->sliderDetails($id);
+        $form->populate($slider_data);
+        $this->view->slider_form = $form;
+        $request = $this->getRequest();
+            if($request->isPost()){
+                if($form->isValid($request->getPost())){
+
+
+        
+        // $slider_model-> updateSlider ($id,$request->getPost());
+        // $this->redirect('/admin/listfromslider ');
+
+
+                        $location = $form->image->getFileName();
+                 $request->setParam('image', $location);
+                 $slider_model-> updateSlider($id,$request->getParams());
+                                  $this->redirect('/admin/listfromslider');
+
+
+
+        $values = $form->getValues();
+            if (!$form->image->receive()) {
+                print "Upload error";
+        }
+            $slider_model=new Application_Model_Slider();
+             $slider_model-> updateSlider($id,$request->getParams());
+                 $this->redirect('/admin/listfromslider');
+        }
+        }
+    }
+
 
 }
-
-      
         
-      
- 
 
-      
+
+
+
+     
+       
+
+
+
+
 
 
 

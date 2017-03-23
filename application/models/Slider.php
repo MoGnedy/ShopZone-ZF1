@@ -10,9 +10,9 @@ class Application_Model_Slider extends Zend_Db_Table_Abstract
         // $row->description = $productData['description'];
        // var_dump($sliderData);
        // die();
-        $row->image =$sliderData['picture'];
+        $row->image =$sliderData['image'];
     
-        $row->url = $sliderData['description'];
+        $row->url = $sliderData['url'];
         $row->save();
     }
        public function slider()
@@ -28,6 +28,30 @@ class Application_Model_Slider extends Zend_Db_Table_Abstract
         // die();
         $result=$query->fetchAll();
         return $result;
+    }
+     public function deletefromslider($id){
+        $this->delete("id=$id");
+    }
+
+    public function listfromslider(){
+        return $this->fetchAll()->toArray();
+       
+    }
+
+
+     public function sliderDetails($id){
+
+        return $this->find($id)->toArray()[0];
+    }
+    
+    public function updateSlider($id,$sliderData)
+    {
+
+     $sliderNewData['image']=$sliderData['image'];
+      $sliderNewData['url']=$sliderData['url'];
+      
+      $this->update($sliderNewData,"id=$id");
+
     }
 
 

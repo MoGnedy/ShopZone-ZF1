@@ -60,6 +60,10 @@
           <actionMethod actionName="listallcats"/>
           <actionMethod actionName="editcat"/>
           <actionMethod actionName="deletecat"/>
+          <actionMethod actionName="deletefromslider"/>
+          <actionMethod actionName="listfromslider"/>
+          <actionMethod actionName="detailslider"/>
+          <actionMethod actionName="editslider"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -212,6 +216,18 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="sendbill"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="deletefromslider"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="listfromslider"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="detailslider"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="editslider"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewControllerScriptsDirectory forControllerName="User">

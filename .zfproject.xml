@@ -235,7 +235,6 @@
 <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="deleteproductcart"/>
           </viewControllerScriptsDirectory>
-</viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="notfound"/>
           </viewControllerScriptsDirectory>

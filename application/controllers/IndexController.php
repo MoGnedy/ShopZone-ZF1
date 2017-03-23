@@ -115,7 +115,8 @@ class IndexController extends Zend_Controller_Action
         if($request->isPost()){
           if ($loginForm->isValid($request->getPost())) {
             $email=$request->getParam('email');
-            $pass=$request->getParam('pass');
+            
+            $pass=md5($request->getParam('pass'));
 
 
             $dp=Zend_Db_Table::getDefaultAdapter();
@@ -124,7 +125,7 @@ class IndexController extends Zend_Controller_Action
             $adapter->setCredential($pass);
             $result=$adapter->authenticate();
             if ($result->isValid()) {
-              $sessionDataObj=$adapter->getResultRowObject(['id','email','password','name','adress','type','is_active']);
+              $sessionDataObj=$adapter->getResultRowObject(['id','email','name','adress','type','is_active']);
               
             if($sessionDataObj->is_active == 'true'){
                 $auth=Zend_Auth::getInstance();
@@ -134,18 +135,20 @@ class IndexController extends Zend_Controller_Action
                 $usersNs->userType = $sessionDataObj->type;
 //                print_r($_SESSION);
 //                die();
-                if($sessionDataObj->type == 'admin')
-                        {
-                           
-                            $this->redirect('/admin');
-                        }elseif($sessionDataObj->type == 'shop user'){
-                            $this->redirect('/shop');
-
-
-                        }elseif($sessionDataObj->type == 'user'){
-                               $this->redirect('/user');
-
-                        }
+                $path = "/".$sessionDataObj->type;
+                $this->redirect($path);
+//                if($sessionDataObj->type == 'admin')
+//                        {
+//                           
+//                            $this->redirect('/admin');
+//                        }elseif($sessionDataObj->type == 'shop'){
+//                            $this->redirect('/shop');
+//
+//
+//                        }elseif($sessionDataObj->type == 'user'){
+//                               $this->redirect('/user');
+//
+//                        }
 
 
             }else{
@@ -297,14 +300,16 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
         }
     }
     }
-
+    
+public function notfoundAction()
+    {
+        // action body
+    }
 
 }
 
 
-
     
-
 
 
 

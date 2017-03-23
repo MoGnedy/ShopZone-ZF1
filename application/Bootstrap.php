@@ -13,6 +13,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     Zend_Db_Table::setDefaultAdapter($dbAdapter);
   }
   
+  protected function _initerror() {
+  $plugin = new Zend_Controller_Plugin_ErrorHandler();
+$plugin->setErrorHandlerModule('default')
+       ->setErrorHandlerController('index')
+       ->setErrorHandlerAction('notfound');
+
+$front = Zend_Controller_Front::getInstance();
+$front->registerPlugin($plugin);
+  }
+  
   protected function _initConfig()
     {
         Zend_Session::start();

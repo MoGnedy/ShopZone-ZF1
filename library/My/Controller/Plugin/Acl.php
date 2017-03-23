@@ -42,18 +42,37 @@ class My_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 //            $request->setControllerName('Error');
 //            $request->setActionName('index');
             
-            
-            $request->setControllerName('index');
-            $request->setActionName('index');
-            
+            if ($roleName == 'guest'){
+                 $request->setControllerName('index');
+                 $request->setActionName('index');
+           
+            }else{
+                $request->setControllerName($roleName);
+                $request->setActionName('index');
+            }
             // this will echo the output from file - /application/views/scripts/error/index.phtml
             // make sure, you have the controller - ErrorController with action indexAction
             // and also make sure you have phtml file for it 
             // i.e. /application/views/scripts/error/index.phtml
         }
+        
+        else{
+            $ac = $request->getActionName();
+            $co = $request->getControllerName();
+        if ($roleName != 'guest'  && $co != $roleName && $ac != 'logout' ){
+            
+            if ($roleName != 'admin'){
+            $request->setControllerName($roleName);
+            $request->setActionName('index');
+            }
+            
+            }
+        
+        
 //        else {
 //            $request->setControllerName('index');
 //            $request->setActionName('notfound');
 //        }
+    }
     }
 }

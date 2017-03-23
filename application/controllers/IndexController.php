@@ -134,18 +134,20 @@ class IndexController extends Zend_Controller_Action
                 $usersNs->userType = $sessionDataObj->type;
 //                print_r($_SESSION);
 //                die();
-                if($sessionDataObj->type == 'admin')
-                        {
-                           
-                            $this->redirect('/admin');
-                        }elseif($sessionDataObj->type == 'shop user'){
-                            $this->redirect('/shop');
-
-
-                        }elseif($sessionDataObj->type == 'user'){
-                               $this->redirect('/user');
-
-                        }
+                $path = "/".$sessionDataObj->type;
+                $this->redirect($path);
+//                if($sessionDataObj->type == 'admin')
+//                        {
+//                           
+//                            $this->redirect('/admin');
+//                        }elseif($sessionDataObj->type == 'shop'){
+//                            $this->redirect('/shop');
+//
+//
+//                        }elseif($sessionDataObj->type == 'user'){
+//                               $this->redirect('/user');
+//
+//                        }
 
 
             }else{

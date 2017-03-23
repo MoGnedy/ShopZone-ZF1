@@ -14,7 +14,7 @@ class Application_Form_Login extends Zend_Form
         //$name->addValidator('StringLength',false,Array(4,20));
         // $name->addFilter('StringTrim');
 
-        $password=new Zend_Form_Element_Text('pass');
+        $password=new Zend_Form_Element_Password('pass');
         $password->setLabel('PassWord')
                 ->setAttribs(array('class'=>'form-control'))
                 ->setRequired();

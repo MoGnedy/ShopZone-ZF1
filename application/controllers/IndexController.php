@@ -334,7 +334,6 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
                     $user_model->update($data,$where);
                     $subject = "Reset Password";
                     $body = "http://shopzone.com/changepassword/code/".$code;
-                    $ee = "mognedy@gmail.com";
                     $user_model->sendEmail($ee, $subject, $body);
                     $this->redirect("/index");
                

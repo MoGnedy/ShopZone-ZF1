@@ -183,6 +183,17 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
     
         //return $stmtment;
     }
+      public function searchByName($name){
+     
+    $select = $this->select()
+                     ->from($this)
+                     ->where('name LIKE ?', '%' . $name . '%');
+
+      $row = $this->fetchAll($select);
+      return $row;
+
+        
+    }
 
     
 }

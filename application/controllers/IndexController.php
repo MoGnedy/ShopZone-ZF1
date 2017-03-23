@@ -275,20 +275,20 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
 
     }
 
-    public function notfoundAction()
+    public function searchAction()
+    {
+        // action body
+    }
+    
+public function notfoundAction()
     {
         // action body
     }
 
-
 }
 
 
-
-
     
-
-
 
 
 

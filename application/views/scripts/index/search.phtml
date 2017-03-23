@@ -1,4 +1,12 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Index</b> and script/action name <b>search</b></p>
-</div>
+<?php
+foreach ($this->indexSearch as $key => $value){
+    ?>
+      <div class="search-list-item-name">
+     
+          <a href="<?='/index/details-Product/uid/'.$value['id']?>">     <?php
+    echo $value['name'];
+    ?></a>
+           </div>
+          <?php
+}
+?>

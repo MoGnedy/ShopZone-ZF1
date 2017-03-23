@@ -278,6 +278,24 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
     public function searchAction()
     {
         // action body
+//          $search_form=new Application_Form_Search();
+//        $this->view->search=$search_form;
+        $this->_helper->layout('layout')->disableLayout();
+
+        if ($this->getRequest()->isXmlHttpRequest()) {
+            if ($this->getRequest()->isPost()) {
+//
+//                $name=$_REQUEST['query'];
+               $name=$_POST['searchword'];
+              
+           //  echo   $name= $request->getParam('searchword');
+                
+                $indexSearch = new Application_Model_Product();
+                $result = $indexSearch ->searchByName($name);
+                $this->view->indexSearch = $result;
+
+        }
+    }
     }
 
 

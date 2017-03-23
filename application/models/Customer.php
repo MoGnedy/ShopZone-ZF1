@@ -59,27 +59,111 @@ function deleteUser($id)
     $this->update($userData,"id=$id");
   }
   public function sendEmail($email,$subject,$body){
-        $mail = new Zend_Mail();
-        $mail->addTo($email);
-        $mail->setSubject($subject);
-        $mail->setBodyText($body);
-        $mail->setFrom('Admin@ShopeZone.com', 'Admin');
+//        $mail = new Zend_Mail();
+//        $mail->addTo($email);
+//        $mail->setSubject($subject);  
+//        $mail->setBodyText($body);
+//        $mail->setFrom('Admin@ShopeZone.com', 'Admin');
+//
+////Send it!
+//        $sent = true;
+//        try {
+//            $mail->send();
+//        } catch (Exception $e){
+//            $sent = false;
+//        }
+//
+//        //Do stuff (display error message, log it, redirect user, etc)
+//        if($sent){
+//            echo 'Mail was sent successfully.';
+//        } else {
+//            echo 'Mail failed to send.';
+//        }
+      try {
+            $config = array('ssl' => 'tls',
+                'auth' => 'login',
+                'username' => "mzonenotamazon@gmail.com",
+                'password' => "OurGreateApp");
 
-//Send it!
-        $sent = true;
-        try {
-            $mail->send();
-        } catch (Exception $e){
-            $sent = false;
+            $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
+
+
+            $mail = new Zend_Mail();
+
+            $mail->setBodyHtml($body);
+            $mail->setFrom('Admin@ShopeZone.com', 'Admin');
+            $mail->addTo($email);
+            $mail->setSubject($subject);
+            if ($mail->send($transport)) {
+                echo 'Sent successfully';
+            } else {
+                echo 'unable to send email';
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
 
-        //Do stuff (display error message, log it, redirect user, etc)
-        if($sent){
-            echo 'Mail was sent successfully.';
-        } else {
-            echo 'Mail failed to send.';
-        }
+
   }
 
+   function getEmail($email){
+      $user_model = new Application_Model_Customer();
+     $select = $user_model->select()
+              ->from('customer','email')
+                ->where('email= ?',$email);
+        $stmt = $select->query();
+        $result = $stmt->fetchAll();
+        return $result;
+  
   
 }
+
+
+function randomCode(){
+    $chars ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        $code =''; 
+     
+     
+        for($i=0;$i<30; $i++)
+        {
+            $code .= $chars[rand(0,strlen($chars)-1)];
+        }
+
+        return $code;
+        }
+        
+        function checkCode($code){
+        
+            $user_model = new Application_Model_Customer();
+     $select = $user_model->select()
+              ->from('customer','reset_password')
+                ->where('reset_password= ?',$code);
+        $stmt = $select->query();
+        $result = $stmt->fetchAll();
+        return $result;
+        }
+       
+         function getCodeEmail($code){
+        
+            $user_model = new Application_Model_Customer();
+     $select = $user_model->select()
+              ->from('customer','email')
+                ->where('reset_password= ?',$code);
+        $stmt = $select->query();
+        $result = $stmt->fetchAll();
+        return $result;
+        }
+        
+        function deleteCode($email){
+        
+            $data = array(
+                       'reset_password' => "",
+                       
+                    );
+                    $where = $this->getAdapter()->quoteInto('email = ?', $email);
+                    
+                    
+                    $this->update($data,$where);
+        }
+  }
+ 

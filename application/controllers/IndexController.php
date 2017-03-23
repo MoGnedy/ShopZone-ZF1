@@ -306,7 +306,113 @@ public function notfoundAction()
         // action body
     }
 
+    public function ressetpasswordAction()
+    {
+        $reset_form = new Application_Form_Resetpasswordform();
+        $this->view->reset_form =$reset_form;
+        $request=$this->getRequest();
+        if($request->isPost()){
+            if($reset_form->isValid($request->getPost())){
+                $user_model = new Application_Model_Customer();
+                $e = $request->getParam('email');
+                $result = $user_model->getEmail($e);
+                print_r($result);
+                if (isset($result[0]['email'])){
+                    $code = $user_model->randomCode();
+                    //print_r($code);
+                   // die();
+                    $ee =$result[0]['email'];
+                    //print_r($ee);
+                    
+                                        $data = array(
+                       'reset_password' => $code,
+                       
+                    );
+                    $where = $user_model->getAdapter()->quoteInto('email = ?', $ee);
+                    
+                    
+                    $user_model->update($data,$where);
+                    $subject = "Reset Password";
+                    $body = "http://shopzone.com/index/changepassword/code/".$code;
+                    $user_model->sendEmail($ee, $subject, $body);
+                    $this->redirect("/index");
+               
+                
+                }
+                }
+        }
+    }
+
+    public function changepasswordAction()
+    {
+        $change_form = new Application_Form_Changepasswordform();
+        //$this->view->change_form =$change_form;
+        $request=$this->getRequest();
+        if ($request->getUserParam("code")){
+            $code = $request->getUserParam("code");
+                    $user_model = new Application_Model_Customer();
+                   $result = $user_model->checkCode($code);
+                   if (isset($result[0]['reset_password'])){
+                   $this->view->change_form =$change_form;
+                   $request=$this->getRequest();
+                   if($request->isPost()){
+            if($change_form->isValid($request->getPost())){
+                $password = md5($request->getParam('password'));
+                $email = $user_model->getCodeEmail($code);
+                $email = $email[0]['email'];
+                
+                $data = array(
+                       'password' => $password,
+                       
+                    );
+                    $where = $user_model->getAdapter()->quoteInto('email = ?', $email);
+                    $user_model->update($data,$where);
+                    $user_model->deleteCode($email);
+                    $this->redirect("/index");
+                
+            }
+            }
+                 
+                   }
+                   else
+                   {
+                       echo "invalid code";
+                   }
+        }
+        
+    }
+
+public function googleloginAction()
+    {
+        // action body
+        $chars ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        $password =''; 
+     
+     
+        for($i=0;$i<10; $i++)
+        {
+            $password .= $chars[rand(0,strlen($chars)-1)];
+        }
+
+        $id = $this->_request->getParam('id');
+        $name = $this->_request->getParam('name');
+         $email = $this->_request->getParam('email');
+         $type='user';
+         $user=array("name"=>$name,"email"=>$email,"type"=>$type,"password"=>$password,"address"=>"");
+          $dp=Zend_Db_Table::getDefaultAdapter();
+            $adapter=new Zend_Auth_Adapter_DbTable($dp,'customer','email','password');
+            $adapter->setIdentity($email);
+            $adapter->setCredential($password);
+             $result=$adapter->authenticate();
+             if(!$result){
+            $user_model = new Application_Model_Customer();
+                $user_model-> SignUp($user);
+            }
+    }
+
+
 }
+
 
 
     

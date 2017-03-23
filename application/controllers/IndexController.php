@@ -333,7 +333,7 @@ public function notfoundAction()
                     
                     $user_model->update($data,$where);
                     $subject = "Reset Password";
-                    $body = "http://shopzone.com/changepassword/code/".$code;
+                    $body = "http://shopzone.com/index/changepassword/code/".$code;
                     $user_model->sendEmail($ee, $subject, $body);
                     $this->redirect("/index");
                

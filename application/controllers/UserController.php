@@ -248,13 +248,7 @@ $this->fpS->name = $userNode['name'];
 
             }
 
-
-
-
-
-
-
-     function facelogoutAction()
+    public function facelogoutAction()
     {
         // action body
     $auth=Zend_Auth::getInstance();
@@ -265,7 +259,8 @@ $this->fpS->name = $userNode['name'];
     return $this->redirect('/user/login');
 
     }
-     function googleloginAction()
+
+    public function googleloginAction()
     {
         // action
         $this->view->googlelogin;
@@ -395,6 +390,16 @@ $this->fpS->name = $userNode['name'];
       // print_r($sendemail);
       // die();
       $this->redirect('/user/displaycart');
+    }
+
+    public function deleteproductcartAction()
+    {
+      $user_model=new Application_Model_Cartitem();
+      $usr_id=$this->_request->getParam("pid");
+      $user_model->deleteItem($usr_id);
+      echo $user_model->deleteItem($usr_id);
+      die();
+      $this->redirect("/user/displaycart");
     }
 
 

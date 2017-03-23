@@ -15,7 +15,13 @@
           <actionMethod actionName="addtocart"/>
           <actionMethod actionName="selectrateprod"/>
           <actionMethod actionName="slider"/>
-        </controllerFile>
+          <actionMethod actionName="register"/>
+          <actionMethod actionName="login"/>
+          <actionMethod actionName="logout"/>
+          <actionMethod actionName="facebookcallback"/>
+          <actionMethod actionName="search"/>
+	  <actionMethod actionName="notfound"/>        
+</controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="User">
           <actionMethod actionName="index"/>
@@ -33,6 +39,7 @@
           <actionMethod actionName="sendemail"/>
           <actionMethod actionName="displaycart"/>
           <actionMethod actionName="sendbill"/>
+          <actionMethod actionName="deleteproductcart"/>
         </controllerFile>
         <controllerFile controllerName="Shop">
           <actionMethod actionName="index"/>
@@ -217,7 +224,20 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="sendbill"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Admin">
+    </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="register"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="login"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="logout"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="facebookcallback"/>
+          </viewControllerScriptsDirectory>       
+   <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="deletefromslider"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
@@ -229,7 +249,16 @@
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="editslider"/>
           </viewControllerScriptsDirectory>
-        </viewScriptsDirectory>
+<viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="deleteproductcart"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="notfound"/>
+          </viewControllerScriptsDirectory>
+	<viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="search"/>     
+</viewControllerScriptsDirectory>   
+</viewScriptsDirectory>
         <viewControllerScriptsDirectory forControllerName="User">
           <viewScriptFile forActionName="listproduct"/>
         </viewControllerScriptsDirectory>

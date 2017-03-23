@@ -125,7 +125,7 @@ class AdminController extends Zend_Controller_Action
     $subject='Coupon';
    $customer_model=new Application_Model_Customer();
     $send_email=$customer_model->sendEmail($email,$subject,$body);
-     $this->redirect('/admin/listallusers');
+   //  $this->redirect('/admin/listallusers');
 
      // $this->redirect("/user/sendemail/uid/$uid/code/$code/discount/$discount");
 
@@ -153,7 +153,7 @@ class AdminController extends Zend_Controller_Action
             $this->redirect('/admin/addslider');
   }
 }
-    }
+}
 
     public function addcatAction()
     {

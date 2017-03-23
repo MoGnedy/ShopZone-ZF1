@@ -28,7 +28,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
 <!-- start menu -->
 <link href="<?php $this->baseUrl() ?>/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="../js/megamenu.js"></script>
+<script type="text/javascript" src="<?php $this->baseUrl() ?>/js/megamenu.js"></script>
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <script src="<?php $this->baseUrl() ?>/js/menu_jquery.js"></script>
 <script src="<?php $this->baseUrl() ?>/js/simpleCart.min.js"> </script>
@@ -59,32 +59,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <div class="head-t">
     <div class="header_right">
       <div class="rgt-bottom">
-        <div class="log">
+      <?php
+$auth=Zend_Auth::getInstance();
+    $storage=$auth->getStorage();
+    $userdata=$storage->read();
+    $fbsession = new Zend_Session_Namespace('facebook');
+
+    if(!empty($userdata)|| !empty($fbsession->name))
+    {
+        if (!empty($fbsession->name)){
+          echo 'Welcome' ." " .$fbsession->name;
+        }else{
+      // if authenticated and logged in 
+    ?>
+    
+   
+<?php echo 'Welcome' . " ".$userdata->name; ?>
+      
+        <?php
+  }
+  ?>
+  <div class="create_btn">
+        <a href="/index/logout">Logout</a>
+      </div>
+    <?php
+  }
+
+  else
+  {
+    ?>
+         <!-- <div class="reg">
+          <a href="/index/login">Login</a>
+        </div> -->
+          <div class="log">
           <div class="login" >
-            <div id="loginContainer"><a href="#" id="loginButton"><span>Login</span></a>
-                <div id="loginBox">                
-                    <form id="loginForm">
-                            <fieldset id="body">
-                              <fieldset>
-                                      <label for="email">Email Address</label>
-                                      <input type="text" name="email" id="email">
-                                </fieldset>
-                                <fieldset>
-                                        <label for="password">Password</label>
-                                        <input type="password" name="password" id="password">
-                                 </fieldset>
-                                <input type="submit" id="login" value="Sign in">
-                              <label for="checkbox"><input type="checkbox" id="checkbox"> <i>Remember me</i></label>
-                          </fieldset>
-                        <span><a href="#">Forgot your password?</a></span>
-                </form>
-              </div>
+            <div id="loginContainer"><a href="/index/login"><span>Login</span></a>
             </div>
-          </div>
+            </div>
+            </div>
+         <div class="reg">
+          <a href="/index/register">REGISTER</a>
         </div>
-        <div class="reg">
-          <a href="register.html">REGISTER</a>
-        </div>
+        <?php
+  }
+   ?>
+               
+       
       <div class="cart box_1">
         <a href="checkout.html">
           <h3> <span class="simpleCart_total">$0.00</span> (<span id="simpleCart_quantity" class="simpleCart_quantity">0</span> items)<img src="<?php $this->baseUrl() ?>/images/bag.png" alt=""></h3>
@@ -92,16 +112,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <p><a href="javascript:;" class="simpleCart_empty">(empty card)</a></p>
         <div class="clearfix"> </div>
       </div>
-      <div class="create_btn">
-        <a href="checkout.html">CHECKOUT</a>
-      </div>
+      
       <div class="clearfix"> </div>
     </div>
     <div class="search">
+        
         <form>
-          <input type="text" value="" placeholder="search...">
+            <input type="text" value="" placeholder="search..." class="search" id="searchbox">
         <input type="submit" value="">
+             <div id="display">
+    
+</div>
       </form>
+   
     </div>
     <div class="clearfix"> </div>
     </div>
@@ -753,31 +776,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </div>
 </div>
 </div>
-<?php
-$auth=Zend_Auth::getInstance();
-    $storage=$auth->getStorage();
-    $userdata=$storage->read();
-    $fbsession = new Zend_Session_Namespace('facebook');
-
-    if(!empty($userdata)|| !empty($fbsession->name))
-    {
-        if (!empty($fbsession->name)){
-          echo 'Welcome' . $fbsession->name;
-        }else{
-      // if authenticated and logged in 
-    echo 'Welcome' . $userdata->name;
-  }
-    echo' <a href="/user/logout">Logout</a>';
-  }
-
-  else
-  {// if not logged in 
-    echo' <a href="/user/login">Login</a>';
-  }
 
 
 
-?>
+
+
 <?php echo $this->layout()->content; ?>
 
     <div class="foot-top">
@@ -867,5 +870,40 @@ $auth=Zend_Auth::getInstance();
       <p>Copyrights © 2015 Gretong. All rights reserved | Template by <a href="http://w3layouts.com/">W3layouts</a></p>
   </div>
 </div>
+<script>
+$(document).ready(function(){
+
+$(".search").keyup(function() {
+var searchbox = $(this).val();
+var dataString = 'searchword='+ searchbox;
+
+if(searchbox=='' || searchbox==' '){
+    $("#display").hide();
+} else
+{
+
+$.ajax({
+type: "POST",
+url: "/index/search/",
+data: dataString,
+cache: false,
+success: function(html)
+{ $("#display").html(html).show();        }
+
+});
+}return false;    
+
+
+});
+    });
+
+
+</script>
+<?php
+//   include 'search.phtml';
+?>
+
+
+
 </body>
 </html>

@@ -35,7 +35,7 @@ class Application_Form_Signup extends Zend_Form
         $type = new Zend_Form_Element_Radio('type');
             $type->addMultiOptions(array(
                     'user' => 'User',
-                    'shop user' => 'Shop User' 
+                    'shop' => 'Shop' 
                         ))
             ->setSeparator('');
 

@@ -19,6 +19,7 @@
           <actionMethod actionName="login"/>
           <actionMethod actionName="logout"/>
           <actionMethod actionName="facebookcallback"/>
+          <actionMethod actionName="notfound"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="User">
@@ -230,8 +231,11 @@
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="facebookcallback"/>
           </viewControllerScriptsDirectory>
-<viewControllerScriptsDirectory forControllerName="User">
+          <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="deleteproductcart"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="notfound"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewControllerScriptsDirectory forControllerName="User">

@@ -51,5 +51,9 @@ class My_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
             // and also make sure you have phtml file for it 
             // i.e. /application/views/scripts/error/index.phtml
         }
+//        else {
+//            $request->setControllerName('index');
+//            $request->setActionName('notfound');
+//        }
     }
 }

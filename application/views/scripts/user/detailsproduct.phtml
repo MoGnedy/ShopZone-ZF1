@@ -85,8 +85,12 @@ echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quanti
 
      ?></center></h1>
   </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
   <div class="panel-body">
 <form method="POST" action="/user/addtocart">
+    <p>Description :</p>
 <?php echo $this->product_data['description']."<br>".
 "<img src="."\""."/".$this->product_data['picture']."\""."alt='product pic' height='42' width='42'>"."<br>".
 "price: ".$this->product_data['price']."<br>".
@@ -97,7 +101,10 @@ echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quanti
 "discount: ".$this->product_data['offer']."<br>".
 "<button type='submit' class='btn btn-primary'>Add to Cart</button>"; ?>
 </form>
-         <td>
+      </div>
+        </div>
+        <div class="col-md-4">
+    
             <div class="cont">
   <div class="stars">
       <?php
@@ -222,6 +229,8 @@ echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quanti
 
   </div>
 </div>
+</div>
+    </div>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -237,9 +246,58 @@ echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quanti
 
 
 
-        </td>
+    <div class="row">
+        <div class="col-md-3"></div>       
+            
+                
+<div id="comments">
+    
+<?php                
+foreach ($this->allcoments as $key => $value) {
+?>
 
-  </div>
+<div class="col-sm-5">
+<div class="panel panel-default">
+<div class="panel-heading">
+    <strong><?=$value['customer_name']?></strong>  <span class="text-muted"><?=$value['date']?></span>
+    </div>
+<div class="panel-body">
+<?=$value['comment']?>
+    </div><!-- /panel-body -->
+</div><!-- /panel panel-default -->
+</div><!-- /col-sm-5 -->
+<?php } ?>
+    </table>    
+    
+</div>
+        </div>
+    </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        #('submitcomment').on('click',function(){
+            
+        })
+      });
+    </script>
+    <div class="row">
+      
+        
+        
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+                 <div class="form-group">
+         <div class="btn-group-justified">
+             <div class='btn-group'>
+         <?php
+                echo $this->comment_form;
+                                ?>
+             </div>
+         </div>
+                 </div>
+            
+          </div>
 </div>
 
+</div>
 </div>

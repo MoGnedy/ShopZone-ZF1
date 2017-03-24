@@ -301,16 +301,53 @@ $this->fpS->name = $userNode['name'];
 
     public function detailsproductAction()
     {
-      $product_model=new Application_Model_Product();
-       $request = $this->getRequest();
-        if($request->isPost()){
-        $rate_model = new Application_Model_Rate();
-        $rate_model->addNewRate($_POST);
+      $product_model = new Application_Model_Product();
+      $comment_form = new Application_Form_Commentform();
+      $request = $this->getRequest();
+      $this->view->comment_form = $comment_form;
+      $p_id = $this->_request->getParam('uid');
+      $product = $product_model->productDetails($p_id);
+      $this->view->comments = $product_model->listProductcomments($p_id);
+      $this->view->product = $product;
+      $this->view->allcoments = $product_model->SelectionComment($p_id);
+      if($request->isPost()){
+          if(!empty($request->getPost('comment'))){
+             
+      if($comment_form->isValid($request->getPost())){
+      $comment_model = new Application_Model_Comment();
+      $pid=$request->getParam('uid');
+      $request->setParam('product', $pid);
+      
+      $request->setParam('customer_id', $_SESSION["Zend_Auth"]["storage"]->id);
 
-        }
+      
+      $comment_model->addComment ($request->getParams());
+      $this->redirect("/user/detailsproduct/uid/$pid");
+      
+      
+      }
+      }
+      elseif (!empty($request->getPost('star'))) {
+            $rate_model = new Application_Model_Rate();
+            $rate_model->addNewRate($_POST);
+         }
+      
+      }
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
       $product_id = $this->_request->getParam("uid");
       $product_data = $product_model->ProductDetails($product_id);
-      $this->view->product_data=$product_data[0];
+      $this->view->product_data=$product_data;
 
       $addcart=new Application_Form_Addtocart();
       $this->view->form=$addcart;

@@ -1,12 +1,3 @@
-<html lang="ar" meta charset="UTF-8">
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-
-
-<head>
-    
-
-</head>
-<body>
 <table class="table">
 <thead>
   <tr>
@@ -34,11 +25,11 @@
         
         <td> <?= $value['id'] ?> </td>
         
-          <?php if($this->language->type=="En"){ ?>
+         <?php if($this->language->type=="En"){ ?>
         <td><?= $value['name'] ?></td>
         <td><?= "<img src="."\""."/".$value['picture']."\""."alt='product pic' height='42' width='42'>" ?></td>
         <td><?= $value['description'] ?></td>
-        <?php} else if($this->language->type="Ar"){?>
+         <?php } if($this->language->type=="Ar"){ ?>
         <td><?= $value['ar_name'] ?></td>
         <td><?= "<img src="."\""."/".$value['picture']."\""."alt='product pic' height='42' width='42'>" ?></td>
         <td><?= $value['description_ar'] ?></td>
@@ -85,6 +76,3 @@
            
             });
             </script>
-
-        </body>
-        </html>

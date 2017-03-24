@@ -118,8 +118,8 @@
             
         //Admin ACL
             //$this->acl->deny('admin',array('user','shop'));
-            $this->acl->allow('admin',array('index','admin'));
-            
+            //$this->acl->allow('admin',array('index','admin'));
+            $this->acl->allow('admin');
             // Note that the actions which are not mentioned above i.e. inside array of
             // controller-action - becomes access-denied automatically
             // as in above example, news controller also have one more action demo2,

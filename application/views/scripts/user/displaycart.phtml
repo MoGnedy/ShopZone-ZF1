@@ -20,9 +20,13 @@
 $string="";
 $total=0;
 foreach ($this->cart as $key => $value) {
-$afterdis=($value['quantity']*$value['price']*($value['offer_per']/100));
+    if ($value['offer'] <= 0){
+        $afterdis=($value['quantity']*$value['price']);
+    }else{
+$afterdis=($value['quantity']*$value['price']*($value['offer']/100));
+    }
   echo "<tr>
-  <td>".$value['name']."</td><td>".$value['quantity']."</td><td>".$value['price']."</td><td>".$afterdis."</td><td><a class='btn btn-primary' href='/user/deleteproductcart/pid/".$value['product']."' > Remove Item </a></td></tr>";
+  <td>".$value['name']."</td><td>".$value['quantity']."</td><td>".$value['price']."</td><td>".$afterdis."</td><td><a class='btn btn-primary' href='/user/deleteproductcart/pid/".$value['id']."' > Remove Item </a></td></tr>";
 $total+=$afterdis;
 }
  ?>

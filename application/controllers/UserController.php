@@ -364,15 +364,15 @@ $this->fpS->name = $userNode['name'];
     {
       $cart=new Application_Model_Cartitem();
       $cart->addProduct($_POST);
-      $uid=$_POST[product];
-      $this->redirect("/user/detailsproduct/uid/".$uid);
+      $this->redirect("/user/detailsproduct/uid/".$_POST['product']);
     }
 
     public function displaycartAction()
     {
       $cartmodel=new Application_Model_Cartitem();
-      $this->view->cart =  $cartmodel->selectoffer(1);
-      $this->view->userid=1;
+      $data = $cartmodel->selectoffer($_SESSION["Zend_Auth"]["storage"]->id);
+      $this->view->cart =  $cartmodel->checkOffer($data);
+      $this->view->userid=$_SESSION["Zend_Auth"]["storage"]->id;
       // var_dump($this->view->cart);
       // die();
 
@@ -449,8 +449,6 @@ $this->fpS->name = $userNode['name'];
       $user_model=new Application_Model_Cartitem();
       $usr_id=$this->_request->getParam("pid");
       $user_model->deleteItem($usr_id);
-      echo $user_model->deleteItem($usr_id);
-      die();
       $this->redirect("/user/displaycart");
     }
 

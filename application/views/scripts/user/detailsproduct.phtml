@@ -96,7 +96,7 @@ echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quanti
 "price: ".$this->product_data['price']."<br>".
 "quantity: <input type='number' name='quantity' value='1' min='1' max=".$this->product_data['quantity']."><br>".
 "<input type='hidden' name='product' value=".$this->product_data['id'].">".
-"<input type='hidden' name='custid' value=".$this->product_data['customer_id'].">".
+"<input type='hidden' name='customer' value=".$_SESSION["Zend_Auth"]["storage"]->id.">".
 "rate: ".$this->product_data['rates_avg']."<br>".
 "discount: ".$this->product_data['offer']."<br>".
 "<button type='submit' class='btn btn-primary'>Add to Cart</button>"; ?>

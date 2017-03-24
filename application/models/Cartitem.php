@@ -8,9 +8,8 @@ class Application_Model_Cartitem extends Zend_Db_Table_Abstract
     {
       $row= $this->createRow();
       $row->quantity=$userData['quantity'];
-      $row->customer=$userData['custid'];
+      $row->customer=$userData['customer'];
       $row->product=$userData['product'];
-
       $row->save();
     }
     function listcartitems()
@@ -37,20 +36,48 @@ class Application_Model_Cartitem extends Zend_Db_Table_Abstract
 
       function selectoffer($id)
       {
-        $uid=1;
+        $uid=$_SESSION["Zend_Auth"]["storage"]->id;
         $sql=$this->select()
-        ->from(array('c' => 'cartitem'), array('quantity','product'))
-               ->join(array('p' => 'product'), 'p.id=c.customer', array('name','price'))
-               ->join(array('o' => 'offer'), 'p.offer=o.id', array('offer_per'))
+                ->setIntegrityCheck(FALSE)
+        ->from(array('c' => 'cartitem','p' => 'product'), array('p.name','c.quantity','p.price','p.id','p.offer'))
+               ->join(array('p' => 'product'), 'p.id=c.product', array('p.name','p.price'))
+               //->join(array('o' => 'offer'), 'c.product = o.product_id', array('o.offer_per'))
                ->where('c.customer = ?', $id)
+               ->order('p.id','ASC')
         ->setIntegrityCheck(false);
         $query=$sql->query();
         $result=$query->fetchAll();
+        
         return $result;
       }
 
       function deleteItem($pid)
       {
         return $this->delete("product=$pid");
+      }
+      function checkOffer($list){
+          $db=Zend_Db_Table::getDefaultAdapter();
+                    $select=new Zend_Db_Select($db);
+                   $count = count($list);
+          for ($i=0;$i<$count;$i++){
+              if($list[$i]['offer'] == NULL){
+                  $list[$i]['offer'] = 0;
+              }
+              else{
+                  
+                    $select->from('offer','offer_per')
+                            ->where('id= ?',$list[$i]['offer']);
+                    $stmt = $select->query();
+                    $result = $stmt->fetchAll();
+                    $list[$i]['offer'] = $result[0]['offer_per'];
+                    
+                  
+              }
+             
+              
+              
+              
+          }
+          return $list;
       }
 }

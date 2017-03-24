@@ -117,7 +117,7 @@
             $this->acl->allow('shop',array('index','shop'));
             
         //Admin ACL
-            $this->acl->deny('admin',array('user','shop'));
+            //$this->acl->deny('admin',array('user','shop'));
             $this->acl->allow('admin',array('index','admin'));
             
             // Note that the actions which are not mentioned above i.e. inside array of

@@ -14,11 +14,34 @@
 						 <div class="clearfix"></div>		
 				  </div>
 				  <div class="desc1 span_3_of_2">
-					<h3><?=$this->product_data['name']?></h3>
+					<?php if($this->language->type == "En") { ?>
+					
+					<h3><?= $this->product_data['name'] ?></h3>
+
+					
+
+			  		<?php } else if($this->language->type == "Ar") { ?>
+			  		
+			  		<h3><?= $this->product_data['ar_name'] ?></h3>
+			  		
+			  		<?php }?>
 					<span class="brand">Quantity: <?php echo $this->product_data['quantity']?></span>
 					<br>
 					<span class="code">Rate: <?php echo $this->product_data['rates_avg']?></span>
-					<p><?php echo $this->product_data['description']?></p>
+
+					<?php if($this->language->type == "En") { ?>
+					
+					<h3><?= $this->product_data['name'] ?></h3>
+
+					
+
+			  		<?php } else if($this->language->type == "Ar") { ?>
+			  		
+			  		<h3><?= $this->product_data['ar_name'] ?></h3>
+			  		
+			  		<?php }?>
+			  		
+
 						<div class="price">
 							<span class="text">Price:</span>
 							<span class="price-new"><?php echo $this->product_data['price']?></

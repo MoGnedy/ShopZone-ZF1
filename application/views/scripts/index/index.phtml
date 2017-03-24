@@ -103,7 +103,13 @@ $('.carousel').carousel({
     
  <!-- /.carousel --></div>
       <center style="margin-top:50px">
+          <?php if($this->language->type == "En") { ?>
           <h2>Hight Product</h2>
+
+            <?php } else if($this->language->type == "Ar") { ?>
+          <h2>اعلي المنتجات</h2>
+
+            <?php } ?>
 
       </center>
    
@@ -116,8 +122,17 @@ foreach ($this->rate_product as $key => $value) {?>
       <div class="thumbnail" style="height:450px">
           <img style="margin-top:20px" class="img" src="<?=$value['picture']?>"  width="212px" alt=<?=$value['name']?>>
       <div class="caption">
-         <p>Name Of Product: <?=$value['name'] ?></p>
-        <p><?=$value['description'] ?></p>
+         <?php if($this->language->type == "En") { ?>
+          
+          <h3><?= $this->product_data['name'] ?></h3>
+
+          
+
+            <?php } else if($this->language->type == "Ar") { ?>
+            
+            <h3><?= $this->product_data['ar_name'] ?></h3>
+            
+            <?php }?>
         <p>Price: <?=$value['price'] ?></p>
          <p>Quantity: <?=$value['quantity'] ?></p>
       </div>

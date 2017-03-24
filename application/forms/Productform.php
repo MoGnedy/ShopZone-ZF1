@@ -30,6 +30,31 @@ class Application_Form_Productform extends Zend_Form
         //$description->addFilter('StringTrim');
 
 
+         $ar_name = new Zend_Form_Element_Text('ar_name');
+        $ar_name->setLabel('اسم المنتج: ');
+        $ar_name->setAttribs(Array(
+        'placeholder'=>'Example: Apple',
+        'class'=>'form-control'
+        ));
+
+        
+        $ar_name->addValidator('StringLength', false, Array(4,20));
+        $ar_name->addFilter('StringTrim');
+
+
+        $description_ar = new Zend_Form_Element_Text('description_ar');
+        $description_ar->setLabel('موصفات المنتج: ');
+        $description_ar->setAttribs(Array(
+        'placeholder'=>'Example: ......',
+        'class'=>'form-control'
+        ));
+       
+        $description_ar->addValidator('StringLength', false, Array(4,));
+        //$description->addFilter('StringTrim');
+
+
+
+
 
         $price = new Zend_Form_Element_Text('price');
         $price->setLabel('Product price: ');
@@ -86,7 +111,7 @@ class Application_Form_Productform extends Zend_Form
         $reset = new Zend_Form_Element_Reset('Reset');
         $reset->setAttrib('class', 'btn btn-danger');
         //$this->addElement($picture,'picture');
-        $this->addElements(array($name,$description,$picture,$quantity,$price,$cat_id,$submit,$reset));
+        $this->addElements(array($name,$description,$ar_name,$description_ar,$picture,$quantity,$price,$cat_id,$submit,$reset));
 
 
 

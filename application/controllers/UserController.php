@@ -26,6 +26,21 @@ class UserController extends Zend_Controller_Action
 //            $this->redirect('/index');
 //
 //        }
+      //for arabic
+       $request= $this->getRequest()->getParam('ln');
+      //echo $request;      
+       if(empty($request)){
+         $this->language= new Zend_Session_Namespace('language');
+          $this->language->type = isset($this->language->type)?$this->language->type:"En";
+          // echo $this->language->type;
+      }
+      else{
+          $this->language= new Zend_Session_Namespace('language');
+          $this->language->type = $request ;
+          // echo $this->language->type;
+
+      }
+            $this->view->language=$this->language;
     }
 
     public function indexAction()

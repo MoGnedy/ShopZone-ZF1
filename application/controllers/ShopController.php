@@ -8,6 +8,22 @@ class ShopController extends Zend_Controller_Action
     public function init()
     {
      $product_model = new Application_Model_Product();
+    
+       //for arabic
+       $request= $this->getRequest()->getParam('ln');
+       if(empty($request)){
+         $this->language= new Zend_Session_Namespace('language');
+          $this->language->type = isset($this->language->type)?$this->language->type:"En";
+      }
+      else{
+          $this->language= new Zend_Session_Namespace('language');
+          $this->language->type = $request ;
+      
+      }
+
+          $this->view->language=$this->language;
+
+
     }
 
     public function indexAction()

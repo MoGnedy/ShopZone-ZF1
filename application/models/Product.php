@@ -9,6 +9,8 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
         $row = $this->createRow();
         $row->name = $productData['name'];
         $row->description = $productData['description'];
+        $row->ar_name=$productData['ar_name'];
+        $row->description_ar = $productData['description_ar'];
         $row->price = floatval($productData['price']);
         $row->picture = $productData['picture'];
         $row->quantity = intval($productData['quantity']);
@@ -29,7 +31,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
     
     function productDetails($id){
 
-        return $this-> find($id)->toArray();
+        return $this-> find($id)->toArray()[0];
     }
 
  
@@ -46,12 +48,17 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
     function updateProduct($id,$productData)
     {
       $productData['name']=$productData['name'];
+      $productData['ar_name']=$productData['ar_name'];
+
       $productData['description']=$productData['description'];
+
+      $productData['description_ar']=$productData['description_ar'];
       $productData['price']=$productData['price'];
       $productData['picture']=$productData['picture'];
       $productData['quantity']=$productData['quantity'];
       $productData['category']=$productData['category'];
       $this->update($productData,"id=$id");
+
 
     }
     

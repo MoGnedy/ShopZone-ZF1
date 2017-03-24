@@ -1,5 +1,5 @@
 <html lang="ar" meta charset="UTF-8">
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
 
 <head>
@@ -33,9 +33,18 @@
     <tr>
         
         <td> <?= $value['id'] ?> </td>
+        
+          <?php if($this->language->type=="En"){ ?>
         <td><?= $value['name'] ?></td>
         <td><?= "<img src="."\""."/".$value['picture']."\""."alt='product pic' height='42' width='42'>" ?></td>
         <td><?= $value['description'] ?></td>
+        <?php} else if($this->language->type="Ar"){?>
+        <td><?= $value['ar_name'] ?></td>
+        <td><?= "<img src="."\""."/".$value['picture']."\""."alt='product pic' height='42' width='42'>" ?></td>
+        <td><?= $value['description_ar'] ?></td>
+
+        <?php } ?>
+        
         <td><?= $value['price'] ?></td>
         <td><?= $value['category'] ?></td>            
         <td> <a href="<?= '/shop/productdetails/pid/'.$value['id'] ?>" ><button class="btn btn-primary"  type="button" name="button"> Details </button></a> </td>

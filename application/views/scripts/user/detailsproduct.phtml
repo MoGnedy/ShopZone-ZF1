@@ -9,6 +9,42 @@
 }
 
 
+thumbnail {
+    padding:0px;
+}
+.panel {
+	position:relative;
+}
+.panel>.panel-heading:after,.panel>.panel-heading:before{
+	position:absolute;
+	top:11px;left:-16px;
+	right:100%;
+	width:0;
+	height:0;
+	display:block;
+	content:" ";
+	border-color:transparent;
+	border-style:solid solid outset;
+	pointer-events:none;
+}
+.panel>.panel-heading:after{
+	border-width:7px;
+	border-right-color:#f7f7f7;
+	margin-top:1px;
+	margin-left:2px;
+}
+.panel>.panel-heading:before{
+	border-right-color:#ddd;
+	border-width:8px;
+}
+
+
+
+
+
+
+
+
 .cont {
   width: 93%;
   max-width: 350px;
@@ -256,7 +292,7 @@ echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quanti
 foreach ($this->allcoments as $key => $value) {
 ?>
 
-<div class="col-sm-5">
+    <div class="col-sm-11" style="margin-left: 10px;">
 <div class="panel panel-default">
 <div class="panel-heading">
     <strong><?=$value['customer_name']?></strong>  <span class="text-muted"><?=$value['date']?></span>
@@ -266,9 +302,8 @@ foreach ($this->allcoments as $key => $value) {
     </div><!-- /panel-body -->
 </div><!-- /panel panel-default -->
 </div><!-- /col-sm-5 -->
-<?php } ?>
-    </table>    
-    
+<?php } ?>   
+<div class="col-md-3"></div>
 </div>
         </div>
     </div>

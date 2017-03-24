@@ -4402,6 +4402,7 @@ a.list-group-item.active > .badge,
 .thumbnail {
   display: block;
   padding: 4px;
+  height: 430px;
   margin-bottom: 20px;
   line-height: 1.42857143;
   background-color: #fff;

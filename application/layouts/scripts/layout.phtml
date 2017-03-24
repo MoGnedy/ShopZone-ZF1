@@ -16,7 +16,6 @@ $url=dirname(__DIR__,3)."/public/css/bootstrap.css";
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<link href="<?php $this->baseUrl() ?>/css/style.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,6 +31,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <script src="<?php $this->baseUrl() ?>/js/menu_jquery.js"></script>
 <script src="<?php $this->baseUrl() ?>/js/simpleCart.min.js"> </script>
+<link href="<?php $this->baseUrl() ?>/css/style.css" rel='stylesheet' type='text/css' />
+
 </head>
 <body>
 <!-- header_top -->
@@ -146,7 +147,7 @@ $auth=Zend_Auth::getInstance();
         $result = $stmt->fetchAll();
         
         for($i=0;$i<sizeof($result);$i++){
-            ?><div class="h_nav"><ul><li><h4><a href="/user/listproduct/uid/2" ><?php
+            ?><div class="h_nav"><ul><li><h4><a href="/index/list-Product/uid/1" ><?php
             echo $result[$i]['name']; ?> </a>
              </h4></li></ul></div> <?php     
         }
@@ -299,7 +300,6 @@ $auth=Zend_Auth::getInstance();
                   <li><a href="women.html">Pens</a></li>
                   <li><a href="women.html">Eyeglasses</a></li>
                   <li><a href="women.html">accessories</a></li>
-                  <li><a href="women.html">Watches</a></li>
                   <li><a href="women.html">Jewellery</a></li>
                 </ul> 
               </div>
@@ -511,97 +511,7 @@ $auth=Zend_Auth::getInstance();
           </div>
             </div>
         </li>
-        <li><a class="color9" href="#">WATCHES</a>
-        <div class="megapanel">
-          <div class="row">
-            <div class="col1">
-              <div class="h_nav">
-                <h4>Clothing</h4>
-                <ul>
-                  <li><a href="women.html">new arrivals</a></li>
-                  <li><a href="women.html">men</a></li>
-                  <li><a href="women.html">women</a></li>
-                  <li><a href="women.html">accessories</a></li>
-                  <li><a href="women.html">kids</a></li>
-                  <li><a href="women.html">brands</a></li>
-                </ul> 
-              </div>              
-            </div>
-            <div class="col1">
-              <div class="h_nav">
-                <h4>kids</h4>
-                <ul>
-                  <li><a href="women.html">trends</a></li>
-                  <li><a href="women.html">sale</a></li>
-                  <li><a href="women.html">style videos</a></li>
-                  <li><a href="women.html">accessories</a></li>
-                  <li><a href="women.html">kids</a></li>
-                  <li><a href="women.html">style videos</a></li>
-                </ul> 
-              </div>              
-            </div>
-            <div class="col1">
-              <div class="h_nav">
-                <h4>Bags</h4>
-                <ul>
-                  <li><a href="women.html">trends</a></li>
-                  <li><a href="women.html">sale</a></li>
-                  <li><a href="women.html">style videos</a></li>
-                  <li><a href="women.html">accessories</a></li>
-                  <li><a href="women.html">kids</a></li>
-                  <li><a href="women.html">style videos</a></li>
-                </ul> 
-              </div>                        
-            </div>
-            <div class="col1">
-              <div class="h_nav">
-                <h4>account</h4>
-                <ul>
-                  <li><a href="#">login</a></li>
-                  <li><a href="register.html">create an account</a></li>
-                  <li><a href="women.html">create wishlist</a></li>
-                  <li><a href="women.html">my shopping bag</a></li>
-                  <li><a href="women.html">brands</a></li>
-                  <li><a href="women.html">create wishlist</a></li>
-                </ul> 
-              </div>            
-            </div>
-            <div class="col1">
-              <div class="h_nav">
-                <h4>Accessories</h4>
-                <ul>
-                  <li><a href="women.html">trends</a></li>
-                  <li><a href="women.html">sale</a></li>
-                  <li><a href="women.html">style videos</a></li>
-                  <li><a href="women.html">accessories</a></li>
-                  <li><a href="women.html">kids</a></li>
-                  <li><a href="women.html">style videos</a></li>
-                </ul> 
-              </div>
-            </div>
-            <div class="col1">
-              <div class="h_nav">
-                <h4>Footwear</h4>
-                <ul>
-                  <li><a href="women.html">new arrivals</a></li>
-                  <li><a href="women.html">men</a></li>
-                  <li><a href="women.html">women</a></li>
-                  <li><a href="women.html">accessories</a></li>
-                  <li><a href="women.html">kids</a></li>
-                  <li><a href="women.html">style videos</a></li>
-                </ul> 
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col2"></div>
-            <div class="col1"></div>
-            <div class="col1"></div>
-            <div class="col1"></div>
-            <div class="col1"></div>
-          </div>
-            </div>
-        </li>
+        
      </ul> 
   </div>
 </div>

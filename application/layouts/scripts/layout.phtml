@@ -178,7 +178,7 @@ $auth=Zend_Auth::getInstance();
                <?php if($usersNs->userType=='shop'){
                    ?>
                
-          <a href="/shop/listproducts/pid/<?php  echo $resultt[$i]['id']; ?>" ><?php
+          <a href="/shop/productdetails/pid/<?php  echo $resultt[$i]['id']; ?>" ><?php
             echo $result[$i]['name']; ?> </a>
                             <?php
                }elseif ($usersNs->userType=='user') {

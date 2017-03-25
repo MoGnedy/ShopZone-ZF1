@@ -53,30 +53,18 @@ public function AddToWishList($p_id)
 
      // var_dump($result[0]);
      //      die();
-      $count = count($result);
-      for ($i=0;$i<$count;$i++){
-      if($result[$i]['product_id'] == $p_id && $result[$i]['customer_id']== $uid){
-     echo "is already exist";
-          
-
-        }
-        else{
+              if($result[0]==$pid && $result[1]>0){
+                echo "is exist";
+                return $result;
+              }
         
                 $row=$this->createRow();         
                 $row->customer_id= $uid ;
                 $row->product_id= $pid;
                $row->save();
-             }
-          }
+            
         
       }
-  // if(!empty())
-      
-
-  // $row=$this->createRow();         
-  // $row->customer_id= $uid ;
-  // $row->product_id= $pid;
-  // $row->save();
 
 }
 

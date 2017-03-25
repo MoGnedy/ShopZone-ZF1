@@ -125,7 +125,7 @@ class ShopController extends Zend_Controller_Action
         $form = new Application_Form_Productform ();
         $product_model = new Application_Model_Product ();
         $id = $this->_request->getParam('pid');
-        $product_data = $product_model->productDetails($id)[0];
+        $product_data = $product_model->productDetails($id);
         $form->populate($product_data);
         $this->view->product_form = $form;
         $request = $this->getRequest();

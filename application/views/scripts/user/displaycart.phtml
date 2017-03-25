@@ -23,7 +23,9 @@ foreach ($this->cart as $key => $value) {
     if ($value['offer'] <= 0){
         $afterdis=($value['quantity']*$value['price']);
     }else{
-$afterdis=($value['quantity']*$value['price']*($value['offer']/100));
+                $offer=100-$value['offer'];
+
+$afterdis=($value['quantity']*$value['price']*($offer/100));
     }
   echo "<tr>
   <td>".$value['name']."</td><td>".$value['quantity']."</td><td>".$value['price']."</td><td>".$afterdis."</td><td><a class='btn btn-primary' href='/user/deleteproductcart/pid/".$value['id']."' > Remove Item </a></td></tr>";
@@ -33,5 +35,11 @@ $total+=$afterdis;
 
 </table><br>
 Total NetPrice:<?php echo $total; ?><br>
-Coupon String if found: <input type="text" name="coupon" value="<?php $string ?>"><br>
-<a class='btn btn-primary' href="sendbill/uid/<?php echo $this->userid;?>/cpn/<?php echo $string;?>">Send Bill Mail</a><br>
+<form method="post" action="/user/sendbill">
+Coupon String if found: <input type="text" name="coupon"><br>
+<input type="hidden" name="total" value="<?= $total ?>">
+<input type='hidden' name='customer' value=<?=$_SESSION["Zend_Auth"]["storage"]->id?>>
+
+<input type="submit" class='btn btn-primary' href="user/sendbill" value="Send Bill Order">
+</form>
+<br>

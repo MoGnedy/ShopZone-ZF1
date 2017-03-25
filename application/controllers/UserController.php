@@ -462,7 +462,10 @@ $totalprice=$this->_request->getParam("total");
       $send_email=$sendEmail->sendEmail($email,$subject,$body);
       // print_r($sendemail);
       // die();
+     $del=$sendingcart->deletecart($uid);
+      
       $this->redirect('/user/displaycart');
+      
     }
 
     public function deleteproductcartAction()

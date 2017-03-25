@@ -19,7 +19,7 @@ set_include_path(implode(PATH_SEPARATOR, array(
 
 require_once 'Zend/Application.php';
 require_once 'Facebook/autoload.php';
-//require_once 'google-api-php-client-2.1.1/vendor/autoload.php';
+require_once 'google-api-php-client-2.1.1/vendor/autoload.php';
 
 // Create application, bootstrap, and run
 $application = new Zend_Application(

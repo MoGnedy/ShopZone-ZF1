@@ -4,12 +4,17 @@ class IndexController extends Zend_Controller_Action
 {
 
     public $fpS = null;
-
+    public $gp=null;
     public function init()
     {
+        
+       
          $this->fpS = new Zend_Session_Namespace('facebook');
          $authorization = Zend_Auth::getInstance();
          $fbsession = new Zend_Session_Namespace('facebook');
+          $this->gp = new Zend_Session_Namespace('google');
+         $gpsession = new Zend_Session_Namespace('google');
+
          $request=$this->getRequest();
          $actionName=$request->getActionName();
 
@@ -200,6 +205,8 @@ class IndexController extends Zend_Controller_Action
         $auth=Zend_Auth::getInstance();
         $auth->clearIdentity();
         Zend_Session::namespaceUnset('facebook');
+        Zend_Session::namespaceUnset('google');
+
         Zend_Session::namespaceUnset('members');
         return $this->redirect('index/login');
     }
@@ -318,8 +325,8 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
         }
     }
     }
-    
-public function notfoundAction()
+
+    public function notfoundAction()
     {
         // action body
     }
@@ -400,10 +407,54 @@ public function notfoundAction()
         
     }
 
-public function googleloginAction()
+    public function googleloginAction()
     {
         // action body
-        $chars ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        //  session_start();
+     $client_id = '241152925905-57dfnjjj5cnbu2dmoqftboqq4s8ofghe.apps.googleusercontent.com';
+     $client_secret = 'icPt_AcGD_KvonAOC_ReBj-F';
+    $client = new Google_Client();
+
+    $client->setClientId($client_id);
+    $client->setClientSecret($client_secret);
+    //$client->setClientId(Zend_Registry::getInstance()->myresources->GOOGLE_KEY);
+    //$client->setClientSecret(Zend_Registry::getInstance()->myresources->GOOGLE_SECRETE);
+    //$client->setAuthConfig('client_secrets.json');
+    $client->addScope('email');
+    $service = new Google_Service_Oauth2($client);
+
+    if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+    $client->setAccessToken($_SESSION['access_token']);
+    } else {
+    $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/index/gpcallback';
+    header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+}
+
+    }
+
+    public function gpcallbackAction()
+    {
+        // action body
+    $client_id = '681093495489-er5i9j0lu0ood3jb2u6qairgcselmaf4.apps.googleusercontent.com';
+    $client_secret = 'TirqTRefhxzvyNj_ad_s6BO5';
+    $client = new Google_Client();
+
+    $client->setClientId($client_id);
+    $client->setClientSecret($client_secret);
+    //$client->setAuthConfig('client_secrets.json');
+    $client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/index/gpcallback');
+    $client->addScope('email');
+    $service = new Google_Service_Oauth2($client);
+
+    if (! isset($_GET['code'])) {
+    $auth_url = $client->createAuthUrl();
+    header('Location: ' . filter_var($auth_url, FILTER_SANITIZE_URL));
+    } else {
+    $client->authenticate($_GET['code']);
+    $userNode = $service->userinfo->get();//get user info
+        $this->gp->name = $userNode['name'];
+        $type='user';
+$chars ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
         $password =''; 
      
      
@@ -411,29 +462,37 @@ public function googleloginAction()
         {
             $password .= $chars[rand(0,strlen($chars)-1)];
         }
+$user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,"password"=>$password,"address"=>"");
 
-        $id = $this->_request->getParam('id');
-        $name = $this->_request->getParam('name');
-         $email = $this->_request->getParam('email');
-         $type='user';
-         $user=array("name"=>$name,"email"=>$email,"type"=>$type,"password"=>$password,"address"=>"");
-          $dp=Zend_Db_Table::getDefaultAdapter();
-            $adapter=new Zend_Auth_Adapter_DbTable($dp,'customer','email','password');
-            $adapter->setIdentity($email);
-            $adapter->setCredential($password);
-             $result=$adapter->authenticate();
-             if(!$result){
-            $user_model = new Application_Model_Customer();
-                $user_model-> SignUp($user);
             }
-    }
 
+        $user_model = new Application_Model_Customer();
+
+    $row = $user_model->fetchRow($user_model->select()->where('email like ?', $userNode['email']));
+    if(!$row){
+    $user_model-> SignUp($user);
+    }
+    $usersNs = new Zend_Session_NameSpace("members");
+//    $sessionDataObj="user";
+               $usersNs->userType = "user";
+//    $user=$_SESSION['user'];
+//            print_r($_SESSION);
+//             $usersNs->userType = $sessionDataObj->type;
+//                print_r($_SESSION);
+//                die();
+                $path = "/".$usersNs->userType."/listcategory";
+                $this->redirect($path);
+  //  $this->redirect('/index');
+   
+    }
 
 }
 
 
 
+
     
+
 
 
 

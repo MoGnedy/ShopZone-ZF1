@@ -22,9 +22,10 @@
           <actionMethod actionName="search"/>
           <actionMethod actionName="notfound"/>
           <actionMethod actionName="googlelogin"/>
- <actionMethod actionName="ressetpassword"/>
-          <actionMethod actionName="changepassword"/>        
-</controllerFile>
+          <actionMethod actionName="ressetpassword"/>
+          <actionMethod actionName="changepassword"/>
+          <actionMethod actionName="gpcallback"/>
+        </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="User">
           <actionMethod actionName="index"/>
@@ -269,8 +270,11 @@
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="changepassword"/>
           </viewControllerScriptsDirectory>
-<viewControllerScriptsDirectory forControllerName="Index">
+          <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="googlelogin"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="gpcallback"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewControllerScriptsDirectory forControllerName="User">

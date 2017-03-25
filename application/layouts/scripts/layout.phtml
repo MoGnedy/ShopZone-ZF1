@@ -72,12 +72,18 @@ $auth=Zend_Auth::getInstance();
     $storage=$auth->getStorage();
     $userdata=$storage->read();
     $fbsession = new Zend_Session_Namespace('facebook');
+    $gpsession = new Zend_Session_Namespace('google');
 
-    if(!empty($userdata)|| !empty($fbsession->name))
+    if(!empty($userdata)|| !empty($fbsession->name) || !empty($gpsession->name))
     {
         if (!empty($fbsession->name)){
           echo 'Welcome' ." " .$fbsession->name;
-        }else{
+        } elseif(!empty($gpsession->name)){
+          echo 'Welcome' ." " .$gpsession->name;
+
+            
+        } 
+            else{
       // if authenticated and logged in 
     ?>
     

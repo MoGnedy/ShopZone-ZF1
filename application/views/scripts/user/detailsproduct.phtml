@@ -279,10 +279,12 @@ echo $this->product_data['name'];
                 <br /> <i class="fa fa-refresh fa-spin"></i> Added On : <?=$this->product_data['date']?> </p>
             <br>
                 <button type='submit' class='btn btn-primary'>Add to Cart</button>
+                 <a href="<?= '/user/inserwishlist/pid/'.$this->product_data['id'] ?>" ><button class="btn btn-primary"  type="button" name="button"> Add to WishList </button></a>
                 </form>
-            
+               
             
             </p>
+
         </div>
         
         

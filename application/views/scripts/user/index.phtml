@@ -1,13 +1,44 @@
 
+
+   
+
+
 <?php
-
-
+    $auth=Zend_Auth::getInstance();
+    $storage=$auth->getStorage();
+    $userdata=$storage->read();
+    $fbsession = new Zend_Session_Namespace('facebook');
+    $gpsession = new Zend_Session_Namespace('google');
 ?>
-<div class="container">
-<table class="table">
+
+    
+
+    <table class="table">
     
     <tr>
-    <td><?= "Welcome  ".$_SESSION["Zend_Auth"]['storage']->name?></td>
+    <?php
+    if(!empty($userdata)|| !empty($fbsession->name) || !empty($gpsession->name))
+    {
+        if (!empty($fbsession->name)){
+       
+
+           echo ' <td>Welcome' ." " .$fbsession->name.'</td></tr>';
+          echo ' <td>Your email:' ." " .$fbsession->email.'</td></tr>';
+          echo ' <td>Acccount type:' ." " .$fbsession->type.'</td></tr>';
+
+        } elseif(!empty($gpsession->name)){
+
+                 
+          echo ' <td>Welcome' ." " .$gpsession->name.'</td></tr>';
+          echo ' <td>Your email:' ." " .$gpsession->email.'</td></tr>';
+          echo ' <td>Acccount type:' ." " .$gpsession->type.'</td></tr>';
+        } 
+            else{
+      // if authenticated and logged in 
+            
+            
+    ?>
+   <td><?= "Welcome  ".$_SESSION["Zend_Auth"]['storage']->name?></td>
     </tr>
     <tr>
     <td><?="Your email: ".$_SESSION["Zend_Auth"]['storage']->email?></td>
@@ -15,10 +46,18 @@
     <tr>
     <td><?="Acccount type: ".$_SESSION["Zend_Auth"]['storage']->type?></td>
     </tr>
-    <tr>
-        <td></td>
-    </tr>
+     
+   
+<?php 
+    }  
+    }
+?>
+            </tr>
 </table>
+
+<div class="container">
+    
+
 </div>   
 <?php
 

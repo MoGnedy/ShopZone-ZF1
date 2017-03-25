@@ -212,9 +212,17 @@ foreach ($this->product as $key => $value) { ?>
      </div>
         <div class="col-sm-2 col-md-2">
             <blockquote>
+              <?php if($this->language->type == "En") { ?>
                 <p><?=$value['name']?></p>
                 <br>
                 <small><cite title="Source Title"><?=$value['description']?> <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+             <?php } elseif ($this->language->type == "Ar") {?>
+              <p><?=$value['ar_name']?></p>
+                <br>
+                <small><cite title="Source Title"><?=$value['description_ar']?> <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+
+                <?php } ?>
+
             </blockquote>
             <p>
             <p> <i class="fa fa-dollar"></i> Price : <?=$value['price']?>
@@ -230,6 +238,9 @@ foreach ($this->product as $key => $value) { ?>
             <br>
                 <button type='submit' class='btn btn-primary'>Add to Cart</button>
                 </form>
+ <a href="<?= '/user/inserwishlist/pid/'.$value['id'] ?>" ><button class="btn btn-primary"  type="submit" name="button"> Add to WishList </button></a> 
+ <td> <a href="<?= '/user/listwishlist/pid/'.$value['id'] ?>" ><button class="btn btn-primary"  type="submit" name="button"> Show Me My List </button></a> </td>   
+
             
             
             </p>

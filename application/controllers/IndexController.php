@@ -282,7 +282,10 @@ Exit;
 }
 
 $this->fpS->name = $userNode['name'];
+$this->fpS->email=$userNode['email'];
 $type='user';
+$this->fpS->type=$type;
+
             $user_model = new Application_Model_Customer();
             $password = $user_model->randomCode();
 
@@ -300,6 +303,11 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
                     $user_model->sendEmail($userNode['email'], $subject, $body);
                 $user_model-> SignUp($user);
             }
+                $usersNs = new Zend_Session_NameSpace("members");
+               $usersNs->userType = "user";
+
+                $path = "/".$usersNs->userType;
+                $this->redirect($path);
 
     }
 
@@ -454,6 +462,9 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
     $userNode = $service->userinfo->get();//get user info
         $this->gp->name = $userNode['name'];
         $type='user';
+        $this->gp->email=$userNode['email'];
+        $type='user';
+        $this->gp->type=$type;
         $user_model = new Application_Model_Customer();
 
        $password = $user_model->randomCode();

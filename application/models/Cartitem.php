@@ -57,6 +57,7 @@ class Application_Model_Cartitem extends Zend_Db_Table_Abstract
       {
         return $this->delete("product=$pid");
       }
+      
       function checkOffer($list){
           $db=Zend_Db_Table::getDefaultAdapter();
                     $select=new Zend_Db_Select($db);

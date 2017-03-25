@@ -209,7 +209,7 @@ $this->fpS->name = $userNode['name'];
          $Wish_model = new Application_Model_Wishlist();
             //check to send it
             $check = [];
-            $p_id=$this->_request->getParam("uid");
+            $p_id=$this->_request->getParam("pid");
             // $check=$Wish_model->find($customer_id,$product_id)->toArray()[0];
             // $test=$Wish_model-> AddToWishList($request->getParams());
             $test=$Wish_model-> AddToWishList($p_id);
@@ -225,7 +225,9 @@ $this->fpS->name = $userNode['name'];
  // action body
         $Wish_model = new Application_Model_Wishlist();
        // $uid=$this->fetchAll()->toArray();
-        $Wish_id = $this->_request->getParam("wid");
+        // $Wish_id = $this->_request->getParam("wid");
+       $Wish_id=$_SESSION["Zend_Auth"]["storage"]->id;
+
          // var_dump($uid);
         // die();
         $this->view->model = $Wish_model->SelectionWishList($Wish_id);

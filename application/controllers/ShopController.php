@@ -28,7 +28,11 @@ class ShopController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+                $product_model = new Application_Model_Product();
+        $user_id=   $_SESSION["Zend_Auth"]["storage"]->id;
+        
+        $this->view->products = $product_model->listCusomerProducts($user_id);
+        
     }
 
     public function addproductAction()

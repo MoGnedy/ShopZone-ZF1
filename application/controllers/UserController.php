@@ -46,6 +46,16 @@ class UserController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
+         $category_model= new Application_Model_Category();
+        $this->view->category = $category_model->listAll();
+         $select_model=new Application_Model_Product();
+         
+        $this->view->rate_product =$select_model->selectproductrate();
+             
+        $Slider_model=new Application_Model_Slider();
+        
+        $this->view->select_image =$Slider_model->slider();
+        
     }
 
     public function addAction()

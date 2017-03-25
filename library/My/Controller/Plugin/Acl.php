@@ -44,11 +44,11 @@ class My_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
             
             if ($roleName == 'guest'){
                  $request->setControllerName('index');
-                 $request->setActionName('index');
+                 //$request->setActionName('index');
            
             }else{
                 $request->setControllerName($roleName);
-                $request->setActionName('index');
+                //$request->setActionName('index');
             }
             // this will echo the output from file - /application/views/scripts/error/index.phtml
             // make sure, you have the controller - ErrorController with action indexAction
@@ -63,7 +63,7 @@ class My_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
             
             if (($roleName != 'shop' && $roleName != 'admin')){
             $request->setControllerName($roleName);
-            $request->setActionName('index');
+            //$request->setActionName('index');
             }
             
             }

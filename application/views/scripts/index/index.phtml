@@ -74,7 +74,7 @@ $('.carousel').carousel({
           ?>
 
         <div class="item active">
-            <img class="first-slide" src="<?=$value['image'] ?>" alt="First slide">
+            <img class="first-slide" src="<?php $this->baseUrl() ?><?="/".$value['image'] ?>" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>Choose What You Want</h1>
@@ -123,7 +123,7 @@ foreach ($this->rate_product as $key => $value) {?>
   <div class="col-sm-6 col-md-3">
       <div class="thumbnail" style="height:450px">
           <a href="<?='index/details-Product/uid/'.$value['id']?>">
-          <img style="margin-top:20px" class="img" src="<?=$value['picture']?>"  width="212px" alt=<?=$value['name']?>>
+          <img style="margin-top:20px" class="img" src="<?php $this->baseUrl() ?><?="/".$value['picture'] ?>"  width="212px" alt=<?=$value['name']?>>
           </a>
           
           <div class="caption">

@@ -116,31 +116,23 @@ label.star:before {
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h1><center><?php
-
-echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quantity'];
+echo $this->product_data['name'];
 
      ?></center></h1>
   </div>
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-  <div class="panel-body">
-<form method="POST" action="/user/addtocart">
-    <p>Description :</p>
-<?php echo $this->product_data['description']."<br>".
-"<img src="."\""."/".$this->product_data['picture']."\""."alt='product pic' height='42' width='42'>"."<br>".
-"price: ".$this->product_data['price']."<br>".
-"quantity: <input type='number' name='quantity' value='1' min='1' max=".$this->product_data['quantity']."><br>".
-"<input type='hidden' name='product' value=".$this->product_data['id'].">".
-"<input type='hidden' name='customer' value=".$_SESSION["Zend_Auth"]["storage"]->id.">".
-"rate: ".$this->product_data['rates_avg']."<br>".
-"discount: ".$this->product_data['offer']."<br>".
-"<button type='submit' class='btn btn-primary'>Add to Cart</button>"; ?>
-</form>
-      </div>
-        </div>
-        <div class="col-md-4">
     
+    
+    
+    
+    <div class="container">
+    <div class="row">
+  <div class="panel-body">
+<div class="col-sm-1 col-md-1"></div>
+        <div class="col-sm-4 col-md-4">
+            <img src="<?="/".$this->product_data['picture']?>"
+            alt="" class="img-rounded img-responsive" />
+            
+                
             <div class="cont">
   <div class="stars">
       <?php
@@ -265,8 +257,66 @@ echo $this->product_data['name']."<br>"."Quanyity: ".$this->product_data['quanti
 
   </div>
 </div>
-</div>
+            
+        </div>
+      <div class="col-sm-1 col-md-1"></div>
+        <div class="col-sm-4 col-md-4">
+            <blockquote>
+                <p><?=$this->product_data['name']?></p>
+                <br>
+                <small><cite title="Source Title"><?=$this->product_data['description']?> <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+            </blockquote>
+            <p>
+            <p> <i class="fa fa-dollar"></i> Price : <?=$this->product_data['price']?>
+                <br
+                />
+            <i class="fa fa-codepen"></i> On Stock : <?=$this->product_data['quantity']?>
+                <form method="POST" action="/user/addtocart">
+                <i class="fa fa-plus-square"></i> Quantity : 
+                <input type='number' name='quantity' value='1' min='1' max="<?=$this->product_data['quantity']?>"><br>
+                <input type='hidden' name='product' value="<?=$this->product_data['id']?>">
+                <input type='hidden' name='customer' value=<?=$_SESSION["Zend_Auth"]["storage"]->id?>>
+                <br /> <i class="fa fa-refresh fa-spin"></i> Added On : <?=$this->product_data['date']?> </p>
+            <br>
+                <button type='submit' class='btn btn-primary'>Add to Cart</button>
+                </form>
+            
+            
+            </p>
+        </div>
+        
+        
     </div>
+</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

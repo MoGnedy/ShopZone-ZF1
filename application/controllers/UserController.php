@@ -347,7 +347,7 @@ $this->fpS->name = $userNode['name'];
        
       $product_id = $this->_request->getParam("uid");
       $product_data = $product_model->ProductDetails($product_id);
-      $this->view->product_data=$product_data;
+      $this->view->product_data=$product_data[0];
 
       $addcart=new Application_Form_Addtocart();
       $this->view->form=$addcart;

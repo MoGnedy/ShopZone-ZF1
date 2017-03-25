@@ -34,7 +34,7 @@ class Application_Model_Slider extends Zend_Db_Table_Abstract
     }
 
     public function listfromslider(){
-        return $this->fetchAll()->toArray()[0];
+        return $this->fetchAll()->toArray();
        
     }
 

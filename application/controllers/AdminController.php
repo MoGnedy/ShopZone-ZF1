@@ -12,7 +12,8 @@ class AdminController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $user_model = new Application_Model_Customer();
+        $this->view->countUsers = count($user_model->listusers());
     }
 
     public function listallusersAction()

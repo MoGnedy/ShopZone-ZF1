@@ -363,7 +363,7 @@ $this->fpS->name = $userNode['name'];
     public function addtocartAction()
     {
       $cart=new Application_Model_Cartitem();
-     $product=$this->_request->getParam("product");
+       $product=$this->_request->getParam("product");
       $customer=$this->_request->getParam("customer");
 
     $row = $cart->fetchRow($cart->select()->where("product=$product and customer=$customer"));
@@ -373,8 +373,9 @@ $this->fpS->name = $userNode['name'];
       $update=$cart->updatecart($customer,$product,$quentity);
     }else{
       $cart->addProduct($_POST);
-      $this->redirect("/user/detailsproduct/uid/".$_POST['product']);
     }
+          $this->redirect("/user/detailsproduct/uid/".$_POST['product']);
+
     }
     public function displaycartAction()
     {
@@ -413,39 +414,47 @@ $this->fpS->name = $userNode['name'];
       //this function make to functionalty 1-check for copun string is right for this user
       //2- send mail to user with ditails of the bill
 
-      $uid=1;
+      $uid=$this->_request->getParam("customer");
       //check copun string
-      $order=new Application_Model_Coupon();
-      $cpn=$this->_request->getParam("cpn");
-      $resultdis=$order->checkdis($cpn);
-      if ($resultdis==0) {
-        $resultdis="the copoun is wrong";
-      }
+      $cpn=$this->_request->getParam("coupon");
+      
+      $coupon=new Application_Model_Coupon();
+          $row = $coupon->fetchRow($coupon->select()->where("code='$cpn' and customer=$uid"));
+//    $resultdis=$order->checkdis($cpn,$uid);
+ $order= new Application_Model_Order();
+   
+      
+      if (!$row) {
+$totalprice=$this->_request->getParam("total"); 
+}
       else{
-        $resultdis="your copoun string \"".$cpn."\" have discount";
+         $dis=100-$row['discount'];
+         $totalprice=$this->_request->getParam("total")*($dis/100);
       }
-      // echo $resultdis;
-      // die();
+      $order->addorder($uid,$totalprice);
       //****sending mail
       $sendingcart=new Application_Model_Cartitem();
-      $this->view->cart =  $sendingcart->selectoffer($uid);
+      $bill =  $sendingcart->selectoffer($uid);
       //converting $this->view->cart array to readable string to be send to the user in well formed table
 
       $emailbody="";
       $total=0;
-      foreach ($this->view->cart as $key => $value) {
-      $afterdis=($value['quantity']*$value['price']*($value['offer_per']/100));
+      foreach ($bill as $key => $value) {
+          $offer=100-$value['offer'];
+     $afterdis=($value['quantity']*$value['price']*($offer/100));
         $emailbody=$emailbody." ".$value['name']." ".$value['quantity']." ".$value['price']." ".$afterdis." <br>";
-      $total+=$afterdis;
+    //  $total+=$afterdis;
       }
-      $emailbody=$emailbody."<br> your total net price after adding offers ".$total."<br>";
+      $emailbody=$emailbody."<br> your total net price after adding offers ".$totalprice."<br>";
 
       $sendEmail=new Application_Model_Customer();
       $user = $sendEmail->userDetails($uid);
       $name=$user['name'];
+      
       $email=$user['email'];
       $subject="bill";
-      $body=$emailbody."<br>".$resultdis;
+      $body=$emailbody;
+
 
       $send_email=$sendEmail->sendEmail($email,$subject,$body);
       // print_r($sendemail);

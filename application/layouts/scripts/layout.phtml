@@ -153,21 +153,34 @@ $auth=Zend_Auth::getInstance();
             <div class="col1">
               <div class="h_nav">
     
-                          <?php       
+                          <?php 
+                          
+                          
        $db=Zend_Db_Table::getDefaultAdapter();
-      $max=$db->select()->from('category','name');
+      $max=$db->select()->from('category','*');
         $stmt = $max->query();
         $result = $stmt->fetchAll();
         
         for($i=0;$i<sizeof($result);$i++){
-            ?><div class="h_nav"><ul><li><h4><a href="/index/list-Product/uid/1" ><?php
+            
+            $id=$db->select()->from('product','*')
+            ->where('category=?',$result[$i]['id']);
+            
+            $stmttt = $id->query();
+            $resultt = $stmttt->fetchAll();
+            
+            
+            ?><div class="h_nav"><ul><li><h4><a href="/shop/productdetails/pid/<?php  echo $resultt[$i]['id']; ?>" ><?php
             echo $result[$i]['name']; ?> </a>
              </h4></li></ul></div> <?php     
         }
+        
+         
        
         ?>
             
               </div>              
+            </div>
             </div>
           
       <li><a class="color4" href="#">New Arrivals</a>
@@ -235,7 +248,7 @@ $auth=Zend_Auth::getInstance();
         $fffresult = $stmtee->fetchAll();
         
            for($y=0;$y<sizeof($fffresult);$y++){                     
-           ?> <a href="/shop/productdetails/pid/ <?php  $fffresult[$y]['id']?>"><?php  echo $fffresult[$y]['name'];}
+           ?> <a href="/shop/productdetails/pid/<?php echo $fffresult[$y]['id']?>"><?php  echo $fffresult[$y]['name'];}
            
                    
             
@@ -245,10 +258,11 @@ $auth=Zend_Auth::getInstance();
         }
         
         ?>
-                
+            
                 
               </div>              
             </div>
+              </div>
            
         <li><a class="color6" href="#">SHOES</a>
         <div class="megapanel">

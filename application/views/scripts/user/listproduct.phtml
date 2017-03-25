@@ -77,32 +77,14 @@ label.star:before {
 
 
 <div class="container">
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h1><center>
-<?php echo "Product-List" ?>
- </center></h1>
- </div>
-<table class="table table-striped table-bordered">
-
-  <div ><th>Name of Product</th><th>description</th><th>price</th><th>quantity</th></div>
-
-
-
-
-</div>
-
-
+    <div class="row">
 <?php
 foreach ($this->product as $key => $value) { ?>
 
-    <tr>  
-  <td><?=$value['name']?></td>
-  <td><?=$value['description']?></td>
-  <td><?=$value['price']?></td>
-  <td><?=$value['quantity']?></td>
-   <td> <a class='btn btn-primary' href='/user/detailsproduct/uid/<?=$value['id']?>' > Quick Look </a></td>
-   <td>
+        <div class="col-sm-4 col-md-4">
+            <a class='btn btn-primary' href='/user/detailsproduct/uid/<?=$value['id']?>' ><img src="<?="/".$value['picture']?>"
+            alt="" class="img-rounded img-responsive" />
+            </a>
             <div class="cont">
   <div class="stars">
       <?php
@@ -227,27 +209,33 @@ foreach ($this->product as $key => $value) { ?>
       
   </div>
 </div>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-46156385-1', 'cssscript.com');
-  ga('send', 'pageview');
-
-</script>
-
+     </div>
+        <div class="col-sm-2 col-md-2">
+            <blockquote>
+                <p><?=$value['name']?></p>
+                <br>
+                <small><cite title="Source Title"><?=$value['description']?> <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+            </blockquote>
+            <p>
+            <p> <i class="fa fa-dollar"></i> Price : <?=$value['price']?>
+                <br
+                />
+            <i class="fa fa-codepen"></i> On Stock : <?=$value['quantity']?>
+                <form method="POST" action="/user/addtocart">
+                <i class="fa fa-plus-square"></i> Quantity : 
+                <input type='number' name='quantity' value='1' min='1' max="<?=$value['quantity']?>" width="5px"/><br>
+                <input type='hidden' name='product' value="<?=$value['id']?>">
+                <input type='hidden' name='customer' value=<?=$_SESSION["Zend_Auth"]["storage"]->id?>>
+                <br /> <i class="fa fa-refresh fa-spin"></i> Added On : <?=$value['date']?> </p>
+            <br>
+                <button type='submit' class='btn btn-primary'>Add to Cart</button>
+                </form>
             
             
-            
-            
-        </td>
+            </p>
+        </div>
+<?php } ?>
+        
+    </div>
+</div>
 
-  </tr>
-    
-    <?php
-}
- ?>
-
-</table>

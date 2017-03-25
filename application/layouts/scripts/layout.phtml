@@ -1,7 +1,9 @@
 
 <?php 
 $url=dirname(__DIR__,3)."/public/css/bootstrap.css";
-
+                $usersNs = new Zend_Session_NameSpace("members");
+                 $usersNs->userType;
+                
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -41,9 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="header_top">
       <div class="top_right">
         <ul>
-          <li><a href="#">help</a></li>|
-          <li><a href="contact.html">Contact</a></li>|
-          <li><a href="#">Delivery information</a></li>
+        
           <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">language <span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -53,9 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </li>
         </ul>
       </div>
-      <div class="top_left">
-        <h2><span></span> Call us : 032 2352 782</h2>
-      </div>
+     
         <div class="clearfix"> </div>
     </div>
   </div>
@@ -93,7 +91,7 @@ $auth=Zend_Auth::getInstance();
 
 ?>
            <div class="create_btn">
-        <a href="/shop/index">Profile</a>
+        <a href="/<?=$userdata->type?>/index">Profile</a>
       </div>
       
         <?php
@@ -176,8 +174,27 @@ $auth=Zend_Auth::getInstance();
             $resultt = $stmttt->fetchAll();
             
             
-            ?><div class="h_nav"><ul><li><h4><a href="/shop/productdetails/pid/<?php  echo $resultt[$i]['id']; ?>" ><?php
+            ?><div class="h_nav"><ul><li><h4>
+               <?php if($usersNs->userType=='shop'){
+                   ?>
+               
+          <a href="/shop/listproducts/pid/<?php  echo $resultt[$i]['id']; ?>" ><?php
             echo $result[$i]['name']; ?> </a>
+                            <?php
+               }elseif ($usersNs->userType=='user') {
+                   ?>
+               <a href="/user/listproduct/uid/<?php  echo $resultt[$i]['id']; ?>" ><?php
+            echo $result[$i]['name']; ?> </a>
+                            <?php
+                  
+              }else{
+                  ?>
+                             <a href="/index/list-product/uid/<?php  echo $resultt[$i]['id']; ?>" ><?php
+            echo $result[$i]['name']; ?> </a>
+                            <?php
+                            
+              }
+                            ?>
              </h4></li></ul></div> <?php     
         }
         
@@ -270,7 +287,7 @@ $auth=Zend_Auth::getInstance();
             </div>
               </div>
            
-        <li><a class="color6" href="#">SHOES</a>
+        <li><a class="color6" href="#"></a>
         <div class="megapanel">
           <div class="row">
             <div class="col1">
@@ -361,7 +378,7 @@ $auth=Zend_Auth::getInstance();
             </div>
         </li>       
       
-        <li><a class="color7" href="#">GLASSES</a>
+        <li><a class="color7" href="#"></a>
         <div class="megapanel">
           <div class="row">
             <div class="col1">
@@ -453,7 +470,7 @@ $auth=Zend_Auth::getInstance();
             </div>
         </li>       
       
-        <li><a class="color8" href="#">T-SHIRT</a>
+        <li><a class="color8" href="#"></a>
         <div class="megapanel">
           <div class="row">
             <div class="col1">
@@ -580,15 +597,9 @@ $auth=Zend_Auth::getInstance();
     </div>
     <div class="col-md-6 s-c">
       <div class="stay">
-            <div class="stay-left">
-              <form>
-                <input type="text" placeholder="Enter your email to join our newsletter" required="">
-              </form>
-            </div>
+          
             <div class="btn-1">
-              <form>
-                <input type="submit" value="join">
-              </form>
+            
             </div>
               <div class="clearfix"> </div>
       </div>
@@ -614,10 +625,9 @@ $auth=Zend_Auth::getInstance();
     </div>
     <div class="col-md-2 myac">
       <h4>MY ACCOUNT</h4>
-        <li><a href="register.html">Register</a></li>
-        <li><a href="#">My Cart</a></li>
-        <li><a href="#">Order History</a></li>
-        <li><a href="buy.html">Payment</a></li>
+        <li><a href="/index/register">Register</a></li>
+        <li><a href="/shop/displaycart">My Cart</a></li>
+        
     </div>
     <div class="col-md-5 our-st">
       <div class="our-left">
@@ -634,13 +644,12 @@ $auth=Zend_Auth::getInstance();
         </div>
       </div>
       <div class="clearfix"> </div>
-        <li><i class="add"> </i>Jl. Haji Muhidin, Blok G no.69</li>
-        <li><i class="phone"> </i>025-2839341</li>
-        <li><a href="mailto:info@example.com"><i class="mail"> </i>info@sitename.com </a></li>
+      
+        <li><a href="#"><i class="mail"> </i>Admin@shopzone.com </a></li>
       
     </div>
     <div class="clearfix"> </div>
-      <p>Copyrights © 2015 Gretong. All rights reserved | Template by <a href="http://w3layouts.com/">W3layouts</a></p>
+      <p>Copyrights © 2017 ShopZone. All rights reserved  <a href="http://w3layouts.com/"></a></p>
   </div>
 </div>
 <script>

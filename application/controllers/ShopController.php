@@ -64,8 +64,9 @@ class ShopController extends Zend_Controller_Action
     public function listproductsAction()
     {   
         $product_model = new Application_Model_Product();
+        $user_id=   $_SESSION["Zend_Auth"]["storage"]->id;
         
-        $this->view->products = $product_model->listProducts();
+        $this->view->products = $product_model->listCusomerProducts($user_id);
         
         
     }
@@ -126,7 +127,7 @@ class ShopController extends Zend_Controller_Action
         $product_model = new Application_Model_Product ();
         $id = $this->_request->getParam('pid');
         $product_data = $product_model->productDetails($id);
-        $form->populate($product_data);
+        $form->populate($product_data[0]);
         $this->view->product_form = $form;
         $request = $this->getRequest();
         if($request->isPost()){

@@ -88,7 +88,7 @@ class ShopController extends Zend_Controller_Action
       $request->setParam('product', $pid);
       
       
-      $request->setParam('customer_id', 1);
+      $request->setParam('customer_id', $_SESSION["Zend_Auth"]["storage"]->id);
 
       
       $comment_model->addComment ($request->getParams());

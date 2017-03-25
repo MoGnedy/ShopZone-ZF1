@@ -16,21 +16,16 @@ class Application_Model_Coupon extends Zend_Db_Table_Abstract
 		return $this->find($code)->toArray();
 	}
 
-function checkdis($cpn)
+function checkdis($cpn,$uid)
 {
-  $uid=1;
   $db=Zend_Db_Table::getDefaultAdapter();
   $select=new Zend_Db_Select($db);
   $select->from('coupon','*')
-          ->where('customer= ?',$uid);
+          ->where("customer=$uid and code='$cpn'");
   $stmt = $select->query();
   $result = $stmt->fetchAll();
-  if ($result) {
-    return 1;
-  }
-  else{
-    return 0;
-  }
+  
+ 
 }
 
 

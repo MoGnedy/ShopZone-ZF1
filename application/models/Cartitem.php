@@ -80,4 +80,10 @@ class Application_Model_Cartitem extends Zend_Db_Table_Abstract
           }
           return $list;
       }
+      public function updatecart($customer,$product,$quen){
+        $quan['quantity']=$quen;
+        $where['product = ?'] = $product;
+        $where['customer = ?'] = $customer;
+        $this->update($quan, $where);
+      }
 }

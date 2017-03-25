@@ -363,10 +363,19 @@ $this->fpS->name = $userNode['name'];
     public function addtocartAction()
     {
       $cart=new Application_Model_Cartitem();
+     $product=$this->_request->getParam("product");
+      $customer=$this->_request->getParam("customer");
+
+    $row = $cart->fetchRow($cart->select()->where("product=$product and customer=$customer"));
+    
+    if($row){
+     $quentity=$this->_request->getParam("quantity");
+      $update=$cart->updatecart($customer,$product,$quentity);
+    }else{
       $cart->addProduct($_POST);
       $this->redirect("/user/detailsproduct/uid/".$_POST['product']);
     }
-
+    }
     public function displaycartAction()
     {
       $cartmodel=new Application_Model_Cartitem();

@@ -34,12 +34,12 @@ class Application_Model_Wishlist extends Zend_Db_Table_Abstract
 }
 
 
-public function AddToWishList($test)
+public function AddToWishList($p_id)
 {
-
+    
   $row=$this->createRow();         
-  $row->customer_id=$test[1];  
-  $row->product_id=$test[0];
+  $row->customer_id= intval($_SESSION["Zend_Auth"]["storage"]->id);  
+  $row->product_id= intval($p_id);
   $row->save();
 }
 

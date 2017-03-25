@@ -200,15 +200,13 @@ $this->fpS->name = $userNode['name'];
             //check to send it
             $check = [];
             $p_id=$this->_request->getParam("uid");
-            $check[] = $p_id;
-            $check[]  = 1;
             // $check=$Wish_model->find($customer_id,$product_id)->toArray()[0];
             // $test=$Wish_model-> AddToWishList($request->getParams());
-            $test=$Wish_model-> AddToWishList($check);
+            $test=$Wish_model-> AddToWishList($p_id);
 
-            $this->redirect('/index/index');
+            $this->redirect('/user/listproduct');
 
-        $this->view->wish_data = $test;
+        //$this->view->wish_data = $test;
 
     }
 
@@ -296,7 +294,12 @@ $this->fpS->name = $userNode['name'];
         $rate_model->addNewRate($_POST);
 
         }
-      $this->view->product =  $product_model->listProducts();
+        $this->view->product =  $product_model->listProducts();
+       if ($request->getParam('cid') != null)
+       {
+         $this->view->product =  $product_model->listProdCat($request->getParam('cid'));
+       }
+      
     }
 
     public function detailsproductAction()

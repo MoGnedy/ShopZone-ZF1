@@ -78,7 +78,7 @@ class ShopController extends Zend_Controller_Action
       $p_id = $this->_request->getParam('pid');
       $product = $product_model->productDetails($p_id);
       $this->view->comments = $product_model->listProductcomments($p_id);
-      $this->view->product = $product;
+      $this->view->product = $product[0];
       $this->view->allcoments = $product_model->SelectionComment($p_id);
       $request = $this->getRequest();
       if($request->isPost()){
@@ -88,7 +88,7 @@ class ShopController extends Zend_Controller_Action
       $request->setParam('product', $pid);
       
       
-      $request->setParam('customer_id', 1);
+      $request->setParam('customer_id', $_SESSION["Zend_Auth"]["storage"]->id);
 
       
       $comment_model->addComment ($request->getParams());

@@ -282,14 +282,9 @@ Exit;
 
 $this->fpS->name = $userNode['name'];
 $type='user';
-$chars ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-        $password =''; 
-     
-     
-        for($i=0;$i<10; $i++)
-        {
-            $password .= $chars[rand(0,strlen($chars)-1)];
-        }
+            $user_model = new Application_Model_Customer();
+            $password = $user_model->randomCode();
+
 $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,"password"=>$password,"address"=>"");
  $dp=Zend_Db_Table::getDefaultAdapter();
             $adapter=new Zend_Auth_Adapter_DbTable($dp,'customer','email','password');
@@ -297,7 +292,9 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
             $adapter->setCredential($password);
              $result=$adapter->authenticate();
              if(!$result){
-            $user_model = new Application_Model_Customer();
+                   $subject = "Your Password";
+                    $body = "your password is ".$password;
+                    $user_model->sendEmail($userNode['email'], $subject, $body);
                 $user_model-> SignUp($user);
             }
 
@@ -454,35 +451,29 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
     $userNode = $service->userinfo->get();//get user info
         $this->gp->name = $userNode['name'];
         $type='user';
-$chars ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-        $password =''; 
-     
-     
-        for($i=0;$i<10; $i++)
-        {
-            $password .= $chars[rand(0,strlen($chars)-1)];
-        }
+        $user_model = new Application_Model_Customer();
+
+       $password = $user_model->randomCode();
+
 $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,"password"=>$password,"address"=>"");
 
             }
 
-        $user_model = new Application_Model_Customer();
 
     $row = $user_model->fetchRow($user_model->select()->where('email like ?', $userNode['email']));
     if(!$row){
+      $subject = "Your Password";
+      $body = "your password is ".$password;
+      $email=$userNode['email'];
+      $user_model->sendEmail($email, $subject, $body);
+      
     $user_model-> SignUp($user);
     }
     $usersNs = new Zend_Session_NameSpace("members");
-//    $sessionDataObj="user";
                $usersNs->userType = "user";
-//    $user=$_SESSION['user'];
-//            print_r($_SESSION);
-//             $usersNs->userType = $sessionDataObj->type;
-//                print_r($_SESSION);
-//                die();
-                $path = "/".$usersNs->userType."/listcategory";
+
+                $path = "/".$usersNs->userType;
                 $this->redirect($path);
-  //  $this->redirect('/index');
    
     }
 

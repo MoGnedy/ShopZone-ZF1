@@ -102,7 +102,6 @@ class AdminController extends Zend_Controller_Action
             $code .= $chars[rand(0,strlen($chars)-1)];
         }
         $request->setParam('code', $code);
-        $request->setParam('order', 1);
                // $request->setParam('order', 1);
 
 

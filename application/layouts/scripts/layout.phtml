@@ -86,7 +86,13 @@ $auth=Zend_Auth::getInstance();
     ?>
     
    
-<?php echo 'Welcome' . " ".$userdata->name; ?>
+<?php echo 'Welcome' . " ".$userdata->name; 
+    
+
+?>
+           <div class="create_btn">
+        <a href="/<?=$userdata->type?>/index">Profile</a>
+      </div>
       
         <?php
   }

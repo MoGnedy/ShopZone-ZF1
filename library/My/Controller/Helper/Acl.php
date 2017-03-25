@@ -110,7 +110,9 @@
             
         //User ACL
             $this->acl->deny('user',array('shop','admin'));
-            $this->acl->allow('user',array('index','user'));
+            $this->acl->allow('user','user');
+            $this->acl->allow('user','index',array('logout','notfound'));
+            
         
         // Shop ACL
             $this->acl->deny('shop',array('user','admin'));

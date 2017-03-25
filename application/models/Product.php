@@ -38,11 +38,12 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
 
     
     function listCusomerProducts($customer){
-        $db=Zend_Db_Table::getDefaultAdapter();
-        $select=new Zend_Db_Select($db);
-        $select->from('product','*')
-                ->where("customer_id=.$customer");
-        return $db->fetchAll($select);
+        $select=$this->select()
+                ->from('product','*')
+                ->where('customer_id= ?',$customer);
+        $stmt = $select->query();
+        $result = $stmt->fetchAll();
+        return $result;
     }
 
     function updateProduct($id,$productData)

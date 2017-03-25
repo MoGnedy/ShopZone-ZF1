@@ -8,7 +8,7 @@ class Application_Model_Wishlist extends Zend_Db_Table_Abstract
     	$sql=$this->select()
     	->from(array('w'=>"wishlist"))
     	->joinInner(array("cu"=>"customer"), "w.customer_id=cu.id",array("name as customer_name"))
-    	->joinInner(array("p"=>"product"), "p.id=w.product_id",array("name as product_name"))
+    	->joinInner(array("p"=>"product"), "p.id=w.product_id",array("name as product_name","ar_name as product_ar_name"))
       ->where("w.customer_id=$Wish_id")
     	->setIntegrityCheck(false);
     	$query=$sql->query();

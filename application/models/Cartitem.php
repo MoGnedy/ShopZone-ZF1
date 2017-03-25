@@ -50,8 +50,10 @@ class Application_Model_Cartitem extends Zend_Db_Table_Abstract
         
         return $result;
       }
-
-      function deleteItem($pid)
+      public function deletecart($uid){
+       return $this->delete("customer=$uid");   
+      }
+              function deleteItem($pid)
       {
         return $this->delete("product=$pid");
       }
@@ -73,11 +75,7 @@ class Application_Model_Cartitem extends Zend_Db_Table_Abstract
                     $list[$i]['offer'] = $result[0]['offer_per'];
                     
                   
-              }
-             
-              
-              
-              
+              }       
           }
           return $list;
       }

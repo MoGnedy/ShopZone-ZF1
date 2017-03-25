@@ -287,11 +287,13 @@ $type='user';
             $password = $user_model->randomCode();
 
 $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,"password"=>$password,"address"=>"");
- $dp=Zend_Db_Table::getDefaultAdapter();
-            $adapter=new Zend_Auth_Adapter_DbTable($dp,'customer','email','password');
-            $adapter->setIdentity($userNode['email']);
-            $adapter->setCredential($password);
-             $result=$adapter->authenticate();
+// $dp=Zend_Db_Table::getDefaultAdapter();
+//            $adapter=new Zend_Auth_Adapter_DbTable($dp,'customer','email','password');
+//            $adapter->setIdentity($userNode['email']);
+//            $adapter->setCredential($password);
+//             $result=$adapter->authenticate();
+    $result= $user_model->fetchRow($user_model->select()->where('email like ?', $userNode['email']));
+
              if(!$result){
                    $subject = "Your Password";
                     $body = "your password is ".$password;

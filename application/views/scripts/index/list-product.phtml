@@ -1,32 +1,35 @@
-<div class="col-md-9 w_content">
-		
-		<!-- grids_of_4 -->
-		<div class="grids_of_4">
-		<?php
-			foreach ($this->product as $key => $value) { 
+<div class="container">
+<div class="row" style="margin-top:50px">
+<?php 
+foreach ($this->product as $key => $value) {?>
 
 
- ?>
-			  <div class="grid1_of_4">
-					<div class="content_box"><a href="<?='/index/details-Product/uid/'.$value['id'] ?>">
+  <div class="col-sm-6 col-md-3">
+      <div class="thumbnail" style="height:450px">
+         <a href="<?='/index/details-Product/uid/'.$value['id'] ?>">
 				   	   	 <img src="<?php  echo "/".$value['picture'];?>" class="img-responsive" alt="" />
 					   	  </a>
-					     
-					   	  <?php if($this->languge=="En") {?>
-					    <h4><a href="details.html"> <?php $value['name'];?></a></h4>
-					     <p> <?php $value['description'];?></p>
-					     <?php} else if($this->languge->type=="Ar"){ ?>
-					     <h4><a href="details.html"> <?php  $value['ar_name'];?></a></h4>
-					      <p> <?php  $value['description_ar'];?></p>
-					      <?php } ?>
-				
-				   	</div>
-				</div>
-				
-							   	<?php }?>
+          
+          <div class="caption">
+         <?php if($this->language->type == "En") { ?>
+          
+          <h3><?= $this->product_data['name'] ?></h3>
 
-		
-			
-			<div class="clearfix"></div>
-		</div>
-		<!-- end grids_of_4 -->
+          
+
+            <?php } else if($this->language->type == "Ar") { ?>
+            
+            <h3><?= $this->product_data['ar_name'] ?></h3>
+            
+            <?php }?>
+        <p>Price: <?=$value['price'] ?></p>
+         <p>Quantity: <?=$value['quantity'] ?></p>
+      </div>
+    </div>
+  </div>
+
+<?php
+}
+?>
+</div>
+</div>

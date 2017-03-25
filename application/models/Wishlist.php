@@ -53,15 +53,15 @@ public function AddToWishList($p_id)
 
      // var_dump($result[0]);
      //      die();
-              if($result[0]==$pid && $result[1]>0){
+              if($result){
                 echo "is exist";
-                return $result;
-              }
+              }else{
         
                 $row=$this->createRow();         
                 $row->customer_id= $uid ;
                 $row->product_id= $pid;
                $row->save();
+             }
             
         
       }

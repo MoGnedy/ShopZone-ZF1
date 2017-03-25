@@ -1,4 +1,7 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Shop</b> and script/action name <b>index</b></p>
-</div>
+<?php
+$usersNs = new Zend_Session_Namespace('members');
+echo "<pre>";
+var_dump($usersNs->userType);
+var_dump($_SESSION["Zend_Auth"]['storage']->name);
+echo "</pre>";
+?>

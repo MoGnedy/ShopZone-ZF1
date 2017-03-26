@@ -34,6 +34,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="<?php $this->baseUrl() ?>/js/menu_jquery.js"></script>
 <script src="<?php $this->baseUrl() ?>/js/simpleCart.min.js"> </script>
 <link href="<?php $this->baseUrl() ?>/css/style.css" rel='stylesheet' type='text/css' />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
 </head>
 <body>
@@ -93,9 +94,13 @@ $auth=Zend_Auth::getInstance();
            <div class="create_btn">
         <a href="/<?=$userdata->type?>/index">Profile</a>
       </div>
-      
+  <a href="<?= '/user/listwishlist/pid/'.$userdata->id ?>" ><button class="btn btn-primary"  type="submit" name="button"> Show Me My List </button></a>    
         <?php
+ 
+        
+        
   }
+  
   ?>
   <div class="create_btn">
         <a href="/index/logout">Logout</a>
@@ -161,11 +166,11 @@ $auth=Zend_Auth::getInstance();
                           
                           
        $db=Zend_Db_Table::getDefaultAdapter();
-      $max=$db->select()->from('category','*');
+       $max=$db->select()->from('category','*');
         $stmt = $max->query();
         $result = $stmt->fetchAll();
-        
-        for($i=0;$i<sizeof($result);$i++){
+       
+        for($i=0;$i < count($result);$i++){
             
             $id=$db->select()->from('product','*')
             ->where('category=?',$result[$i]['id']);
@@ -178,7 +183,7 @@ $auth=Zend_Auth::getInstance();
                <?php if($usersNs->userType=='shop'){
                    ?>
                
-          <a href="/shop/productdetails/pid/<?php  echo $resultt[$i]['id']; ?>" ><?php
+          <a href="/shop/listproducts/cid/<?= $result[$i]['id']; ?>" ><?php
             echo $result[$i]['name']; ?> </a>
                             <?php
                }elseif ($usersNs->userType=='user') {

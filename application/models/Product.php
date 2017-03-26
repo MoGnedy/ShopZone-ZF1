@@ -15,6 +15,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
         $row->picture = $productData['picture'];
         $row->quantity = intval($productData['quantity']);
         $row->category = $productData['category'];
+        $row->customer_id=$_SESSION["Zend_Auth"]["storage"]->id;
         $row->save();
     }
     

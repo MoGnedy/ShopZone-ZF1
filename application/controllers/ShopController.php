@@ -69,9 +69,14 @@ class ShopController extends Zend_Controller_Action
     {   
         $product_model = new Application_Model_Product();
         $user_id=   $_SESSION["Zend_Auth"]["storage"]->id;
-        
+        if($this->getRequest()->getParam('cid')){
+            $cid=$this->getRequest()->getParam('cid');
+            $this->view->products = $product_model->listProdCat($cid);
+        } 
+        else{
         $this->view->products = $product_model->listCusomerProducts($user_id);
-        
+        }
+       
         
     }
 
@@ -165,13 +170,17 @@ class ShopController extends Zend_Controller_Action
     {
         $form = new Application_Form_Offer();
 
-        $this->view->offer_form = $form; 
-
+        $this->view->offer_form = $form;
+        if (!empty($this->_request->getParam('pid'))){
+        $this->view->p_id=$this->_request->getParam('pid');
+        }
+      
         $request = $this->getRequest();
         if($request->isPost())
         {
             if($form->isValid($request->getPost()))
             {
+               
                 $offer_model = new Application_Model_Offer();
                 $offer_model->addNewOffer($request->getParams());
                 $this->redirect('/shop/listoffers');

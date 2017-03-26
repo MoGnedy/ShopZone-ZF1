@@ -41,24 +41,30 @@ echo $this->offer_form->getElement('offer_end');
         </div>
     
     <script type="text/javascript">
+        var currentDate = new Date();
         $(function () {
             $('#datetimepicker10').datetimepicker({
+                 //showOn: 'focus',
                 viewMode: 'days',
-                format: 'YYYY-MM-DD'
+                format: 'YYYY-MM-DD',
+                minDate: currentDate
             });
         });
     </script>
         <script type="text/javascript">
+            var currentDate = new Date();
         $(function () {
             $('#datetimepicker1').datetimepicker({
-                viewMode: 'months',
-                format: 'YYYY-MM-DD'
+                // showOn: 'focus',
+                viewMode: 'days',
+                format: 'YYYY-MM-DD',
+                minDate: currentDate
             });
         });
     </script>
 
 </div>
-        
+        <input type="text" value="<?=$this->p_id?>" name="pid" style="display:none"/>
 <div>
     <div >
         <div class="btn-group-justified">

@@ -164,7 +164,7 @@ class AdminController extends Zend_Controller_Action
         if($category_form->isValid($request->getPost())){
         $cat_model = new Application_Model_Category();
         $cat_model->addCat($request->getParams());
-        $this->redirect('/admin/listcats');
+        $this->redirect('/admin/listallcats');
         }
     }
     }

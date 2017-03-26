@@ -72,7 +72,7 @@ class Application_Form_Productform extends Zend_Form
                 ->setValueDisabled(true)
                 ->addValidator('Count', false, 1)
                 ->addValidator('Size', false, 1024000)
-                ->addValidator('Extension', false, 'jpg,png,gif');
+                ->addValidator('Extension', false, 'jpg,png,gif,jpeg');
         $picture->setAttribs(Array(
         'placeholder'=>'Example: 1000',
         'class'=>'form-control'

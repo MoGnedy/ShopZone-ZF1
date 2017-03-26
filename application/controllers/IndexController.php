@@ -409,7 +409,7 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
                    }
                    else
                    {
-                       echo "invalid code";
+                      $this->view->change_form = "invalid code";
                    }
         }
         

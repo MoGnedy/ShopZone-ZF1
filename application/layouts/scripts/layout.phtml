@@ -194,7 +194,7 @@ $auth=Zend_Auth::getInstance();
                   
               }else{
                   ?>
-                             <a href="/index/list-product/cid/<?php  echo $result[$i]['id']; ?>" ><?php
+                             <a href="/index/list-product/uid/<?php  echo $result[$i]['id']; ?>" ><?php
             echo $result[$i]['name']; ?> </a>
                             <?php
                             
@@ -230,8 +230,27 @@ $auth=Zend_Auth::getInstance();
         $fresult = $stmtment->fetchAll();
         
                 for($i=0;$i<sizeof($fresult);$i++){
-            ?><div class="h_nav"><ul><li><h4><a href="/shop/productdetails/pid/<?php
-            echo $fresult[$i]['id']; ?> "><?php
+            ?><div class="h_nav"><ul><li><h4><a 
+                                
+                                <?php if($usersNs->userType=='shop'){
+                                     ?>
+                                href="/shop/productdetails/pid/<?php
+                                echo $fresult[$i]['id'];
+                                 }
+                                 
+                                elseif($usersNs->userType=='user'){
+                                    ?>
+                                href="/user/detailsproduct/uid/<?php
+                                echo $fresult[$i]['id'];
+                                    
+                                }
+                                else{
+                                    ?>
+                                  href="/index/details-Product/uid/<?php 
+                                  echo $fresult[$i]['id'];
+                                }
+                                ?>
+              "><?php
             echo $fresult[$i]['name']; ?> </a>
              </h4></li></ul></div> <?php     
         }
@@ -275,15 +294,32 @@ $auth=Zend_Auth::getInstance();
         $stmtee = $new2->query();
         $fffresult = $stmtee->fetchAll();
         
-           for($y=0;$y<sizeof($fffresult);$y++){                     
-           ?> <a href="/shop/productdetails/pid/<?php echo $fffresult[$y]['id']?>"><?php  echo $fffresult[$y]['name'];}
+           for($y=0;$y<count($fffresult);$y++){
+               
+               if($usersNs->userType=='shop'){
+           ?> <a href="/shop/productdetails/pid/<?php echo $fffresult[$y]['id'];
+                   ?>
+              <?php
+               }
+               elseif($usersNs->userType=='user'){
+          
+                   ?>
+              
+              <a href="/user/detailsproduct/uid/<?php echo $fffresult[$y]['id'];
+                   ?>
+              <?php
+               }
+                else{
+                    ?>
+                    <a href="/index/details-Product/uid/<?php echo $fffresult[$y]['id'];}?>"> <?=$fffresult[$y]['name'];?>
+               <?php  }}
            
                    
             
             ?> 
                             </a></center></h4></li></ul></div> <?php  
                             
-        }
+        
         
         ?>
             

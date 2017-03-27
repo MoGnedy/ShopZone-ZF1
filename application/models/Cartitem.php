@@ -41,7 +41,6 @@ class Application_Model_Cartitem extends Zend_Db_Table_Abstract
                 ->setIntegrityCheck(FALSE)
         ->from(array('c' => 'cartitem','p' => 'product'), array('p.name','c.quantity','p.price','p.id','p.offer'))
                ->join(array('p' => 'product'), 'p.id=c.product', array('p.name','p.price'))
-               //->join(array('o' => 'offer'), 'c.product = o.product_id', array('o.offer_per'))
                ->where('c.customer = ?', $id)
                ->order('p.id','ASC')
         ->setIntegrityCheck(false);

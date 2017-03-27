@@ -7,9 +7,6 @@ class Application_Model_Slider extends Zend_Db_Table_Abstract
      public function addNewSlider($sliderData){
 
         $row = $this->createRow();
-        // $row->description = $productData['description'];
-       // var_dump($sliderData);
-       // die();
         $row->image =$sliderData['image'];
     
         $row->url = $sliderData['url'];
@@ -19,13 +16,12 @@ class Application_Model_Slider extends Zend_Db_Table_Abstract
     {
         $sql=$this->select()
         ->from("slider",array('image','url'))
-        // ->where("p.id=$id")
+       
         ->limit(10, 0)
         ->setIntegrityCheck(false);
 
         $query=$sql->query();
-        // echo $sql->__toString();
-        // die();
+       
         $result=$query->fetchAll();
         return $result;
     }

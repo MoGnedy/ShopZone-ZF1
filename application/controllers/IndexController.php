@@ -21,7 +21,7 @@ class IndexController extends Zend_Controller_Action
             //for arabic
       $request= $this->getRequest()->getParam('ln');
 
-      //echo $request;
+
          if(empty($request)){
            $this->language = new Zend_Session_Namespace('language');
            $this->language->type= isset($this->language->type)?$this->language->type:"En";
@@ -30,30 +30,16 @@ class IndexController extends Zend_Controller_Action
       else{
           $this->language= new Zend_Session_Namespace('language');
           $this->language->type = $request ;
-          // echo $this->language->type;
+
 
 
       }
             $this->view->language=$this->language;
 
-//          if ((!$authorization->hasIdentity() && !isset($fbsession->name)) && ($actionName != 'login' && $actionName !='facebookcallback'))
-//          {
-
-//              $this->redirect('/index/login');
-//          }
-// //
-// //
-//          if (($authorization->hasIdentity() || isset($fbsession->name)) && ($actionName ='login'))
-//          {
-//              // $this->redirect('/index');
-
-//        }
-        /* Initialize action controller here */
     }
 
     public function indexAction()
     {
-        // action body
          $category_model= new Application_Model_Category();
         $this->view->category = $category_model->listAll();
          $select_model=new Application_Model_Product();
@@ -65,7 +51,6 @@ class IndexController extends Zend_Controller_Action
 
     public function listCategoryAction()
     {
-        // action body
         $category_model= new Application_Model_Category();
         $this->view->category = $category_model->listAll();
     }
@@ -81,18 +66,11 @@ class IndexController extends Zend_Controller_Action
         $addcart=new Application_Form_Addtocart();
         $this->view->form=$addcart;
 
-        // $request = $this->getRequest();
-        // if ($request->isPost()) {
-        //     // $user_model=new Application_Model_User();
-        //     // $user_model->($usr_id);
-        //     // $this->redirect("/user/list");
-        // }
-
+ 
     }
 
     public function listProductAction()
     {
-        // action body
          $product_model=new Application_Model_Product();
         $id = $this->_request->getParam('uid');
         $this->view->product =$product_model->listProdCat($id);
@@ -101,7 +79,6 @@ class IndexController extends Zend_Controller_Action
 
     public function selectrateprodAction()
     {
-        // action body
          $select_model=new Application_Model_Product();
         
         $this->view->rate_product =$select_model->selectproductrate();
@@ -110,7 +87,6 @@ class IndexController extends Zend_Controller_Action
 
     public function sliderAction()
     {
-        // action body
         $Slider_model=new Application_Model_Slider();
         
         $this->view->select_image =$Slider_model->slider();
@@ -118,8 +94,6 @@ class IndexController extends Zend_Controller_Action
 
     public function registerAction()
     {
-        // action body
-
         $form=new Application_Form_Signup();
         $this->view->user_form= $form;
         $request=$this->getRequest();
@@ -157,22 +131,8 @@ class IndexController extends Zend_Controller_Action
                 $storage->write($sessionDataObj);
                 $usersNs = new Zend_Session_NameSpace("members");
                 $usersNs->userType = $sessionDataObj->type;
-//                print_r($_SESSION);
-//                die();
                 $path = "/".$sessionDataObj->type;
                 $this->redirect($path);
-//                if($sessionDataObj->type == 'admin')
-//                        {
-//                           
-//                            $this->redirect('/admin');
-//                        }elseif($sessionDataObj->type == 'shop'){
-//                            $this->redirect('/shop');
-//
-//
-//                        }elseif($sessionDataObj->type == 'user'){
-//                               $this->redirect('/user');
-//
-//                        }
 
 
             }else{
@@ -202,7 +162,6 @@ class IndexController extends Zend_Controller_Action
 
     public function logoutAction()
     {
-        // action body
         $auth=Zend_Auth::getInstance();
         $auth->clearIdentity();
         Zend_Session::namespaceUnset('facebook');
@@ -214,7 +173,6 @@ class IndexController extends Zend_Controller_Action
 
     public function facebookcallbackAction()
     {
-        // action body
       $fb = new Facebook\Facebook([
         'app_id' => '1767915360190950', // Replace {app-id} with your app id
         'app_secret' => '150fbee6425745ae2d8de9092073afef',
@@ -290,11 +248,6 @@ $this->fpS->type=$type;
             $password = $user_model->randomCode();
 
 $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,"password"=>$password,"address"=>"");
-// $dp=Zend_Db_Table::getDefaultAdapter();
-//            $adapter=new Zend_Auth_Adapter_DbTable($dp,'customer','email','password');
-//            $adapter->setIdentity($userNode['email']);
-//            $adapter->setCredential($password);
-//             $result=$adapter->authenticate();
     $result= $user_model->fetchRow($user_model->select()->where('email like ?', $userNode['email']));
 
              if(!$result){
@@ -313,18 +266,12 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
 
     public function searchAction()
     {
-        // action body
-//          $search_form=new Application_Form_Search();
-//        $this->view->search=$search_form;
         $this->_helper->layout('layout')->disableLayout();
 
         if ($this->getRequest()->isXmlHttpRequest()) {
             if ($this->getRequest()->isPost()) {
-//
-//                $name=$_REQUEST['query'];
                $name=$_POST['searchword'];
               
-           //  echo   $name= $request->getParam('searchword');
                 
                 $indexSearch = new Application_Model_Product();
                 $result = $indexSearch ->searchByName($name);
@@ -336,8 +283,8 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
 
     public function notfoundAction()
     {
-        // action body
-    }
+
+        }
 
     public function ressetpasswordAction()
     {
@@ -352,10 +299,7 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
                 print_r($result);
                 if (isset($result[0]['email'])){
                     $code = $user_model->randomCode();
-                    //print_r($code);
-                   // die();
                     $ee =$result[0]['email'];
-                    //print_r($ee);
                     
                                         $data = array(
                        'reset_password' => $code,
@@ -379,7 +323,6 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
     public function changepasswordAction()
     {
         $change_form = new Application_Form_Changepasswordform();
-        //$this->view->change_form =$change_form;
         $request=$this->getRequest();
         if ($request->getUserParam("code")){
             $code = $request->getUserParam("code");
@@ -417,17 +360,12 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
 
     public function googleloginAction()
     {
-        // action body
-        //  session_start();
      $client_id = '241152925905-57dfnjjj5cnbu2dmoqftboqq4s8ofghe.apps.googleusercontent.com';
      $client_secret = 'icPt_AcGD_KvonAOC_ReBj-F';
     $client = new Google_Client();
 
     $client->setClientId($client_id);
     $client->setClientSecret($client_secret);
-    //$client->setClientId(Zend_Registry::getInstance()->myresources->GOOGLE_KEY);
-    //$client->setClientSecret(Zend_Registry::getInstance()->myresources->GOOGLE_SECRETE);
-    //$client->setAuthConfig('client_secrets.json');
     $client->addScope('email');
     $service = new Google_Service_Oauth2($client);
 
@@ -442,14 +380,12 @@ $user=array("name"=>$userNode['name'],"email"=>$userNode['email'],"type"=>$type,
 
     public function gpcallbackAction()
     {
-        // action body
     $client_id = '681093495489-er5i9j0lu0ood3jb2u6qairgcselmaf4.apps.googleusercontent.com';
     $client_secret = 'TirqTRefhxzvyNj_ad_s6BO5';
     $client = new Google_Client();
 
     $client->setClientId($client_id);
     $client->setClientSecret($client_secret);
-    //$client->setAuthConfig('client_secrets.json');
     $client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/index/gpcallback');
     $client->addScope('email');
     $service = new Google_Service_Oauth2($client);

@@ -22,7 +22,6 @@ class Application_Form_Changepasswordform extends Zend_Form
         $submit->setAttrib('class', 'btn btn-success');
         $reset = new Zend_Form_Element_Reset('Reset');
         $reset->setAttrib('class', 'btn btn-danger');
-        //$this->addElement($picture,'picture');
         $this->addElements(array($password1,$password2,$submit,$reset));
 
     }

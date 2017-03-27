@@ -21,7 +21,6 @@ class Application_Form_Commentform extends Zend_Form
                 ->setAttrib('id', 'submitcomment');
         $reset = new Zend_Form_Element_Reset('Reset');
         $reset->setAttrib('class', 'btn btn-danger');
-        //$this->addElement($picture,'picture');
         $this->addElements(array($comment,$submit,$reset));
         
         

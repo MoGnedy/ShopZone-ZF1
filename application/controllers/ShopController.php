@@ -46,7 +46,6 @@ class ShopController extends Zend_Controller_Action
         $product_model = new Application_Model_Product();
         
         $location = $form->picture->getFileName();
-        //print_r($location);
         $request->setParam('picture', $location);
         
         $values = $form->getValues();
@@ -187,7 +186,6 @@ class ShopController extends Zend_Controller_Action
             }
         }
     
-        // action body
     }
 
     public function offerdetailsAction()
@@ -217,29 +215,14 @@ class ShopController extends Zend_Controller_Action
 
     public function selectcommentAction($id)
     {
-        // action body
-       //   $comment_model = new Application_Model_Product();
-       // // $uid=$this->fetchAll()->toArray();
-       //   // $id=[];
-       //  $comment_id = $this->_request->getParam("pid");
-       //  // $id=$comment_id;
-       //  $id=2;
-       //  $slec=$comment_model->SelectionComment($id);
-       //   // var_dump($uid);
-       //  // die();
-       //  $this->view->comment = $slec;
-
+        
 
          
                 $comment_model = new Application_Model_Product();
-       // $uid=$this->fetchAll()->toArray();
         $comment_id = $this->_request->getParam("pid");
-         // var_dump($uid);
-        // die();
         $this->view->comment = $comment_model->SelectionComment($comment_id);
 
-            // $this->redirect('/index/index');
-    
+       
         
 
     }

@@ -27,7 +27,6 @@ class Application_Form_Productform extends Zend_Form
         ));
         $description->setRequired();
         $description->addValidator('StringLength', false, Array(4,));
-        //$description->addFilter('StringTrim');
 
 
          $ar_name = new Zend_Form_Element_Text('ar_name');
@@ -50,8 +49,7 @@ class Application_Form_Productform extends Zend_Form
         ));
        
         $description_ar->addValidator('StringLength', false, Array(4,));
-        //$description->addFilter('StringTrim');
-
+        
 
 
 
@@ -77,9 +75,6 @@ class Application_Form_Productform extends Zend_Form
         'placeholder'=>'Example: 1000',
         'class'=>'form-control'
         ));
-        //$picture->setRequired();
-        //$picture->addValidator('StringLength', false, Array(1,10));
-        //$picture->addFilter('StringTrim');
 
         $quantity = new Zend_Form_Element_Text('quantity');
         $quantity->setLabel('Product quantity: ');
@@ -110,7 +105,6 @@ class Application_Form_Productform extends Zend_Form
         $submit->setAttrib('class', 'btn btn-success');
         $reset = new Zend_Form_Element_Reset('Reset');
         $reset->setAttrib('class', 'btn btn-danger');
-        //$this->addElement($picture,'picture');
         $this->addElements(array($name,$description,$ar_name,$description_ar,$picture,$quantity,$price,$cat_id,$submit,$reset));
 
 

@@ -16,12 +16,10 @@ class Application_Form_Offer extends Zend_Form
     	$offer_per->setAttribs(Array('placeholder' => 'Example:0.10', 'class' => 'form-control'));
 
     	$offer_start = new Zend_Form_Element_Text('offer_start');
-    	//$offer_start->setLabel('Start date: ');
     	$offer_start->setRequired();
     	$offer_start->setAttribs(Array('placeholder' => 'Example:2000-12-31', 'class' => 'form-control','type' => 'date'));
 
     	$offer_end = new Zend_Form_Element_Text('offer_end');
-    	//$offer_end->setLabel('End date: ');
     	$offer_end->setRequired();
     	$offer_end->setAttribs(Array('placeholder' => 'Example:2000-12-31', 'class' => 'form-control'));
 
@@ -42,7 +40,6 @@ class Application_Form_Offer extends Zend_Form
 	 $reset
 	));
 
-        /* Form Elements & Other Definitions Here ... */
     }
 
 

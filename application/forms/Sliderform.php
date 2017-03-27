@@ -5,7 +5,6 @@ class Application_Form_Sliderform extends Zend_Form
 
     public function init()
     {
-        /* Form Elements & Other Definitions Here ... */
         $this->setMethod('POST');
        $image = new Zend_Form_Element_File('image');
         $image->setLabel('SLider image: ')
@@ -33,7 +32,6 @@ class Application_Form_Sliderform extends Zend_Form
         $submit->setAttrib('class', 'btn btn-success');
         $reset = new Zend_Form_Element_Reset('Reset');
         $reset->setAttrib('class', 'btn btn-danger');
-        //$this->addElement($picture,'picture');
         $this->addElements(array($image,$url,$submit,$reset));
 }
 

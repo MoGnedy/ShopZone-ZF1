@@ -7,37 +7,15 @@ class UserController extends Zend_Controller_Action
 
     public function init()
     {
-//         $this->fpS = new Zend_Session_Namespace('facebook');
-//         $authorization = Zend_Auth::getInstance();
-//        $fbsession = new Zend_Session_Namespace('facebook');
-//
-//        $request=$this->getRequest();
-//        $actionName=$request->getActionName();
-//
-//          if ((!$authorization->hasIdentity() && !isset($fbsession->name)) && ($actionName != 'login' && $actionName != 'fblogin' && $actionName !='facebookcallback'))
-//          {
-//
-//              $this->redirect('/user/login');
-//          }
-//
-//
-//          if (($authorization->hasIdentity() || isset($fbsession->fname)) && ($actionName == 'login' || $actionName == 'fblogin'))
-//          {
-//            $this->redirect('/index');
-//
-//        }
       //for arabic
        $request= $this->getRequest()->getParam('ln');
-      //echo $request;      
        if(empty($request)){
          $this->language= new Zend_Session_Namespace('language');
           $this->language->type = isset($this->language->type)?$this->language->type:"En";
-          // echo $this->language->type;
       }
       else{
           $this->language= new Zend_Session_Namespace('language');
           $this->language->type = $request ;
-          // echo $this->language->type;
 
       }
             $this->view->language=$this->language;
@@ -45,7 +23,6 @@ class UserController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
          $category_model= new Application_Model_Category();
         $this->view->category = $category_model->listAll();
          $select_model=new Application_Model_Product();
@@ -60,7 +37,6 @@ class UserController extends Zend_Controller_Action
 
     public function addAction()
     {
-        // action body
           $form=new Application_Form_Signup();
         $this->view->user_form= $form;
         $request=$this->getRequest();
@@ -74,13 +50,11 @@ class UserController extends Zend_Controller_Action
 
     public function loginAction()
     {
-        // action body
 
         $loginForm=new Application_Form_Login();
         $request=$this->getRequest();
         if($request->isPost()){
           if ($loginForm->isValid($request->getPost())) {
-            //Array ( [name] => والتنم [pass] => كةىتﻻاىةزظ [Login] => Login )
             $name=$request->getParam('name');
             $pass=$request->getParam('pass');
             $dp=Zend_Db_Table::getDefaultAdapter();
@@ -106,7 +80,6 @@ class UserController extends Zend_Controller_Action
 
     public function fbloginAction()
     {
-        // action body
          $fb = new Facebook\Facebook([
         'app_id' => '1767915360190950', // Replace {app-id} with your app id
         'app_secret' => '150fbee6425745ae2d8de9092073afef',
@@ -120,7 +93,6 @@ class UserController extends Zend_Controller_Action
 
     public function facebookcallbackAction()
     {
-        // action body
         $fb = new Facebook\Facebook([
         'app_id' => '1767915360190950', // Replace {app-id} with your app id
         'app_secret' => '150fbee6425745ae2d8de9092073afef',
@@ -193,7 +165,6 @@ $this->fpS->name = $userNode['name'];
 
     public function delwishlistAction()
     {
-        // action body
          //check to delete just product
         //check if it empty after u check function work
         $Wish_model = new Application_Model_Wishlist();
@@ -205,38 +176,28 @@ $this->fpS->name = $userNode['name'];
     public function inserwishlistAction()
     {
 
-          // action body
          $Wish_model = new Application_Model_Wishlist();
             //check to send it
             $check = [];
             $p_id=$this->_request->getParam("pid");
-            // $check=$Wish_model->find($customer_id,$product_id)->toArray()[0];
-            // $test=$Wish_model-> AddToWishList($request->getParams());
             $test=$Wish_model-> AddToWishList($p_id);
 
             $this->redirect('/user/listproduct');
 
-        //$this->view->wish_data = $test;
-
+   
     }
 
     public function listwishlistAction()
     {
- // action body
         $Wish_model = new Application_Model_Wishlist();
-       // $uid=$this->fetchAll()->toArray();
-        // $Wish_id = $this->_request->getParam("wid");
        $Wish_id=$_SESSION["Zend_Auth"]["storage"]->id;
 
-         // var_dump($uid);
-        // die();
         $this->view->model = $Wish_model->SelectionWishList($Wish_id);
     }
 
 
     public function sendemailAction()
     {
-        // action body
         $code = $this->_request->getParam("code");
         $discount=$this->_request->getParam("discount");
         $customer_model = new Application_Model_Customer();
@@ -275,7 +236,6 @@ $this->fpS->name = $userNode['name'];
 
     public function facelogoutAction()
     {
-        // action body
     $auth=Zend_Auth::getInstance();
     Zend_Session::namespaceUnset('facebook');
 
@@ -287,7 +247,6 @@ $this->fpS->name = $userNode['name'];
 
     public function googleloginAction()
     {
-        // action
         $this->view->googlelogin;
     }
 
@@ -367,12 +326,6 @@ $this->fpS->name = $userNode['name'];
       $addcart=new Application_Form_Addtocart();
       $this->view->form=$addcart;
 
-      // $request = $this->getRequest();
-      // if ($request->isPost()) {
-      //     // $user_model=new Application_Model_User();
-      //     // $user_model->($usr_id);
-      //     // $this->redirect("/user/list");
-      // }
     }
 
     public function addtocartAction()
@@ -398,30 +351,8 @@ $this->fpS->name = $userNode['name'];
       $data = $cartmodel->selectoffer($_SESSION["Zend_Auth"]["storage"]->id);
       $this->view->cart =  $cartmodel->checkOffer($data);
       $this->view->userid=$_SESSION["Zend_Auth"]["storage"]->id;
-      // var_dump($this->view->cart);
-      // die();
-
-      // //******** get price of each item and pushing it in array (product) *******
-      // $cartarray= array();
-      // foreach ($this->view->cart as $key => $value) {
-      //   // print_r($value);
-      //   // die();
-      //   array_push($cartarray,$cartmodel->selectprice($value['product']));
-      // }
-      // $this->view->product= $cartarray;
-      // // print_r($this->view->product);
-      // // die();
-      // //**********************************************
-      // //*********select offer for each item if found and pushing it in
-      // $offerarray= array();
-      // foreach ($this->view->cart as $key => $value) {
-      //
-      //   array_push($cartarray,$cartmodel->selectoffer($value['product']));
-      // }
-      // $this->view->offers= $offerarray;
-      // print_r($this->view->offers);
-      // die();
-      // //**************************
+      
+      
     }
 
     public function sendbillAction()
@@ -435,14 +366,13 @@ $this->fpS->name = $userNode['name'];
       
       $coupon=new Application_Model_Coupon();
           $row = $coupon->fetchRow($coupon->select()->where("code='$cpn' and customer=$uid"));
-//    $resultdis=$order->checkdis($cpn,$uid);
- $order= new Application_Model_Order();
+         $order= new Application_Model_Order();
    
       
-      if (!$row) {
-$totalprice=$this->_request->getParam("total"); 
-}
-      else{
+        if (!$row) {
+          $totalprice=$this->_request->getParam("total"); 
+          }
+        else{
          $dis=100-$row['discount'];
          $totalprice=$this->_request->getParam("total")*($dis/100);
       }
@@ -458,8 +388,7 @@ $totalprice=$this->_request->getParam("total");
           $offer=100-$value['offer'];
      $afterdis=($value['quantity']*$value['price']*($offer/100));
         $emailbody=$emailbody." ".$value['name']." ".$value['quantity']." ".$value['price']." ".$afterdis." <br>";
-    //  $total+=$afterdis;
-      }
+         }
       $emailbody=$emailbody."<br> your total net price after adding offers ".$totalprice."<br>";
 
       $sendEmail=new Application_Model_Customer();
@@ -472,8 +401,6 @@ $totalprice=$this->_request->getParam("total");
 
 
       $send_email=$sendEmail->sendEmail($email,$subject,$body);
-      // print_r($sendemail);
-      // die();
      $del=$sendingcart->deletecart($uid);
       
       $this->redirect('/user/displaycart');

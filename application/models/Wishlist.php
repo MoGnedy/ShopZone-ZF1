@@ -12,8 +12,6 @@ class Application_Model_Wishlist extends Zend_Db_Table_Abstract
       ->where("w.customer_id=$Wish_id")
     	->setIntegrityCheck(false);
     	$query=$sql->query();
-    	// echo $sql->__toString();
-    	// die();
     	$result=$query->fetchAll();
   
     	return $result;
@@ -25,8 +23,6 @@ class Application_Model_Wishlist extends Zend_Db_Table_Abstract
 
  public function deleteWish($id)
 {
-	//pass param prod and id
-	//check empty and how to delete row
 	
 	
 	$this->delete("id=$id");
@@ -44,15 +40,7 @@ public function AddToWishList($p_id)
     ->where("w.customer_id=$uid")
     ->setIntegrityCheck(false);
       $query=$sql->query();
-      // echo $sql->__toString();
-      // die();
       $result=$query->fetchAll();
-      // print_r($result);
-      // die();
-      // return $result;
-
-     // var_dump($result[0]);
-     //      die();
               if($result){
                 echo "is exist";
               }else{

@@ -20,8 +20,6 @@ class AdminController extends Zend_Controller_Action
     {
         $user_model = new Application_Model_Customer();
         $user_type = $this->_request->getParam('type');
-//        print_r($user_type);
-//        die();
         
         $this->view->users = $user_model->listusers($user_type);
        
@@ -30,7 +28,6 @@ class AdminController extends Zend_Controller_Action
 
     public function userdetailsAction()
     {
-        // action body
          $customer_model = new Application_Model_Customer();
         $us_id = $this->_request->getParam("uid");
         $user = $customer_model->userDetails($us_id);
@@ -39,7 +36,6 @@ class AdminController extends Zend_Controller_Action
 
     public function edituserAction()
     {
-        // action body
         $form = new Application_Form_Signup();
         $id=$this->_request->getParam('uid');
         $userModel= new Application_Model_Customer();
@@ -60,7 +56,6 @@ class AdminController extends Zend_Controller_Action
 
     public function deleteuserAction()
     {
-        // action body
         $user_model = new Application_Model_Customer();
         $us_id = $this->_request->getParam("uid");
         $user_model->deleteUser($us_id);
@@ -69,7 +64,6 @@ class AdminController extends Zend_Controller_Action
 
     public function blockuserAction()
     {
-        // action body
           $user_model = new Application_Model_Customer();
         $us_id = $this->_request->getParam("uid");
         $user_model->blockUser($us_id);
@@ -78,7 +72,6 @@ class AdminController extends Zend_Controller_Action
 
     public function activeuserAction()
     {
-        // action body
         $user_model = new Application_Model_Customer();
         $us_id = $this->_request->getParam("uid");
         $user_model->activeUser($us_id);
@@ -87,10 +80,8 @@ class AdminController extends Zend_Controller_Action
 
     public function sendcouponAction()
     {
-        // action body
           $coupon=new Application_Model_Coupon();
-      // echo $us_id = $this->_request->getParam("uid");
-      // die();
+
            $request=$this->getRequest();
         if($request->isPost()){
             
@@ -103,13 +94,12 @@ class AdminController extends Zend_Controller_Action
             $code .= $chars[rand(0,strlen($chars)-1)];
         }
         $request->setParam('code', $code);
-               // $request->setParam('order', 1);
-
+   
 
        $coupon-> addCoupon($request->getParams());
 
         }
-       // var_dump($request->getParams());
+
        $uid= $request->getParam('customer');
        $discount=$request->getParam('discount');
        $customer_model = new Application_Model_Customer();
@@ -127,13 +117,11 @@ class AdminController extends Zend_Controller_Action
     $send_email=$customer_model->sendEmail($email,$subject,$body);
    $this->redirect('/admin/listallusers');
 
-     // $this->redirect("/user/sendemail/uid/$uid/code/$code/discount/$discount");
 
     }
 
     public function addsliderAction()
     {
-        // action body
         $form=new Application_Form_Sliderform();
         $form->setAttrib('enctype', 'multipart/form-data');
                 $this->view->form = $form;
@@ -203,7 +191,7 @@ class AdminController extends Zend_Controller_Action
 
     public function deletefromsliderAction()
     {
-        // action body
+
       $slider_model = new Application_Model_Slider();
       $s_id = $this->_request->getParam('sid');
       $slider = $slider_model->deletefromslider($s_id);
@@ -212,7 +200,7 @@ class AdminController extends Zend_Controller_Action
 
     public function listfromsliderAction()
     {
-        // action body
+
       $slider_model = new Application_Model_Slider();
 
         $this->view->slider_admin = $slider_model->listfromslider();
@@ -220,8 +208,7 @@ class AdminController extends Zend_Controller_Action
 
     public function detailsliderAction()
     {
-        // action body
-        // write phtml
+
         $slider_model = new Application_Model_Slider();        
        $s_id = $this->_request->getParam('sid');
        $slider = $slider_model->sliderDetails($s_id);
@@ -230,7 +217,6 @@ class AdminController extends Zend_Controller_Action
 
     public function editsliderAction()
     {
-        // action body
 
 
          $form = new Application_Form_Sliderform();
@@ -243,10 +229,6 @@ class AdminController extends Zend_Controller_Action
             if($request->isPost()){
                 if($form->isValid($request->getPost())){
 
-
-        
-        // $slider_model-> updateSlider ($id,$request->getPost());
-        // $this->redirect('/admin/listfromslider ');
 
 
                         $location = $form->image->getFileName();
@@ -278,7 +260,7 @@ class AdminController extends Zend_Controller_Action
         $product_model = new Application_Model_Product();
         
         $location = $form->picture->getFileName();
-        //print_r($location);
+
         $request->setParam('picture', $location);
         
         $values = $form->getValues();

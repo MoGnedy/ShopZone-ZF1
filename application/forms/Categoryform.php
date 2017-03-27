@@ -15,12 +15,10 @@ class Application_Form_Categoryform extends Zend_Form
 
         $name->setRequired();
         $name->addValidator('StringLength', false, Array(4,150));
-        //$name->addFilter('StringTrim');
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setAttrib('class', 'btn btn-success');
         $reset = new Zend_Form_Element_Reset('Reset');
         $reset->setAttrib('class', 'btn btn-danger');
-        //$this->addElement($picture,'picture');
         $this->addElements(array($name,$submit,$reset));
 
     }

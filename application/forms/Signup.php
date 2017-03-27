@@ -5,7 +5,6 @@ class Application_Form_Signup extends Zend_Form
 
     public function init()
     {
-        /* Form Elements & Other Definitions Here ... */
         $this->setMethod('POST');
         $name=new Zend_Form_Element_Text('name');
         $name->setLabel('Name: ');

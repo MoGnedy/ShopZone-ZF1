@@ -7,20 +7,18 @@ class Application_Model_Rate extends Zend_Db_Table_Abstract
     function addNewRate($newrate)
 	{
 	
-        
+        $user_id = $_SESSION["Zend_Auth"]["storage"]->id;
+       
         $select=$this->select()
                 ->from('rate','*')
                 //->where('product= ?',$newrate['product'] and 'customer= ?',$newrate['customer']);
                 ->where('product= ?',$newrate['product'])
-                ->where('customer= ?',$newrate['customer']);
+                ->where('customer= ?',$user_id);
         $stmt = $select->query();
         $result = $stmt->fetchAll();
-//        echo '<pre>';
-//        var_dump($result);
-//        echo '</pre>';
         if (empty($result)){
         $row = $this->createRow();
-        $row->customer = $newrate['customer'];
+        $row->customer = $user_id;
 	$row->product = $newrate['product'];
 	$row->rate = $newrate['star'];
         $row->save();
@@ -36,14 +34,14 @@ class Application_Model_Rate extends Zend_Db_Table_Abstract
          else {
         $old = $this->select()
                 ->from('rate','rate')
-                ->where('customer=?',$newrate['customer'])
+                ->where('customer=?',$user_id)
                 ->where('product=?',$newrate['product']);
         $old = $old->query();
         $old = $old->fetchAll();
         $old = $old[0]['rate'];
         $new =  $newrate['star'] - $old ; 
         $data=array('rate'=>new Zend_Db_Expr($newrate['star']));
-        $where='customer='.$newrate['customer'];
+        $where='customer='.$user_id;
         $this->update($data, $where);
         $product_model = new Application_Model_Product();
         //$product_model->update(['total_users_rate'=>'total_users_rate+1','total_rates'=>'total_rates+$newrate['star']'],'id='.$newrate['customer']);
